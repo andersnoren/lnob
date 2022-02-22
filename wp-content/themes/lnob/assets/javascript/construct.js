@@ -29,59 +29,6 @@ function getQueryStringValue( key, string ) {
     return results === null ? '' : decodeURIComponent( results[1].replace(/\+/g, ' ' ) );
 }
 
-/* Set cookie -------------------------------- */
-
-function setCookie( name, value, days ) {
-    var expires = "";
-    if ( days ) {
-        var date = new Date();
-        date.setTime( date.getTime() + ( days * 24 * 60 * 60 * 1000 ) );
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + ( value || "" )  + expires + "; path=/";
-}
-
-/* Get cookie -------------------------------- */
-
-function getCookie( name ) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split( ';' );
-    for ( var i=0; i < ca.length; i++ ) {
-        var c = ca[i];
-        while ( c.charAt( 0 ) == ' ' ) c = c.substring( 1, c.length );
-        if ( c.indexOf( nameEQ ) == 0 ) return c.substring( nameEQ.length, c.length );
-    }
-    return null;
-}
-
-/* Delete cookie ----------------------------- */
-
-function deleteCookie( name ) {   
-    document.cookie = name + '=; Max-Age=-99999999;';
-}
-
-/* Output AJAX errors ------------------------ */
-
-function ajaxErrors( jqXHR, exception ) {
-	var message = '';
-	if ( jqXHR.status === 0 ) {
-		message = 'Not connect.n Verify Network.';
-	} else if ( jqXHR.status == 404 ) {
-		message = 'Requested page not found. [404]';
-	} else if ( jqXHR.status == 500 ) {
-		message = 'Internal Server Error [500].';
-	} else if ( exception === 'parsererror' ) {
-		message = 'Requested JSON parse failed.';
-	} else if ( exception === 'timeout' ) {
-		message = 'Time out error.';
-	} else if ( exception === 'abort' ) {
-		message = 'Ajax request aborted.';
-	} else {
-		message = 'Uncaught Error.n' + jqXHR.responseText;
-	}
-	console.log( 'AJAX ERROR:' + message );
-}
-
 
 /*	-----------------------------------------------------------------------------------------------
 	Interval Scroll
@@ -799,183 +746,19 @@ LNOB.focusManagement = {
 
 
 /*	-----------------------------------------------------------------------------------------------
-	Load More
---------------------------------------------------------------------------------------------------- */
-
-LNOB.loadMore = {
-
-	init: function() {
-
-		var $pagination = $( '.pagination' );
-
-		// First, check that there's a pagination
-		if ( $pagination.length ) {
-
-			// Default values for variables
-			window.lnobLMLoading = false;
-			window.lnobLMLastPage = false;
-
-			LNOB.loadMore.prepare( $pagination );
-
-		}
-
-	},
-
-	prepare: function( $pagination ) {
-
-		// Get the query arguments from the pagination element.
-		var queryArgs = JSON.parse( $pagination.attr( 'data-query-args' ) );
-
-		$paginationWrapper = $pagination.closest( '.pagination-wrapper' )
-
-		// If we're already at the last page, exit out here
-		if ( queryArgs.paged == queryArgs.max_num_pages ) {
-			$paginationWrapper.addClass( 'last-page' );
-		}
-
-		// Get the load more type.
-		var loadMoreType = $pagination.data( 'pagination-type' ) ? $pagination.data( 'pagination-type' ) : 'links';
-
-		// Do the appropriate load more detection, depending on the type
-		if ( loadMoreType == 'button' ) {
-			LNOB.loadMore.detectButtonClick( $pagination );
-		}
-
-	},
-
-	// Load more on click.
-	detectButtonClick: function( $pagination ) {
-
-		$lnobDoc.on( 'click', '.load-more-button', function() {
-
-			// Get the query arguments from the pagination element.
-			var queryArgs = JSON.parse( $pagination.attr( 'data-query-args' ) );
-
-			// Make sure we aren't already loading.
-			if ( lnobLMLoading ) return;
-
-			LNOB.loadMore.loadPosts( $pagination, queryArgs );
-
-			return false;
-			
-		} );
-
-	},
-
-	// Load the posts
-	loadPosts: function( $pagination, queryArgs ) {
-
-		var $paginationWrapper = $pagination.closest( '.pagination-wrapper' );
-
-		// We're now loading.
-		lnobLMLoading = true;
-
-		$paginationWrapper.addClass( 'loading' );
-
-		// Increment paged.
-		queryArgs.paged++;
-
-		// Write the updated query args to the pagination.
-		$pagination.attr( 'data-query-args', JSON.stringify( queryArgs ) );
-
-		// Prepare the query args for submission.
-		var jsonQueryArgs = JSON.stringify( queryArgs );
-
-		$.ajax( {
-			url: lnobData.ajaxURL,
-			type: 'post',
-			data: {
-				action: 'lnob_ajax_load_more',
-				json_data: jsonQueryArgs
-			},
-			success: function( result ) {
-
-				// Get the results.
-				var $result 			= $( result ),
-					$articleWrapper 	= $( $pagination.data( 'load-more-target' ) );
-
-				$paginationWrapper.removeClass( 'loading' );
-
-				// If there are no results, we're at the last page.
-				if ( ! $result.length ) {
-					lnobLMLoading = false;
-					$paginationWrapper.addClass( 'last-page' );
-
-				} else if ( $result.length ) {
-
-					// Append the results.
-					$articleWrapper.append( $result );
-
-					$lnobWin.trigger( 'ajax-content-loaded' );
-					$lnobWin.trigger( 'did-interval-scroll' );
-
-					// Update history.
-					if ( $pagination.data( 'update-history' ) ) {
-						LNOB.loadMore.updateHistory( queryArgs.paged );
-					}
-
-					// We're now finished with the loading.
-					lnobLMLoading = false;
-
-					// If that was the last page, make sure we don't check for any more.
-					if ( queryArgs.paged == queryArgs.max_num_pages ) {
-						$paginationWrapper.addClass( 'last-page' );
-						lnobLMLastPage = true;
-						return;
-					} else {
-						$paginationWrapper.removeClass( 'last-page' );
-						lnobLMLastPage = false;
-					}
-
-				}
-
-			},
-
-			error: function( jqXHR, exception ) {
-				ajaxErrors( jqXHR, exception );
-			}
-
-		} );
-
-	},
-
-	// Update browser history
-    updateHistory: function( paged ) {
-
-		var newUrl,
-			currentUrl = document.location.href;
-
-		var hasPaginationRegexp = new RegExp( '^(.*/page)/[0-9]*/(.*$)' );
-
-		if ( hasPaginationRegexp.test( currentUrl ) ) {
-			newUrl = currentUrl.replace( hasPaginationRegexp, '$1/' + paged + '/$2' );
-		} else {
-			var beforeSearchReplaceRegexp = new RegExp( '^([^?]*)(\\??.*$)' );
-			newUrl = currentUrl.replace( beforeSearchReplaceRegexp, '$1page/' + paged + '/$2' );
-		}
-
-		history.pushState( {}, '', newUrl );
-
-	}
-
-} // LNOB.loadMore
-
-
-/*	-----------------------------------------------------------------------------------------------
 	Function Calls
 --------------------------------------------------------------------------------------------------- */
 
 $lnobDoc.ready( function() {
 
-	LNOB.intervalScroll.init();		// Check for scroll on an interval.
-	LNOB.resizeEnd.init();			// Trigger event at end of resize.
+	LNOB.intervalScroll.init();			// Check for scroll on an interval.
+	LNOB.resizeEnd.init();				// Trigger event at end of resize.
 	LNOB.isScrolling.init();			// Check for scroll direction.
 	LNOB.toggles.init();				// Handle toggles.
 	LNOB.coverModals.init();			// Handle cover modals.
-	LNOB.elementInView.init();		// Check if elements are in view.
+	LNOB.elementInView.init();			// Check if elements are in view.
 	LNOB.smoothScroll.init();			// Smooth scroll to anchor link or a specific element.
-	LNOB.scrollLock.init();			// Scroll Lock.
+	LNOB.scrollLock.init();				// Scroll Lock.
 	LNOB.focusManagement.init();		// Focus Management.
-	LNOB.loadMore.init();				// Load More.
 
 } );
