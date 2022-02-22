@@ -1,0 +1,146 @@
+/* --------------------------------------------------------------------------------------------- */
+/*	CSS Variables
+/* --------------------------------------------------------------------------------------------- */
+
+
+@import "./css-variables.css";
+
+
+/* --------------------------------------------------------------------------------------------- */
+/*	Document Setup
+/* --------------------------------------------------------------------------------------------- */
+
+
+html {
+	font-size: 62.5%;
+}
+
+:root {
+	color: var( --c-black );
+	line-height: var( --lh-body );
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+:root > * {
+	font-family: var( --ff-sans );
+	font-size: var( --fs-body );
+}
+
+.block-editor-default-block-appender textarea.block-editor-default-block-appender__content {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
+/*	Structure
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* Block Widths ------------------------------ */
+
+.wp-block {
+	max-width: var( --mw-thin );
+}
+
+.wp-block .wp-block {
+	max-width: 100%;
+}
+
+*[data-align=right] .editor-block-list__block-edit,
+*[data-align=left] .editor-block-list__block-edit,
+*[data-align=right] .is-block-content,
+*[data-align=left] .is-block-content {
+	margin-bottom: 1em;
+	max-width: 50%;
+}
+
+*[data-align="wide"],
+*[data-align="full"] {
+	margin: 6rem auto;
+}
+
+.wp-block[data-align="wide"] {
+    max-width: var( --mw-max );
+	width: calc( 100% - calc( 2 * var( --body-margin ) ) );
+}
+
+.wp-block[data-align="full"] {
+    max-width: 100%;
+    width: 100%;
+}
+
+*[data-align="wide"] [data-type="core/group"]:not([data-align="wide"]):not([data-align="full"]),
+*[data-align="full"] [data-type="core/group"]:not([data-align="wide"]):not([data-align="full"]) {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var( --mw-thin );
+}
+
+*[data-align="wide"] > [data-type="core/group"] {
+	max-width: var( --mw-max ) !important;
+}
+
+*[data-align="full"] > [data-type="core/group"] {
+	max-width: none !important;
+}
+
+/* Post Title -------------------------------- */
+
+.editor-post-title__block .editor-post-title__input,
+.editor-post-title__block .editor-post-title__input:focus {
+	color: inherit;
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
+/*	Elements
+/* --------------------------------------------------------------------------------------------- */
+
+
+:root .editor-styles-wrapper p,
+.editor-styles-wrapper .editor-rich-text__tinymce,
+.editor-styles-wrapper .editor-rich-text__tinymce.mce-content-body {
+	line-height: var( --lh-body );
+}
+
+.editor-block-list__layout a,
+.block-editor-block-list__layout a {
+	color: var( --c-accent );
+	text-decoration: underline;
+}
+
+/* Headings ---------------------------------- */
+
+.editor-post-title__block .editor-post-title__input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 700;
+	line-height: var( --lh-heading );
+}
+
+.editor-post-title__block .editor-post-title__input,
+h1 { font-size: var( --fs-h1 ); }
+h2 { font-size: var( --fs-h2 ); }
+h3 { font-size: var( --fs-h3 ); }
+h4 { font-size: var( --fs-h4 ); }
+h5 { font-size: var( --fs-h5 ); }
+h6 { font-size: var( --fs-h6 ); }
+
+/* Media ------------------------------------- */
+
+figcaption {
+	color: inherit;
+	font-size: 1.6rem;
+	margin: 1em 0 0;
+}
+
+*[data-align="full"] > figcaption,
+*[data-align="full"] > * > figcaption {
+	padding: 0 var( --body-margin );
+}

@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# But not these files...
+!/.gitignore
+!/README.md
+
+# ...even if they are in subdirectories...
+!*/
+
+# ...unless they are in these subdirectories
+!/wp-content/themes/lnob/**
+!/wp-content/plugins/lnob-compat/**
+
+# Exclude .DS_Store everywhere
+.DS_Store
