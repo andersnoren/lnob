@@ -7,6 +7,71 @@
 
 
 /* --------------------------------------------------------------------------------------------- */
+/*	0. Fonts
+/* --------------------------------------------------------------------------------------------- */
+
+/* Avenir Next LT Pro ------------------------ */
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-It.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Demi.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-BoldIt.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* CONDENSED */
+
+@font-face {
+    font-family: 'Avenir Next LT Pro Condensed';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-BoldCn.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
 /*	Document Setup
 /* --------------------------------------------------------------------------------------------- */
 
@@ -23,7 +88,7 @@ html {
 }
 
 :root > * {
-	font-family: var( --ff-sans );
+	font-family: var( --ff-avenir-next );
 	font-size: var( --fs-body );
 }
 
@@ -107,7 +172,7 @@ html {
 
 .editor-block-list__layout a,
 .block-editor-block-list__layout a {
-	color: var( --c-accent );
+	color: var( --c-yellow );
 	text-decoration: underline;
 }
 
@@ -121,11 +186,12 @@ h4,
 h5,
 h6 {
 	font-weight: 700;
+	letter-spacing: -0.02em;
 	line-height: var( --lh-heading );
 }
 
 .editor-post-title__block .editor-post-title__input,
-h1 { font-size: var( --fs-h1 ); }
+h1 { font-size: var( --fs-h1 ); font-weight: 900; }
 h2 { font-size: var( --fs-h2 ); }
 h3 { font-size: var( --fs-h3 ); }
 h4 { font-size: var( --fs-h4 ); }

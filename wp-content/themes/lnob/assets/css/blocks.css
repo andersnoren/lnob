@@ -11,16 +11,16 @@
 
 /* CUSTOM COLORS */
 
-:root .has-accent-color { color: var( --c-accent ); }
+:root .has-accent-color { color: var( --c-yellow ); }
 :root .has-black-color { color: var( --c-black ); }
-:root .has-gray-color { color: var( --c-gray ); }
+:root .has-gray-color { color: var( --c-gray-dark ); }
 :root .has-light-gray-color { color: var( --c-gray-light ); }
 :root .has-lightest-gray-color { color: var( --c-gray-lightest ); }
 :root .has-white-color { color: var( --c-white ); }
 
-:root .has-accent-background-color { background-color: var( --c-accent ); }
+:root .has-accent-background-color { background-color: var( --c-yellow ); }
 :root .has-black-background-color { background-color: var( --c-black ); }
-:root .has-gray-background-color { background-color: var( --c-gray ); }
+:root .has-gray-background-color { background-color: var( --c-gray-dark ); }
 :root .has-light-gray-background-color { background-color: var( --c-gray-light ); }
 :root .has-lightest-gray-background-color { background-color: var( --c-gray-lightest ); }
 :root .has-white-background-color { background-color: var( --c-white ); }
@@ -85,7 +85,7 @@
 .wp-block-button__link:not(.has-text-color),
 .is-style-outline > .wp-block-button__link:not( .has-text-color ), 
 .wp-block-button__link.is-style-outline:not( .has-text-color ) {
-	color: var( --c-accent );
+	color: var( --c-yellow );
 }
 
 .is-style-outline > .wp-block-button__link, 

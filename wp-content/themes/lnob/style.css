@@ -40,6 +40,80 @@
 
 
 /* --------------------------------------------------------------------------------------------- */
+/*	0. Fonts
+/* --------------------------------------------------------------------------------------------- */
+
+/* Avenir Next LT Pro ------------------------ */
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-It.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Demi.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldIt.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* CONDENSED */
+
+@font-face {
+    font-family: 'Avenir Next LT Pro Condensed';
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldCn.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Giorgio Sans ------------------------------ */
+
+@font-face {
+    font-family: 'Giorgio Sans';
+    src: url('./assets/fonts/giorgio-sans/GiorgioSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
 /*	0. CSS Reset
 /* --------------------------------------------------------------------------------------------- */
 
@@ -80,7 +154,7 @@ body {
 		-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	color: var( --c-black );
-	font-family: var( --ff-sans );
+	font-family: var( --ff-avenir-next );
 	font-size: var( --fs-body );
 	text-align: left;
 }
@@ -202,12 +276,12 @@ h6, .h6 {
 	font-feature-settings: "lnum";
 	font-variant-numeric: lining-nums;
 	font-weight: 700;
-	letter-spacing: -0.01em;
+	letter-spacing: -0.02em;
 	line-height: var( --lh-heading );
 	margin: 3rem 0 2rem;
 }
 
-h1, .h1 { font-size: var( --fs-h1 ); }
+h1, .h1 { font-size: var( --fs-h1 ); font-weight: 900; }
 h2, .h2 { font-size: var( --fs-h2 ); }
 h3, .h3 { font-size: var( --fs-h3 ); }
 h4, .h4 { font-size: var( --fs-h4 ); }
@@ -230,7 +304,7 @@ hr {
 }
 
 a {
-	color: var( --c-accent );
+	color: var( --c-yellow );
 	text-decoration: underline;
 }
 
@@ -427,9 +501,9 @@ textarea {
 	width: 100%;
 }
 
-input::-webkit-input-placeholder { color: var( --c-gray ); line-height: normal; }
-input:-ms-input-placeholder { color: var( --c-gray ) !important; /* Req by IE11 */ line-height: normal; }
-input::-moz-placeholder { color: var( --c-gray ); line-height: normal; }
+input::-webkit-input-placeholder { color: var( --c-gray-dark ); line-height: normal; }
+input:-ms-input-placeholder { color: var( --c-gray-dark ) !important; /* Req by IE11 */ line-height: normal; }
+input::-moz-placeholder { color: var( --c-gray-dark ); line-height: normal; }
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -448,7 +522,7 @@ input[type="reset"],
 input[type="submit"] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background: var( --c-accent );
+	background: var( --c-yellow );
 	border: none;
 	border-radius: .3rem;
 	color: var( --c-white );
@@ -790,7 +864,9 @@ section {
 
 /* Typography -------------------------------- */
 
-.ff-default { font-family: var( --ff-sans ); }
+.ff-giorgio-sans { font-family: var( --ff-giorgio-sans ); }
+.ff-avenir-next { font-family: var( --ff-avenir-next ); }
+.ff-avenir-next-condensed { font-family: var( --ff-avenir-next-condensed ); }
 
 .style-italic { font-style: italic; }
 
@@ -877,6 +953,15 @@ section {
 
 .fs-i { font-size: inherit; }
 
+.fs-body { font-size: var( --fs-body ); }
+.fs-intro-text { font-size: var( --fs-intro-text ); }
+.fs-h1 { font-size: var( --fs-h1 ); }
+.fs-h2 { font-size: var( --fs-h2 ); }
+.fs-h3 { font-size: var( --fs-h3 ); }
+.fs-h4 { font-size: var( --fs-h4 ); }
+.fs-h5 { font-size: var( --fs-h5 ); }
+.fs-h6 { font-size: var( --fs-h6 ); }
+
 .fs-14 { font-size: 1.4rem; }
 .fs-16 { font-size: 1.6rem; }
 .fs-18 { font-size: 1.8rem; }
@@ -942,9 +1027,9 @@ section {
 
 /* TEXT COLOR */
 
-:root .color-accent, :root .color-accent-hover:hover { color: var( --c-accent ); }
+:root .color-accent, :root .color-accent-hover:hover { color: var( --c-yellow ); }
 :root .color-black, :root .color-black-hover:hover { color: var( --c-black ); }
-:root .color-gray, :root .color-gray-hover:hover { color: var( --c-gray ); }
+:root .color-gray, :root .color-gray-hover:hover { color: var( --c-gray-dark ); }
 :root .color-light-gray, :root .color-light-gray-hover:hover { color: var( --c-gray-light ); }
 :root .color-lightest-gray, :root .color-lightest-gray-hover:hover { color: var( --c-gray-lightest ); }
 :root .color-white, :root .color-white-hover:hover { color: var( --c-white ); }
@@ -953,9 +1038,9 @@ section {
 
 /* BACKGROUND COLOR */
 
-:root .bg-accent, :root .bg-accent-hover:hover { background-color: var( --c-accent ); }
+:root .bg-accent, :root .bg-accent-hover:hover { background-color: var( --c-yellow ); }
 :root .bg-black, :root .bg-black-hover:hover { background-color: var( --c-black ); }
-:root .bg-gray, :root .bg-gray-hover:hover { background-color: var( --c-gray ); }
+:root .bg-gray, :root .bg-gray-hover:hover { background-color: var( --c-gray-dark ); }
 :root .bg-light-gray, :root .bg-light-gray-hover:hover { background-color: var( --c-gray-light ); }
 :root .bg-lightest-gray, :root .bg-lightest-gray-hover:hover { background-color: var( --c-gray-lightest ); }
 :root .bg-white, :root .bg-white-hover:hover { background-color: var( --c-white ); }
