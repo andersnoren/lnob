@@ -18,45 +18,41 @@
 
 		<?php wp_body_open(); ?>
     
-        <header id="site-header" class="pv-20 pv-t-60 pv-d-80">
+        <header id="site-header" class="section-inner pv-24 pv-t-32">
 
-			<div class="header-inner section-inner">
+			<div class="logos">
 
-				<?php $title_wrapper = ( is_front_page() && is_home() ) ? 'h1' : 'div'; ?>
-            
-				<<?php echo $title_wrapper; ?> class="site-title h1 lh-s no-margin">
-					<a class="color-i td-n" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php bloginfo( 'name' ); ?>
-					</a>
-				</<?php echo $title_wrapper; ?>><!-- .site-title -->
+				<a class="logo lnob-logo" href="https://www.globalamalen.se">
+					<?php lnob_the_svg( 'logos/lnob-logo' ); ?>
+				</a>
 
-				<button class="toggle nav-toggle reset d-tl-none" data-toggle-target=".mobile-menu-wrapper" data-toggle-type="slidetoggle">
-					<span class="screen-reader-text"><?php _e( 'Meny', 'darwin' ); ?></span>
-					<div class="bars">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-					</div><!-- .bars -->
-				</button><!-- .nav-toggle -->
+				<a class="logo forumciv-logo" href="https://www.forumciv.org/sv">
+					<?php lnob_the_svg( 'logos/forumciv-logo' ); ?>
+				</a>
 
-				<?php if ( has_nav_menu( 'main' ) ) : ?>
-
-					<nav class="main-menu-wrapper d-none d-tl-block" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-						<ul class="main-menu reset-list-style">
-							<?php 
-							wp_nav_menu( array( 
-								'container'         => '',
-								'items_wrap'        => '%3$s',
-								'theme_location'    => 'main' 
-							) ); 
-							?>
-						</ul><!-- .main-menu -->
-					</nav>
-
-				<?php endif; ?>
-			
-			</div><!-- .section-inner -->
+			</div><!-- .logos -->
             
 		</header><!-- #site-header -->
+
+		<div class="navigation-bar ph-body-margin pv-24 pv-t-40 pv-tl-56">
+			
+			<a class="scroll-to-top nav-bar-button" href="#site-header">
+				<div class="squircle"><?php lnob_the_svg( 'squircle' ); ?></div>
+				<div class="icon stroke-cc"><?php lnob_the_svg( 'arrow-up', 18, 18 ); ?></div>
+				<div class="screen-reader-text"><?php _e( 'Tillbaka till toppen', 'lnob' ); ?></div>
+			</a><!-- .scroll-to-top -->
+
+			<button class="nav-toggle nav-bar-button reset" data-toggle-target="#menu">
+				<div class="icon-text d-none d-t-flex">
+					<div class="icon stroke-cc"><?php lnob_the_svg( 'menu', 20, 14 ); ?></div>
+					<div class="text h-uppercase fs-14"><?php _e( 'Meny', 'lnob' ); ?></div>
+				</div><!-- .icon-text -->
+				<div class="icon-only d-t-none">
+					<div class="squircle"><?php lnob_the_svg( 'squircle' ); ?></div>
+					<div class="icon stroke-cc"><?php lnob_the_svg( 'menu', 20, 14 ); ?></div>
+				</div><!-- .icon-only -->
+			</button><!-- .nav-toggle -->
+
+		</div><!-- .navigation-bar -->
 		
 		<?php include( locate_template( 'inc/parts/modal-nav.php' ) ); ?>

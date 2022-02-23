@@ -348,11 +348,7 @@ li {
 .horizontal-list {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 0 -1rem -2rem;
-}
-
-.horizontal-list > li {
-	margin: 0 0 1rem 2rem;
+	gap: 1rem 2rem;
 }
 
 /* DEFINITION LIST */
@@ -675,37 +671,86 @@ section {
 
 /* Padding Helpers --------------------------- */
 
+.p-body-margin { padding: var( --body-margin ); }
+.p-grid-gutter-h { padding: var( --grid-gutter-h ); }
+.p-grid-gutter-v { padding: var( --grid-gutter-v ); }
+
 .p-0 { padding: 0; }
-.p-10 { padding: 1.0rem; }
-.p-20 { padding: 2.0rem; }
+.p-8 { padding: .8rem; }
+.p-16 { padding: 1.6rem; }
+.p-24 { padding: 2.4rem; }
+.p-32 { padding: 3.2rem; }
 .p-40 { padding: 4.0rem; }
-.p-60 { padding: 6.0rem; }
+.p-48 { padding: 4.8rem; }
+.p-56 { padding: 5.6rem; }
+.p-64 { padding: 6.4rem; }
+.p-72 { padding: 7.2rem; }
 .p-80 { padding: 8.0rem; }
+
+.pu-body-margin, .pv-body-margin { padding-top: var( --body-margin ); }
+.pd-body-margin, .pv-body-margin { padding-bottom: var( --body-margin ); }
+.pl-body-margin, .ph-body-margin { padding-left: var( --body-margin ); }
+.pr-body-margin, .ph-body-margin { padding-right: var( --body-margin ); }
+
+.pu-grid-gutter-h, .pv-grid-gutter-h { padding-top: var( --grid-gutter-h ); }
+.pd-grid-gutter-h, .pv-grid-gutter-h { padding-bottom: var( --grid-gutter-h ); }
+.pl-grid-gutter-h, .ph-grid-gutter-h { padding-left: var( --grid-gutter-h ); }
+.pr-grid-gutter-h, .ph-grid-gutter-h { padding-right: var( --grid-gutter-h ); }
+
+.pu-grid-gutter-v, .pv-grid-gutter-v { padding-top: var( --grid-gutter-v ); }
+.pd-grid-gutter-v, .pv-grid-gutter-v { padding-bottom: var( --grid-gutter-v ); }
+.pl-grid-gutter-v, .ph-grid-gutter-v { padding-left: var( --grid-gutter-v ); }
+.pr-grid-gutter-v, .ph-grid-gutter-v { padding-right: var( --grid-gutter-v ); }
 
 .pu-0, .pv-0 { padding-top: 0; }
 .pd-0, .pv-0 { padding-bottom: 0; }
 .pl-0, .ph-0 { padding-left: 0; }
 .pr-0, .ph-0 { padding-right: 0; }
 
-.pu-10, .pv-10 { padding-top: 1rem; }
-.pd-10, .pv-10 { padding-bottom: 1rem; }
-.pl-10, .ph-10 { padding-left: 1rem; }
-.pr-10, .ph-10 { padding-right: 1rem; }
+.pu-8, .pv-8 { padding-top: .8rem; }
+.pd-8, .pv-8 { padding-bottom: .8rem; }
+.pl-8, .ph-8 { padding-left: .8rem; }
+.pr-8, .ph-8 { padding-right: .8rem; }
 
-.pu-20, .pv-20 { padding-top: 2rem; }
-.pd-20, .pv-20 { padding-bottom: 2rem; }
-.pl-20, .ph-20 { padding-left: 2rem; }
-.pr-20, .ph-20 { padding-right: 2rem; }
+.pu-16, .pv-16 { padding-top: 1.6rem; }
+.pd-16, .pv-16 { padding-bottom: 1.6rem; }
+.pl-16, .ph-16 { padding-left: 1.6rem; }
+.pr-16, .ph-16 { padding-right: 1.6rem; }
+
+.pu-24, .pv-24 { padding-top: 2.4rem; }
+.pd-24, .pv-24 { padding-bottom: 2.4rem; }
+.pl-24, .ph-24 { padding-left: 2.4rem; }
+.pr-24, .ph-24 { padding-right: 2.4rem; }
+
+.pu-32, .pv-32 { padding-top: 3.2rem; }
+.pd-32, .pv-32 { padding-bottom: 3.2rem; }
+.pl-32, .ph-32 { padding-left: 3.2rem; }
+.pr-32, .ph-32 { padding-right: 3.2rem; }
 
 .pu-40, .pv-40 { padding-top: 4rem; }
 .pd-40, .pv-40 { padding-bottom: 4rem; }
 .pl-40, .ph-40 { padding-left: 4rem; }
 .pr-40, .ph-40 { padding-right: 4rem; }
 
-.pu-60, .pv-60 { padding-top: 6rem; }
-.pd-60, .pv-60 { padding-bottom: 6rem; }
-.pl-60, .ph-60 { padding-left: 6rem; }
-.pr-60, .ph-60 { padding-right: 6rem; }
+.pu-48, .pv-48 { padding-top: 4.8rem; }
+.pd-48, .pv-48 { padding-bottom: 4.8rem; }
+.pl-48, .ph-48 { padding-left: 4.8rem; }
+.pr-48, .ph-48 { padding-right: 4.8rem; }
+
+.pu-56, .pv-56 { padding-top: 5.6rem; }
+.pd-56, .pv-56 { padding-bottom: 5.6rem; }
+.pl-56, .ph-56 { padding-left: 5.6rem; }
+.pr-56, .ph-56 { padding-right: 5.6rem; }
+
+.pu-64, .pv-64 { padding-top: 6.4rem; }
+.pd-64, .pv-64 { padding-bottom: 6.4rem; }
+.pl-64, .ph-64 { padding-left: 6.4rem; }
+.pr-64, .ph-64 { padding-right: 6.4rem; }
+
+.pu-72, .pv-72 { padding-top: 7.2rem; }
+.pd-72, .pv-72 { padding-bottom: 7.2rem; }
+.pl-72, .ph-72 { padding-left: 7.2rem; }
+.pr-72, .ph-72 { padding-right: 7.2rem; }
 
 .pu-80, .pv-80 { padding-top: 8rem; }
 .pd-80, .pv-80 { padding-bottom: 8rem; }
@@ -879,6 +924,12 @@ section {
 .fw-300 { font-weight: 300; }
 .fw-200 { font-weight: 200; }
 .fw-100 { font-weight: 100; }
+
+.h-uppercase {
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	text-transform: uppercase;
+}
 
 .ta-i { text-align: inherit; }
 .ta-l { text-align: left; }
@@ -1177,10 +1228,7 @@ section {
 .icon-text {
 	align-items: center;
 	display: flex;
-}
-
-.icon-text > * + * {
-	margin-left: .5em;
+	gap: .5em;
 }
 
 .icon-text .icon {
@@ -1296,44 +1344,71 @@ section {
 /* --------------------------------------------------------------------------------------------- */
 
 
-.header-inner {
+.logos {
 	align-items: center;
 	display: flex;
-	flex-wrap: nowrap;
-	justify-content: space-between;
+	gap: var( --body-margin );
 }
 
-/* Header Menus ------------------------------ */
-/* Navigation Toggle ------------------------- */
-
-.nav-toggle .bars {
-	height: 1.8rem;
-	position: relative;
-	width: 2.6rem;
+.logos .lnob-logo svg {
+	height: 4.8rem;
+	width: auto;
 }
 
-.nav-toggle .bar {
-	background: currentColor;
-	display: block;
-	height: .2rem;
-	position: absolute;
+.logos .forumciv-logo svg {
+	height: 1.6rem;
+	width: auto;
+}
+
+/* Navigation Bar ---------------------------- */
+
+.navigation-bar {
+	display: flex;
+	gap: calc( var( --body-margin ) / 3 );
+	position: fixed;
 		right: 0;
-		top: calc( 50% - .1rem );
-	transition: transform 0.2s ease-in, opacity 0s ease-out 0.2s, margin 0.2s ease-out 0.2s;
+		top: 0;
+}
+
+.navigation-bar .nav-bar-button {
+	align-items: center;
+	color: var( --c-black );
+	display: flex;
+	filter: drop-shadow( 0 0 1.2rem rgba( 0, 0, 0, .1 ) );
+	height: 4.4rem;
+	justify-content: center;
+	position: relative;
+	transition: all .1s linear;
+	width: 4.4rem;
+}
+
+.navigation-bar .nav-bar-button:hover {
+	color: var( --c-white );
+}
+
+.navigation-bar .nav-bar-button .squircle {
+	position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+}
+
+.navigation-bar .nav-bar-button .squircle svg {
+	height: 100%;
 	width: 100%;
 }
 
-.nav-toggle .bar:nth-child(1) { margin-top: -.8rem; }
-.nav-toggle .bar:nth-child(3) { margin-top: 0.8rem; }
+.navigation-bar .nav-bar-button .squircle svg * { fill: var( --c-white ); }
+.navigation-bar .nav-bar-button:hover .squircle svg * { fill: var( --c-black ); }
 
-.nav-toggle.active .bar {
-	margin-top: -.1rem;
-	transition: margin 0.2s ease-in, opacity 0s ease-in 0.2s, transform 0.2s ease-out 0.25s;
+.navigation-bar .nav-bar-button .icon {
+	position: relative;
 }
 
-.nav-toggle.active .bar:nth-child(1) { transform: rotate( 45deg ); }
-.nav-toggle.active .bar:nth-child(2) { opacity: 0; }
-.nav-toggle.active .bar:nth-child(3) { transform: rotate( -45deg ); }
+.navigation-bar .nav-bar-button .icon * {
+	stroke-width: .2rem;
+}
 
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1486,41 +1561,71 @@ section {
 	/* PADDING HELPERS */
 
 	.p-t-0 { padding: 0; }
-	.p-t-20 { padding: 2.0rem; }
+	.p-t-8 { padding: .8rem; }
+	.p-t-16 { padding: 1.6rem; }
+	.p-t-24 { padding: 2.4rem; }
+	.p-t-32 { padding: 3.2rem; }
 	.p-t-40 { padding: 4.0rem; }
-	.p-t-60 { padding: 6.0rem; }
+	.p-t-48 { padding: 4.8rem; }
+	.p-t-56 { padding: 5.6rem; }
+	.p-t-64 { padding: 6.4rem; }
+	.p-t-72 { padding: 7.2rem; }
 	.p-t-80 { padding: 8.0rem; }
-	.p-t-100 { padding: 10rem; }
 
 	.pu-t-0, .pv-t-0 { padding-top: 0; }
 	.pd-t-0, .pv-t-0 { padding-bottom: 0; }
 	.pl-t-0, .ph-t-0 { padding-left: 0; }
 	.pr-t-0, .ph-t-0 { padding-right: 0; }
 
-	.pu-t-20, .pv-t-20 { padding-top: 2rem; }
-	.pd-t-20, .pv-t-20 { padding-bottom: 2rem; }
-	.pl-t-20, .ph-t-20 { padding-left: 2rem; }
-	.pr-t-20, .ph-t-20 { padding-right: 2rem; }
+	.pu-t-8, .pv-t-8 { padding-top: .8rem; }
+	.pd-t-8, .pv-t-8 { padding-bottom: .8rem; }
+	.pl-t-8, .ph-t-8 { padding-left: .8rem; }
+	.pr-t-8, .ph-t-8 { padding-right: .8rem; }
+
+	.pu-t-16, .pv-t-16 { padding-top: 1.6rem; }
+	.pd-t-16, .pv-t-16 { padding-bottom: 1.6rem; }
+	.pl-t-16, .ph-t-16 { padding-left: 1.6rem; }
+	.pr-t-16, .ph-t-16 { padding-right: 1.6rem; }
+
+	.pu-t-24, .pv-t-24 { padding-top: 2.4rem; }
+	.pd-t-24, .pv-t-24 { padding-bottom: 2.4rem; }
+	.pl-t-24, .ph-t-24 { padding-left: 2.4rem; }
+	.pr-t-24, .ph-t-24 { padding-right: 2.4rem; }
+
+	.pu-t-32, .pv-t-32 { padding-top: 3.2rem; }
+	.pd-t-32, .pv-t-32 { padding-bottom: 3.2rem; }
+	.pl-t-32, .ph-t-32 { padding-left: 3.2rem; }
+	.pr-t-32, .ph-t-32 { padding-right: 3.2rem; }
 
 	.pu-t-40, .pv-t-40 { padding-top: 4rem; }
 	.pd-t-40, .pv-t-40 { padding-bottom: 4rem; }
 	.pl-t-40, .ph-t-40 { padding-left: 4rem; }
 	.pr-t-40, .ph-t-40 { padding-right: 4rem; }
 
-	.pu-t-60, .pv-t-60 { padding-top: 6rem; }
-	.pd-t-60, .pv-t-60 { padding-bottom: 6rem; }
-	.pl-t-60, .ph-t-60 { padding-left: 6rem; }
-	.pr-t-60, .ph-t-60 { padding-right: 6rem; }
+	.pu-t-48, .pv-t-48 { padding-top: 4.8rem; }
+	.pd-t-48, .pv-t-48 { padding-bottom: 4.8rem; }
+	.pl-t-48, .ph-t-48 { padding-left: 4.8rem; }
+	.pr-t-48, .ph-t-48 { padding-right: 4.8rem; }
+
+	.pu-t-56, .pv-t-56 { padding-top: 5.6rem; }
+	.pd-t-56, .pv-t-56 { padding-bottom: 5.6rem; }
+	.pl-t-56, .ph-t-56 { padding-left: 5.6rem; }
+	.pr-t-56, .ph-t-56 { padding-right: 5.6rem; }
+
+	.pu-t-64, .pv-t-64 { padding-top: 6.4rem; }
+	.pd-t-64, .pv-t-64 { padding-bottom: 6.4rem; }
+	.pl-t-64, .ph-t-64 { padding-left: 6.4rem; }
+	.pr-t-64, .ph-t-64 { padding-right: 6.4rem; }
+
+	.pu-t-72, .pv-t-72 { padding-top: 7.2rem; }
+	.pd-t-72, .pv-t-72 { padding-bottom: 7.2rem; }
+	.pl-t-72, .ph-t-72 { padding-left: 7.2rem; }
+	.pr-t-72, .ph-t-72 { padding-right: 7.2rem; }
 
 	.pu-t-80, .pv-t-80 { padding-top: 8rem; }
 	.pd-t-80, .pv-t-80 { padding-bottom: 8rem; }
 	.pl-t-80, .ph-t-80 { padding-left: 8rem; }
 	.pr-t-80, .ph-t-80 { padding-right: 8rem; }
-
-	.pu-t-100, .pv-t-100 { padding-top: 10rem; }
-	.pd-t-100, .pv-t-100 { padding-bottom: 10rem; }
-	.pl-t-100, .ph-t-100 { padding-left: 10rem; }
-	.pr-t-100, .ph-t-100 { padding-right: 10rem; }
 
 	/* WIDTHS AND HEIGHTS */
 
@@ -1578,6 +1683,41 @@ section {
 	.cols-t-12 > .col, :root .col-t-12 { width: calc( 8.3333% * 12 ); }
 
 	/* Site Header --------------------------- */
+
+	.logos .lnob-logo svg {
+		height: 6.4rem;
+	}
+
+	.logos .forumciv-logo svg {
+		height: 2.4rem;
+	}
+
+	/* NAVIGATION BAR */
+
+	.navigation-bar .nav-bar-button {
+		height: 4.8rem;
+		width: 4.8rem;
+	}
+
+	.navigation-bar .nav-toggle {
+		background-color: var( --c-white );
+		border-radius: 999rem;
+		padding: 0 2.4rem;
+		width: auto;
+	}
+
+	.navigation-bar .nav-toggle:hover {
+		background-color: var( --c-black );
+	}
+
+	.navigation-bar .nav-toggle .icon-text {
+		gap: 1.6rem;
+	}
+
+	.navigation-bar .nav-toggle .text {
+		padding-top: .15em;
+	}
+
 	/* Sub Page ------------------------------ */
 	/* Template: [Template Name] ------------- */
 	/* Post: Archive ------------------------- */
@@ -1615,41 +1755,71 @@ section {
 	/* PADDING HELPERS */
 
 	.p-tl-0 { padding: 0; }
-	.p-tl-20 { padding: 2.0rem; }
+	.p-tl-8 { padding: .8rem; }
+	.p-tl-16 { padding: 1.6rem; }
+	.p-tl-24 { padding: 2.4rem; }
+	.p-tl-32 { padding: 3.2rem; }
 	.p-tl-40 { padding: 4.0rem; }
-	.p-tl-60 { padding: 6.0rem; }
+	.p-tl-48 { padding: 4.8rem; }
+	.p-tl-56 { padding: 5.6rem; }
+	.p-tl-64 { padding: 6.4rem; }
+	.p-tl-72 { padding: 7.2rem; }
 	.p-tl-80 { padding: 8.0rem; }
-	.p-tl-100 { padding: 10rem; }
 
 	.pu-tl-0, .pv-tl-0 { padding-top: 0; }
 	.pd-tl-0, .pv-tl-0 { padding-bottom: 0; }
 	.pl-tl-0, .ph-tl-0 { padding-left: 0; }
 	.pr-tl-0, .ph-tl-0 { padding-right: 0; }
 
-	.pu-tl-20, .pv-tl-20 { padding-top: 2rem; }
-	.pd-tl-20, .pv-tl-20 { padding-bottom: 2rem; }
-	.pl-tl-20, .ph-tl-20 { padding-left: 2rem; }
-	.pr-tl-20, .ph-tl-20 { padding-right: 2rem; }
+	.pu-tl-8, .pv-tl-8 { padding-top: .8rem; }
+	.pd-tl-8, .pv-tl-8 { padding-bottom: .8rem; }
+	.pl-tl-8, .ph-tl-8 { padding-left: .8rem; }
+	.pr-tl-8, .ph-tl-8 { padding-right: .8rem; }
+
+	.pu-tl-16, .pv-tl-16 { padding-top: 1.6rem; }
+	.pd-tl-16, .pv-tl-16 { padding-bottom: 1.6rem; }
+	.pl-tl-16, .ph-tl-16 { padding-left: 1.6rem; }
+	.pr-tl-16, .ph-tl-16 { padding-right: 1.6rem; }
+
+	.pu-tl-24, .pv-tl-24 { padding-top: 2.4rem; }
+	.pd-tl-24, .pv-tl-24 { padding-bottom: 2.4rem; }
+	.pl-tl-24, .ph-tl-24 { padding-left: 2.4rem; }
+	.pr-tl-24, .ph-tl-24 { padding-right: 2.4rem; }
+
+	.pu-tl-32, .pv-tl-32 { padding-top: 3.2rem; }
+	.pd-tl-32, .pv-tl-32 { padding-bottom: 3.2rem; }
+	.pl-tl-32, .ph-tl-32 { padding-left: 3.2rem; }
+	.pr-tl-32, .ph-tl-32 { padding-right: 3.2rem; }
 
 	.pu-tl-40, .pv-tl-40 { padding-top: 4rem; }
 	.pd-tl-40, .pv-tl-40 { padding-bottom: 4rem; }
 	.pl-tl-40, .ph-tl-40 { padding-left: 4rem; }
 	.pr-tl-40, .ph-tl-40 { padding-right: 4rem; }
 
-	.pu-tl-60, .pv-tl-60 { padding-top: 6rem; }
-	.pd-tl-60, .pv-tl-60 { padding-bottom: 6rem; }
-	.pl-tl-60, .ph-tl-60 { padding-left: 6rem; }
-	.pr-tl-60, .ph-tl-60 { padding-right: 6rem; }
+	.pu-tl-48, .pv-tl-48 { padding-top: 4.8rem; }
+	.pd-tl-48, .pv-tl-48 { padding-bottom: 4.8rem; }
+	.pl-tl-48, .ph-tl-48 { padding-left: 4.8rem; }
+	.pr-tl-48, .ph-tl-48 { padding-right: 4.8rem; }
+
+	.pu-tl-56, .pv-tl-56 { padding-top: 5.6rem; }
+	.pd-tl-56, .pv-tl-56 { padding-bottom: 5.6rem; }
+	.pl-tl-56, .ph-tl-56 { padding-left: 5.6rem; }
+	.pr-tl-56, .ph-tl-56 { padding-right: 5.6rem; }
+
+	.pu-tl-64, .pv-tl-64 { padding-top: 6.4rem; }
+	.pd-tl-64, .pv-tl-64 { padding-bottom: 6.4rem; }
+	.pl-tl-64, .ph-tl-64 { padding-left: 6.4rem; }
+	.pr-tl-64, .ph-tl-64 { padding-right: 6.4rem; }
+
+	.pu-tl-72, .pv-tl-72 { padding-top: 7.2rem; }
+	.pd-tl-72, .pv-tl-72 { padding-bottom: 7.2rem; }
+	.pl-tl-72, .ph-tl-72 { padding-left: 7.2rem; }
+	.pr-tl-72, .ph-tl-72 { padding-right: 7.2rem; }
 
 	.pu-tl-80, .pv-tl-80 { padding-top: 8rem; }
 	.pd-tl-80, .pv-tl-80 { padding-bottom: 8rem; }
 	.pl-tl-80, .ph-tl-80 { padding-left: 8rem; }
 	.pr-tl-80, .ph-tl-80 { padding-right: 8rem; }
-
-	.pu-tl-100, .pv-tl-100 { padding-top: 10rem; }
-	.pd-tl-100, .pv-tl-100 { padding-bottom: 10rem; }
-	.pl-tl-100, .ph-tl-100 { padding-left: 10rem; }
-	.pr-tl-100, .ph-tl-100 { padding-right: 10rem; }
 
 	/* TEXT SIZES */
 
@@ -1707,6 +1877,15 @@ section {
 	:root .d-tl-inline-block { display: inline-block; }
 
 	/* Site Header --------------------------- */
+
+	.logos .lnob-logo svg {
+		height: 9.6rem;
+	}
+
+	.logos .forumciv-logo svg {
+		height: 3.2rem;
+	}
+
 	/* Sub Page ------------------------------ */
 	/* Template: [Template Name] ------------- */
 	/* Post: Archive ------------------------- */
@@ -1725,41 +1904,71 @@ section {
 	/* PADDING HELPERS */
 
 	.p-d-0 { padding: 0; }
-	.p-d-20 { padding: 2.0rem; }
+	.p-d-8 { padding: .8rem; }
+	.p-d-16 { padding: 1.6rem; }
+	.p-d-24 { padding: 2.4rem; }
+	.p-d-32 { padding: 3.2rem; }
 	.p-d-40 { padding: 4.0rem; }
-	.p-d-60 { padding: 6.0rem; }
+	.p-d-48 { padding: 4.8rem; }
+	.p-d-56 { padding: 5.6rem; }
+	.p-d-64 { padding: 6.4rem; }
+	.p-d-72 { padding: 7.2rem; }
 	.p-d-80 { padding: 8.0rem; }
-	.p-d-100 { padding: 10rem; }
 
 	.pu-d-0, .pv-d-0 { padding-top: 0; }
 	.pd-d-0, .pv-d-0 { padding-bottom: 0; }
 	.pl-d-0, .ph-d-0 { padding-left: 0; }
 	.pr-d-0, .ph-d-0 { padding-right: 0; }
 
-	.pu-d-20, .pv-d-20 { padding-top: 2rem; }
-	.pd-d-20, .pv-d-20 { padding-bottom: 2rem; }
-	.pl-d-20, .ph-d-20 { padding-left: 2rem; }
-	.pr-d-20, .ph-d-20 { padding-right: 2rem; }
+	.pu-d-8, .pv-d-8 { padding-top: .8rem; }
+	.pd-d-8, .pv-d-8 { padding-bottom: .8rem; }
+	.pl-d-8, .ph-d-8 { padding-left: .8rem; }
+	.pr-d-8, .ph-d-8 { padding-right: .8rem; }
+
+	.pu-d-16, .pv-d-16 { padding-top: 1.6rem; }
+	.pd-d-16, .pv-d-16 { padding-bottom: 1.6rem; }
+	.pl-d-16, .ph-d-16 { padding-left: 1.6rem; }
+	.pr-d-16, .ph-d-16 { padding-right: 1.6rem; }
+
+	.pu-d-24, .pv-d-24 { padding-top: 2.4rem; }
+	.pd-d-24, .pv-d-24 { padding-bottom: 2.4rem; }
+	.pl-d-24, .ph-d-24 { padding-left: 2.4rem; }
+	.pr-d-24, .ph-d-24 { padding-right: 2.4rem; }
+
+	.pu-d-32, .pv-d-32 { padding-top: 3.2rem; }
+	.pd-d-32, .pv-d-32 { padding-bottom: 3.2rem; }
+	.pl-d-32, .ph-d-32 { padding-left: 3.2rem; }
+	.pr-d-32, .ph-d-32 { padding-right: 3.2rem; }
 
 	.pu-d-40, .pv-d-40 { padding-top: 4rem; }
 	.pd-d-40, .pv-d-40 { padding-bottom: 4rem; }
 	.pl-d-40, .ph-d-40 { padding-left: 4rem; }
 	.pr-d-40, .ph-d-40 { padding-right: 4rem; }
 
-	.pu-d-60, .pv-d-60 { padding-top: 6rem; }
-	.pd-d-60, .pv-d-60 { padding-bottom: 6rem; }
-	.pl-d-60, .ph-d-60 { padding-left: 6rem; }
-	.pr-d-60, .ph-d-60 { padding-right: 6rem; }
+	.pu-d-48, .pv-d-48 { padding-top: 4.8rem; }
+	.pd-d-48, .pv-d-48 { padding-bottom: 4.8rem; }
+	.pl-d-48, .ph-d-48 { padding-left: 4.8rem; }
+	.pr-d-48, .ph-d-48 { padding-right: 4.8rem; }
+
+	.pu-d-56, .pv-d-56 { padding-top: 5.6rem; }
+	.pd-d-56, .pv-d-56 { padding-bottom: 5.6rem; }
+	.pl-d-56, .ph-d-56 { padding-left: 5.6rem; }
+	.pr-d-56, .ph-d-56 { padding-right: 5.6rem; }
+
+	.pu-d-64, .pv-d-64 { padding-top: 6.4rem; }
+	.pd-d-64, .pv-d-64 { padding-bottom: 6.4rem; }
+	.pl-d-64, .ph-d-64 { padding-left: 6.4rem; }
+	.pr-d-64, .ph-d-64 { padding-right: 6.4rem; }
+
+	.pu-d-72, .pv-d-72 { padding-top: 7.2rem; }
+	.pd-d-72, .pv-d-72 { padding-bottom: 7.2rem; }
+	.pl-d-72, .ph-d-72 { padding-left: 7.2rem; }
+	.pr-d-72, .ph-d-72 { padding-right: 7.2rem; }
 
 	.pu-d-80, .pv-d-80 { padding-top: 8rem; }
 	.pd-d-80, .pv-d-80 { padding-bottom: 8rem; }
 	.pl-d-80, .ph-d-80 { padding-left: 8rem; }
 	.pr-d-80, .ph-d-80 { padding-right: 8rem; }
-
-	.pu-d-100, .pv-d-100 { padding-top: 10rem; }
-	.pd-d-100, .pv-d-100 { padding-bottom: 10rem; }
-	.pl-d-100, .ph-d-100 { padding-left: 10rem; }
-	.pr-d-100, .ph-d-100 { padding-right: 10rem; }
 
 	/* WIDTHS AND HEIGHTS */
 

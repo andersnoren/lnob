@@ -1,4 +1,4 @@
-<nav class="mobile-menu-wrapper bg-black pv-40 pv-t-80 d-none">
+<nav id="menu" class="menu bg-black pv-40 pv-t-80 d-none">
 
 	<div class="section-inner">
 
@@ -20,4 +20,4 @@
 
 	</div><!-- .section-inner -->
 
-</nav><!-- .mobile-menu-wrapper -->
+</nav><!-- #menu -->
