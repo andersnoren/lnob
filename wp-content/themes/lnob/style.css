@@ -14,19 +14,21 @@
 	Table of Contents
 
 	0.	Imports
+	0.	Fonts
 	0.	CSS Reset
 	1.	Document Setup
 	2.  Element Base
 	3.	Helper Classes
 	4.	Site Header
-	5.  Sub Page
-	6.  Template: [Template Name]
-	7.	[Post Type]: Archive
-	8.	[Post Type]: Single
-	9.	Entry Content
-	10.	Site Pagination
-	11.	Site Footer
-	12.	Media Queries
+	5.  Navigation
+	6.  Section: Hero
+	7.  Section: Introduction
+	8.  Section: Global Goals
+	9.  Section: Missing In Stats
+	10. Section: Recommendations
+	11.	Entry Content
+	12.	Site Footer
+	13.	Media Queries
 
 /* --------------------------------------------------------------------------------------------- */
 
@@ -47,23 +49,16 @@
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Regular.woff') format('woff');
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-It.woff') format('woff');
+    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium-It.woff') format('woff');
     font-weight: 400;
     font-style: italic;
-}
-
-@font-face {
-    font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
 }
 
 @font-face {
@@ -1013,6 +1008,7 @@ section {
 .fs-h5 { font-size: var( --fs-h5 ); }
 .fs-h6 { font-size: var( --fs-h6 ); }
 
+.fs-12 { font-size: 1.2rem; }
 .fs-14 { font-size: 1.4rem; }
 .fs-16 { font-size: 1.6rem; }
 .fs-18 { font-size: 1.8rem; }
@@ -1078,25 +1074,29 @@ section {
 
 /* TEXT COLOR */
 
-:root .color-accent, :root .color-accent-hover:hover { color: var( --c-yellow ); }
-:root .color-black, :root .color-black-hover:hover { color: var( --c-black ); }
-:root .color-gray, :root .color-gray-hover:hover { color: var( --c-gray-dark ); }
-:root .color-light-gray, :root .color-light-gray-hover:hover { color: var( --c-gray-light ); }
-:root .color-lightest-gray, :root .color-lightest-gray-hover:hover { color: var( --c-gray-lightest ); }
-:root .color-white, :root .color-white-hover:hover { color: var( --c-white ); }
+:root .c-black, :root .c-black-hover:hover { color: var( --c-black ); }
+:root .c-gray-dark, :root .c-gray-dark-hover:hover { color: var( --c-gray-dark ); }
+:root .c-gray-light, :root .c-gray-light-hover:hover { color: var( --c-gray-light ); }
+:root .c-white, :root .c-white-hover:hover { color: var( --c-white ); }
 
-:root .color-i { color: inherit; }
+:root .c-yellow, :root .c-yellow-hover:hover { color: var( --c-yellow ); }
+:root .c-magenta, :root .c-magenta-hover:hover { color: var( --c-magenta ); }
+:root .c-lavender, :root .c-lavender-hover:hover { color: var( --c-lavender ); }
+
+:root .c-i { color: inherit; }
 
 /* BACKGROUND COLOR */
 
-:root .bg-accent, :root .bg-accent-hover:hover { background-color: var( --c-yellow ); }
 :root .bg-black, :root .bg-black-hover:hover { background-color: var( --c-black ); }
-:root .bg-gray, :root .bg-gray-hover:hover { background-color: var( --c-gray-dark ); }
-:root .bg-light-gray, :root .bg-light-gray-hover:hover { background-color: var( --c-gray-light ); }
-:root .bg-lightest-gray, :root .bg-lightest-gray-hover:hover { background-color: var( --c-gray-lightest ); }
+:root .bg-gray-dark, :root .bg-gray-dark-hover:hover { background-color: var( --c-gray-dark ); }
+:root .bg-gray-light, :root .bg-gray-light-hover:hover { background-color: var( --c-gray-light ); }
 :root .bg-white, :root .bg-white-hover:hover { background-color: var( --c-white ); }
 
-:root .bg-current-color, :root .bg-current-color-hover:hover { background-color: currentColor; }
+:root .bg-yellow, :root .bg-yellow-hover:hover { background-color: var( --c-yellow ); }
+:root .bg-magenta, :root .bg-magenta-hover:hover { background-color: var( --c-magenta ); }
+:root .bg-lavender, :root .bg-lavender-hover:hover { background-color: var( --c-lavender ); }
+
+:root .bg-cc, :root .bg-cc-hover:hover { background-color: currentColor; }
 
 :root .bg-none { background: none; }
 
@@ -1235,75 +1235,46 @@ section {
 	flex-shrink: 0;
 }
 
-/* Breadcrumbs ------------------------------- */
+/* Squircle Link ----------------------------- */
 
-.breadcrumbs-wrapper {
-	overflow: hidden;
+.squircle-link {
+	align-items: center;
+	display: inline-flex;
+	font-weight: 700;
+	gap: 1.25em;
+	letter-spacing: .025em;
+	text-transform: uppercase;
+}
+
+.squircle-link .squircle-wrapper {
+	display: flex;
+	height: 2.666em;
+	width: 2.666em;
+}
+
+.squircle-link .squircle svg {
+	height: 100%;
+	width: 100%
+}
+
+.squircle-link .text {
+	padding-top: .1em;
+}
+
+.squircle-link .icon {
+	margin: auto;
 	position: relative;
 }
 
-.breadcrumbs-wrapper.center li:first-child { margin-left: auto; }
-.breadcrumbs-wrapper.center li:last-child { margin-right: auto; }
+/* STYLE: SMALL */
 
-.breadcrumbs-inner-wrapper {
-	-ms-overflow-style: none;
-	overflow: scroll;
-	padding: .5rem 0;
+.squircle-link.small {
+	gap: 1em;
 }
 
-.breadcrumbs-wrapper:after {
-	background-image: linear-gradient( -90deg, var( --c-white ) 0%, rgba( 255, 255, 255, 0 ) 100% );
-	content: "";
-	display: block;
-	pointer-events: none;
-	position: absolute;
-		bottom: 0;
-		right: 0;
-		top: 0;
-	width: 4rem;
-}
-
-.breadcrumbs {
-	align-items: center;
-	display: flex;
-	line-height: 1;
-	white-space: nowrap;
-	width: auto;
-}
-
-.breadcrumbs li,
-.breadcrumbs .sep {
-	align-items: inherit;
-	display: inherit;
-	flex-shrink: 0;
-	line-height: inherit;
-}
-
-.breadcrumbs-wrapper:not(.center) li:last-child {
-	padding-right: 4rem;
-}
-
-.breadcrumbs .sep {
-	margin: 0 1.5rem;
-}
-
-/* Search Form ------------------------------- */
-
-.search-form {
-	display: flex;
-	flex-wrap: nowrap;
-	max-width: 40rem;
-	width: 100%;
-}
-
-.search-form label {
-	margin: 0;
-	width: 100%;
-}
-
-.search-form .search-submit {
-	flex-shrink: 0;
-	margin-left: 1rem;
+.squircle-link.small .squircle-wrapper {
+	height: 2em;
+	width: 2em;
 }
 
 /* CSS Animations ---------------------------- */
@@ -1342,7 +1313,6 @@ section {
 /* --------------------------------------------------------------------------------------------- */
 /*	4. Site Header
 /* --------------------------------------------------------------------------------------------- */
-
 
 .logos {
 	align-items: center;
@@ -1412,23 +1382,31 @@ section {
 
 
 /* --------------------------------------------------------------------------------------------- */
-/*	5. Sub Page
+/*	5.  Navigation
 /* --------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------------------- */
-/*	6. Template: [Template Name]
+/*	6.  Section: Hero
 /* --------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------------------- */
-/*	7. [Post Type]: Archive
+/*	7.  Section: Introduction
 /* --------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------------------- */
-/*	8. [Post Type]: Single
+/*	8.  Section: Global Goals
 /* --------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------------------- */
-/*	9. Entry Content
+/*	9.  Section: Missing In Stats
+/* --------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------------------- */
+/*	10. Section: Recommendations
+/* --------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------------------- */
+/*	11. Entry Content
 /* --------------------------------------------------------------------------------------------- */
 
 
@@ -1498,46 +1476,41 @@ section {
 
 
 /* --------------------------------------------------------------------------------------------- */
-/*	10. Site Pagination
+/*	12. Site Footer
 /* --------------------------------------------------------------------------------------------- */
 
 
-.no-js .pagination-wrapper { 
-	display: block !important;
+#site-footer a {
+	color: inherit;
+	text-decoration: none;
 }
 
-.pagination {
-	text-align: center;
+#site-footer a:hover,
+#site-footer a:focus {
+	text-decoration: underline;
 }
 
-.js .pagination-wrapper.last-page,
-.pagination-wrapper:not(.last-page) .out-of-posts,
-.pagination-wrapper:not(.loading) .loading-text,
-.pagination-wrapper.loading .load-more-text,
-.js .pagination-wrapper:not(.pagination-type-links) .link-pagination,
-.no-js .load-more-button {
-	display: none;
+.footer-top-grid {
+	--grid-gutter-v: 3.2rem;
 }
 
-/* LINK PAGINATION */
-
-.link-pagination {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
+.footer-logo svg {
+	height: 2.8rem;
+	width: auto;
 }
 
-.link-pagination.only-next {
-	justify-content: flex-end;
+.footer-bottom {
+	opacity: .5;
+}
+
+.footer-copyright {
+	flex-shrink: 0;
+	margin-right: 3.2rem;
 }
 
 
 /* --------------------------------------------------------------------------------------------- */
-/*	11. Site Footer
-/* --------------------------------------------------------------------------------------------- */
-
-/* --------------------------------------------------------------------------------------------- */
-/*	12. Media Queries
+/*	13. Media Queries
 /* --------------------------------------------------------------------------------------------- */
 
 
@@ -1571,6 +1544,7 @@ section {
 	.p-t-64 { padding: 6.4rem; }
 	.p-t-72 { padding: 7.2rem; }
 	.p-t-80 { padding: 8.0rem; }
+	.p-t-96 { padding: 9.6rem; }
 
 	.pu-t-0, .pv-t-0 { padding-top: 0; }
 	.pd-t-0, .pv-t-0 { padding-bottom: 0; }
@@ -1626,6 +1600,11 @@ section {
 	.pd-t-80, .pv-t-80 { padding-bottom: 8rem; }
 	.pl-t-80, .ph-t-80 { padding-left: 8rem; }
 	.pr-t-80, .ph-t-80 { padding-right: 8rem; }
+
+	.pu-t-96, .pv-t-96 { padding-top: 9.6rem; }
+	.pd-t-96, .pv-t-96 { padding-bottom: 9.6rem; }
+	.pl-t-96, .ph-t-96 { padding-left: 9.6rem; }
+	.pr-t-96, .ph-t-96 { padding-right: 9.6rem; }
 
 	/* WIDTHS AND HEIGHTS */
 
@@ -1718,10 +1697,12 @@ section {
 		padding-top: .15em;
 	}
 
-	/* Sub Page ------------------------------ */
-	/* Template: [Template Name] ------------- */
-	/* Post: Archive ------------------------- */
-	/* Post: Single -------------------------- */
+	/* Navigation ---------------------------- */
+	/* Section: Hero ------------------------- */
+	/* Section: Introduction ----------------- */
+	/* Section: Global Goals ----------------- */
+	/* Section: Missing In Stats ------------- */
+	/* Section: Recommendations -------------- */
 	/* Entry Content ------------------------- */
 
 	/* ALIGNMENT CLASSES */
@@ -1742,8 +1723,11 @@ section {
 		margin-left: 3rem;
 	}
 
-	/* Site Pagination ----------------------- */
 	/* Site Footer --------------------------- */
+
+	.footer-logo svg {
+		height: 3.2rem;
+	}
 
 }
 
@@ -1886,13 +1870,18 @@ section {
 		height: 3.2rem;
 	}
 
-	/* Sub Page ------------------------------ */
-	/* Template: [Template Name] ------------- */
-	/* Post: Archive ------------------------- */
-	/* Post: Single -------------------------- */
+	/* Navigation ---------------------------- */
+	/* Section: Hero ------------------------- */
+	/* Section: Introduction ----------------- */
+	/* Section: Global Goals ----------------- */
+	/* Section: Missing In Stats ------------- */
+	/* Section: Recommendations -------------- */
 	/* Entry Content ------------------------- */
-	/* Site Pagination ----------------------- */
 	/* Site Footer --------------------------- */
+
+	.footer-text {
+		margin-top: -.25em;
+	}
 	
 }
 
@@ -1914,6 +1903,7 @@ section {
 	.p-d-64 { padding: 6.4rem; }
 	.p-d-72 { padding: 7.2rem; }
 	.p-d-80 { padding: 8.0rem; }
+	.p-d-128 { padding: 12.8rem; }
 
 	.pu-d-0, .pv-d-0 { padding-top: 0; }
 	.pd-d-0, .pv-d-0 { padding-bottom: 0; }
@@ -1969,6 +1959,11 @@ section {
 	.pd-d-80, .pv-d-80 { padding-bottom: 8rem; }
 	.pl-d-80, .ph-d-80 { padding-left: 8rem; }
 	.pr-d-80, .ph-d-80 { padding-right: 8rem; }
+
+	.pu-d-128, .pv-d-128 { padding-top: 12.8rem; }
+	.pd-d-128, .pv-d-128 { padding-bottom: 12.8rem; }
+	.pl-d-128, .ph-d-128 { padding-left: 12.8rem; }
+	.pr-d-128, .ph-d-128 { padding-right: 12.8rem; }
 
 	/* WIDTHS AND HEIGHTS */
 
@@ -2026,12 +2021,13 @@ section {
 	.cols-d-12 > .col, :root .col-d-12 { width: calc( 8.3333% * 12 ); }
 
 	/* Site Header --------------------------- */
-	/* Sub Page ------------------------------ */
-	/* Template: [Template Name] ------------- */
-	/* Post: Archive ------------------------- */
-	/* Post: Single -------------------------- */
+	/* Navigation ---------------------------- */
+	/* Section: Hero ------------------------- */
+	/* Section: Introduction ----------------- */
+	/* Section: Global Goals ----------------- */
+	/* Section: Missing In Stats ------------- */
+	/* Section: Recommendations -------------- */
 	/* Entry Content ------------------------- */
-	/* Site Pagination ----------------------- */
 	/* Site Footer --------------------------- */
 
 }

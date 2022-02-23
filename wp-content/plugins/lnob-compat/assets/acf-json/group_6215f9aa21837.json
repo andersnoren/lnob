@@ -56,7 +56,7 @@
                     "key": "field_6215ffc8d21be",
                     "label": "Ingress",
                     "name": "intro_text",
-                    "type": "text",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -67,16 +67,16 @@
                     },
                     "default_value": "",
                     "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
                 },
                 {
                     "key": "field_6215ffe0d21bf",
                     "label": "Text intill \"Scrolla\"-knappen",
                     "name": "scroll_button_text",
                     "type": "text",
-                    "instructions": "Visas intill knappen som tar besökaren till nästa sektion.",
+                    "instructions": "Visas intill knappen som scrollar besökaren till \"Introduktion\"-sektionen.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -404,7 +404,123 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_62162ecc090ae",
+                    "label": "Sida att hämta innehåll från",
+                    "name": "content_post_object",
+                    "type": "post_object",
+                    "instructions": "Innehållet i sektionen hämtas från sidan som du väljer i den här inställningen. Du redigerar själva innehållet genom att klicka på sidans titel under \"Sidor\" i administrationspanelen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "page"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                },
+                {
+                    "key": "field_62162ef1090b0",
+                    "label": "Text intill \"Scrolla\"-knappen",
+                    "name": "scroll_button_text",
+                    "type": "text",
+                    "instructions": "Visas intill knappen som scrollar besökaren till Globala målen-sektionen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "De Globala målen",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_62162f36090b1",
+                    "label": "Rekommendationer-rutan",
+                    "name": "recommendations_box",
+                    "type": "group",
+                    "instructions": "Inställningar för rutan som tar besökaren direkt till sektionen med rekommendationer. Den här rutan visas även i botten av innehållet för varje globalt mål.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_62162f74090b2",
+                            "label": "Rubrik",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Våra rekommendationer",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_62162f82090b3",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "I botten av sajten hittar du åtgärderna vi rekommenderar. Du kan komma dit direkt genom knappen nedan.",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_62162f92090b4",
+                            "label": "Knapptext",
+                            "name": "button_text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Läs mer",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
+                }
+            ]
         },
         {
             "key": "field_6215faae401c4",
@@ -436,7 +552,25 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_62162b1a77c95",
+                    "label": "Information",
+                    "name": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "<p>De globala målen redigeras under \"Globala målen\"-sidan i administrationspanelen. De listas automatiskt i numrerisk ordning i den här sektionen.<\/p>",
+                    "new_lines": "wpautop",
+                    "esc_html": 0
+                }
+            ]
         },
         {
             "key": "field_6215fb16401c8",
@@ -468,7 +602,68 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_62162b940a078",
+                    "label": "Rubrik",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_62162b9c0a079",
+                    "label": "Ingress",
+                    "name": "intro_text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_62162ba60a07a",
+                    "label": "Sida att hämta innehåll från",
+                    "name": "content_post_object",
+                    "type": "post_object",
+                    "instructions": "Innehållet i sektionen hämtas från sidan som du väljer i den här inställningen. Du redigerar själva innehållet genom att klicka på sidans titel under \"Sidor\" i administrationspanelen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "page"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "return_format": "",
+                    "ui": 1
+                }
+            ]
         },
         {
             "key": "field_6215fb55401ca",
@@ -487,7 +682,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_6215fb5c401cb",
+            "key": "field_62162c2c0a07b",
             "label": "Rekommendationer",
             "name": "recommendations",
             "type": "group",
@@ -500,7 +695,87 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_62162c2c0a07c",
+                    "label": "Rubrik",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_62162c2c0a07d",
+                    "label": "Ingress",
+                    "name": "intro_text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_62162fde2bf57",
+                    "label": "Text intill \"Scrolla\"-knappen",
+                    "name": "scroll_button_text",
+                    "type": "text",
+                    "instructions": "Visas intill knappen som scrollar besökaren till innehållet i \"Rekommendationer\"-sektionen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Scrolla",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_62162c2c0a07e",
+                    "label": "Sida att hämta innehåll från",
+                    "name": "content_post_object",
+                    "type": "post_object",
+                    "instructions": "Innehållet i sektionen hämtas från sidan som du väljer i den här inställningen. Du redigerar själva innehållet genom att klicka på sidans titel under \"Sidor\" i administrationspanelen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "page"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                }
+            ]
         },
         {
             "key": "field_6215fb65401cc",
@@ -532,7 +807,118 @@
                 "id": ""
             },
             "layout": "block",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_62162c690a07f",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "Beskrivning av webbplatsen och\/eller ForumCiv.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "ForumCiv är en partipolitiskt och religiöst obunden biståndsorganisation med omkring 170 medlemmar \u2028från svenska civilsamhället.",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_62162c730a080",
+                    "label": "Externa länkar",
+                    "name": "links",
+                    "type": "repeater",
+                    "instructions": "Visas under texten i gul text.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "table",
+                    "button_label": "Lägg till länk",
+                    "sub_fields": [
+                        {
+                            "key": "field_62162c810a081",
+                            "label": "Länk",
+                            "name": "link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62162c980a082",
+                    "label": "Copyright-text",
+                    "name": "copyright_text",
+                    "type": "text",
+                    "instructions": "Copyright-tecken och det nuvarande årtalet läggs till automatiskt.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "ForumCiv",
+                    "placeholder": "",
+                    "prepend": "© 202X",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_62162d470a083",
+                    "label": "Sidfotsmeny",
+                    "name": "footer_menu",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "table",
+                    "button_label": "Lägg till länk",
+                    "sub_fields": [
+                        {
+                            "key": "field_62162d9c0a084",
+                            "label": "Länk",
+                            "name": "link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -549,9 +935,11 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645614513
+    "modified": 1645622972
 }

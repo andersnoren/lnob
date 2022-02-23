@@ -16,10 +16,13 @@ function lnob_compat_use_block_editor_for_post( $value, $post ) {
 	if ( in_array( $post_type, $post_types ) ) return false;
 	if ( in_array( $template_slug, $page_templates ) ) return false;
 
+	// Disable the block editor for the page set as the front page.
+	if ( get_option( 'page_on_front' ) == $post->ID ) return false;
+
 	return $value;
 
 }
-// add_filter( 'use_block_editor_for_post', 'lnob_compat_use_block_editor_for_post', 10, 2 );
+add_filter( 'use_block_editor_for_post', 'lnob_compat_use_block_editor_for_post', 10, 2 );
 
 
 /*	-----------------------------------------------------------------------------------------------

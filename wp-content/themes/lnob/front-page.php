@@ -1,17 +1,100 @@
-<?php get_header(); ?>
+<?php 
 
-<main id="site-content" role="main">
+get_header();
 
-	<section class="section-inner pv-40 pv-t-60 pv-d-80">
+while ( have_posts() ) : the_post(); 
+	?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
+	<main id="site-content" role="main">
 
-			
+		<?php
 
-		<?php endwhile; ?>
-	
-	</section><!-- .section-inner -->
+		/* ----------------------------------- */
+		/* Hero ------------------------------ */
+		/* ----------------------------------- */
 
-</main><!-- #site-content -->
+		$hero = get_field( 'hero' );
 
-<?php get_footer(); ?>
+		?>
+
+		<section id="section-hero" class="hero">
+
+			<div class="section-inner">
+
+
+
+			</div><!-- .section-inner -->
+
+		</section><!-- #section-hero -->
+
+		<?php
+
+		/* ----------------------------------- */
+		/* Introduction ---------------------- */
+		/* ----------------------------------- */
+
+		$introduction = get_field( 'introduction' );
+
+		?>
+
+		<section id="section-introduction" class="introduction">
+
+			<div class="section-inner">
+
+
+
+			</div><!-- .section-inner -->
+
+		</section><!-- #section-introduction -->
+
+		<?php
+
+		/* ----------------------------------- */
+		/* Global Goals ---------------------- */
+		/* ----------------------------------- */
+
+		?>
+
+		<?php
+
+		/* ----------------------------------- */
+		/* Missing In Stats ------------------ */
+		/* ----------------------------------- */
+
+		?>
+
+		<section id="section-missing-in-stats" class="missing-in-stats">
+
+			<div class="section-inner">
+
+
+
+			</div><!-- .section-inner -->
+
+		</section><!-- #section-missing-in-stats -->
+
+		<?php
+
+		/* ----------------------------------- */
+		/* Recommendations ------------------- */
+		/* ----------------------------------- */
+
+		?>
+
+		<section id="section-recommendations" class="recommendations">
+
+			<div class="section-inner">
+
+
+
+			</div><!-- .section-inner -->
+
+		</section><!-- #section-recommendations -->
+
+	</main><!-- #site-content -->
+
+	<?php
+
+endwhile;
+
+get_footer();
