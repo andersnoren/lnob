@@ -118,6 +118,12 @@ LNOB.isScrolling = {
 				$body.removeClass( 'is-scrolling' );
 			}
 
+			if ( currentScrollPos > $lnobWin.outerHeight() ) {
+				$body.addClass( 'scrolled-screen-height' );
+			} else {
+				$body.removeClass( 'scrolled-screen-height' );
+			}
+
 			// Detect whether we're at the bottom.
 			if ( currentScrollPos + winHeight >= docHeight ) {
 				$body.addClass( 'scrolled-to-bottom' );
@@ -746,6 +752,32 @@ LNOB.focusManagement = {
 
 
 /*	-----------------------------------------------------------------------------------------------
+	Front Page
+--------------------------------------------------------------------------------------------------- */
+
+LNOB.frontPage = {
+
+	init: function() {
+
+		// Focus loops.
+		LNOB.frontPage.lnobSymbol();
+
+	},
+
+	lnobSymbol: function() {
+
+		var degrees = Math.random() * ( 360 - 0 ) + 0;
+
+		$( '.lnob-symbol-inner' ).css( { 'transform': 'rotate(' + degrees + 'deg)' } );
+		$( '.lnob-symbol' ).addClass( 'do-spot' );
+		$lnobWin.trigger( 'ajax-content-loaded' );
+
+	}
+
+} // LNOB.frontPage
+
+
+/*	-----------------------------------------------------------------------------------------------
 	Function Calls
 --------------------------------------------------------------------------------------------------- */
 
@@ -760,5 +792,6 @@ $lnobDoc.ready( function() {
 	LNOB.smoothScroll.init();			// Smooth scroll to anchor link or a specific element.
 	LNOB.scrollLock.init();				// Scroll Lock.
 	LNOB.focusManagement.init();		// Focus Management.
+	LNOB.frontPage.init();				// Front Page.
 
 } );
