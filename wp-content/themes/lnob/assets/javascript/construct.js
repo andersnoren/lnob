@@ -513,7 +513,7 @@ LNOB.smoothScroll = {
 		$( 'a[href*="#"]' ).not( '[href="#"]' ).not( '[href="#0"]' ).on( 'click', function( e ) {
 			if ( location.pathname.replace(/^\//, '' ) == this.pathname.replace(/^\//, '' ) && location.hostname == this.hostname ) {
 				$target = $( this.hash ).length ? $( this.hash ) : $( '[name=' + this.hash.slice(1) + ']' );
-				var updateHistory = $( this ).attr( 'data-update-history' ) == 'false' ? false : true;
+				var updateHistory = $( this ).attr( 'data-update-history' ) == 'true' ? true : false;
 				LNOB.smoothScroll.scrollToTarget( $target, $( this ), updateHistory );
 				e.preventDefault();
 			}
@@ -522,7 +522,7 @@ LNOB.smoothScroll = {
 		// Scroll to elements specified with a data attribute.
 		$lnobDoc.on( 'click', '*[data-scroll-to]', function( e ) {
 			var $target = $( $( this ).data( 'scroll-to' ) ),
-				updateHistory = $( this ).attr( 'data-update-history' ) == 'true' ? true : false;
+				updateHistory = $( this ).attr( 'data-update-history' ) == 'false' ? false : true;
 			LNOB.smoothScroll.scrollToTarget( $target, $( this ), updateHistory );
 			e.preventDefault();
 		} );
@@ -786,11 +786,11 @@ $lnobDoc.ready( function() {
 	LNOB.intervalScroll.init();			// Check for scroll on an interval.
 	LNOB.resizeEnd.init();				// Trigger event at end of resize.
 	LNOB.isScrolling.init();			// Check for scroll direction.
+	LNOB.scrollLock.init();				// Scroll Lock.
 	LNOB.toggles.init();				// Handle toggles.
 	LNOB.coverModals.init();			// Handle cover modals.
 	LNOB.elementInView.init();			// Check if elements are in view.
 	LNOB.smoothScroll.init();			// Smooth scroll to anchor link or a specific element.
-	LNOB.scrollLock.init();				// Scroll Lock.
 	LNOB.focusManagement.init();		// Focus Management.
 	LNOB.frontPage.init();				// Front Page.
 

@@ -13,8 +13,8 @@ function lnob_compat_use_block_editor_for_post( $value, $post ) {
 	$template_slug 	= get_page_template_slug( $post->ID );
 	$page_templates = array();
 
-	if ( in_array( $post_type, $post_types ) ) return false;
-	if ( in_array( $template_slug, $page_templates ) ) return false;
+	if ( $post_types && in_array( $post_type, $post_types ) ) return false;
+	if ( $page_templates && in_array( $template_slug, $page_templates ) ) return false;
 
 	// Disable the block editor for the page set as the front page.
 	if ( get_option( 'page_on_front' ) == $post->ID ) return false;
@@ -131,23 +131,23 @@ add_action( 'pre_get_posts', 'lnob_compat_lnob_global_goals_menu_order_sorting' 
 function lnob_bla() {
 
 	$gg = array(
-		'1. Ingen fattigdom',
-		'2. Ingen hunger',
-		'3. God hälsa och välbefinnande',
-		'4. God utbildning',
-		'5. Jämställdhet',
-		'6. Rent vatten och sanitet för alla',
-		'7. Hållbar energi för alla',
-		'8. Anständiga arbetsvillkor och ekonomisk tillväxt',
-		'9. Hållbar industri, innovationer och infrastruktur',
-		'10. Minskad ojämlikhet',
-		'11. Hållbara städer och samhällen',
-		'12. Hållbar konsumtion och produktion',
-		'13. Bekämpa klimatförändringarna',
-		'14. Hav och marina resurser',
-		'15. Ekosystem och biologisk mångfald',
-		'16. Fredliga och inkluderande samhällen',
-		'17. Genomförande och globalt partnerskap',
+		'1 : 1. Ingen fattigdom',
+		'2 : 2. Ingen hunger',
+		'3 : 3. God hälsa och välbefinnande',
+		'4 : 4. God utbildning',
+		'5 : 5. Jämställdhet',
+		'6 : 6. Rent vatten och sanitet för alla',
+		'7 : 7. Hållbar energi för alla',
+		'8 : 8. Anständiga arbetsvillkor och ekonomisk tillväxt',
+		'9 : 9. Hållbar industri, innovationer och infrastruktur',
+		'10 : 10. Minskad ojämlikhet',
+		'11 : 11. Hållbara städer och samhällen',
+		'12 : 12. Hållbar konsumtion och produktion',
+		'13 : 13. Bekämpa klimatförändringarna',
+		'14 : 14. Hav och marina resurser',
+		'15 : 15. Ekosystem och biologisk mångfald',
+		'16 : 16. Fredliga och inkluderande samhällen',
+		'17 : 17. Genomförande och globalt partnerskap',
 	);
 
 	foreach( $gg as $key => $title ) {
