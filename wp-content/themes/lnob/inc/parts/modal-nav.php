@@ -149,7 +149,7 @@ $front_page_id = get_option( 'page_on_front' );
 
 			<?php
 
-			$global_goals = get_posts( array(
+			$GLOBALS['global_goals'] = get_posts( array(
 				'order'				=> 'ASC',
 				'orderby'			=> 'menu_order',
 				'post_type'			=> 'lnob_global_goal',
@@ -180,12 +180,12 @@ $front_page_id = get_option( 'page_on_front' );
 
 			</div><!-- .menu-gg-header -->
 
-			<?php if ( $global_goals ) : ?>
+			<?php if ( $GLOBALS['global_goals'] ) : ?>
 
 				<div class="menu-gg-grid grid cols-6 cols-t-4 cols-tl-3 cols-d-2">
 
 					<?php
-					foreach ( $global_goals as $global_goal ) : 
+					foreach ( $GLOBALS['global_goals'] as $global_goal ) : 
 						$gg_number 	= get_field( 'general_global_goal', $global_goal ) ?: 1;
 						$gg_icon 	= 'gg/gg-' . $gg_number;
 						?>

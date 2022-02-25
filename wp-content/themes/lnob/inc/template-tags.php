@@ -167,8 +167,10 @@ function lnob_get_squircle_link( $args ) {
 		'url'				=> '',
 		'text'				=> '',
 		'target'			=> '',
-		'link_classes'			=> array(),
+		'link_classes'		=> array(),
 		'icon'				=> array(
+			'stroke-color'		=> '',
+			'fill-color'		=> '',
 			'name'				=> 'arrow-external',
 			'height'			=> null,
 			'width'				=> null,
@@ -187,6 +189,10 @@ function lnob_get_squircle_link( $args ) {
 	$icon_width 	= ! empty( $args['icon']['width'] ) ? $args['icon']['width'] : '';
 	$icon_height 	= ! empty( $args['icon']['height'] ) ? $args['icon']['height'] : '';
 
+	$icon_class = '';
+	if ( ! empty( $args['icon']['stroke-color'] ) ) $icon_class .= ' stroke-cc c-' . $args['icon']['stroke-color'];
+	if ( ! empty( $args['icon']['fill-color'] ) ) $icon_class .= ' fill-cc c-' . $args['icon']['fill-color'];
+
 	$link_classes_str .= $icon_name ? ' icon-' . $icon_name : '';
 
 	?>
@@ -196,7 +202,7 @@ function lnob_get_squircle_link( $args ) {
 			<div class="squircle pos-cover fill-cc c-<?php echo $args['squircle_color']; ?>">
 				<?php lnob_the_svg( 'squircle' ); ?>
 			</div>
-			<span class="icon"><?php lnob_the_svg( $icon_name, $icon_width, $icon_height ); ?></span>
+			<span class="icon<?php echo $icon_class; ?>"><?php lnob_the_svg( $icon_name, $icon_width, $icon_height ); ?></span>
 		</div>
 		<?php if ( $args['text'] ) : ?>
 			<span class="text"><?php echo $args['text']; ?></span>
@@ -218,6 +224,10 @@ function lnob_get_squircle_link( $args ) {
 function lnob_the_share_links( $args = array() ) {
 
 	$args = wp_parse_args( $args, array(
+		'colors'		=> array(
+			'background'	=> 'service',
+			'icon'			=> 'white',
+		),
 		'parameters'	=> array(
 			'title'			=> '',
 			'excerpt'		=> '',
@@ -247,46 +257,55 @@ function lnob_the_share_links( $args = array() ) {
 
 		<ul class="share-buttons-list horizontal-list reset-list-style">
 
-			<?php if ( $facebook_url ) : ?>
+			<?php if ( $facebook_url ) : 
+				$squircle_color = $args['colors']['background'] == 'service' ? 'facebook' : $args['colors']['background'];
+				?>
 				<li class="share-facebook">
 					<?php 
 					echo lnob_get_squircle_link( array(
 						'url'				=> $facebook_url,
 						'target'			=> '_blank',
 						'icon'				=> array(
+							'fill-color'		=> $args['colors']['icon'],
 							'name'				=> 'social/facebook',
 						),
-						'squircle_color'	=> 'facebook',
+						'squircle_color'	=> $squircle_color,
 					) ); 
 					?>
 				</li>
 			<?php endif; ?>
 
-			<?php if ( $linkedin_url ) : ?>
+			<?php if ( $linkedin_url ) : 
+				$squircle_color = $args['colors']['background'] == 'service' ? 'linkedin' : $args['colors']['background'];
+				?>
 				<li class="share-linkedin">
 					<?php 
 					echo lnob_get_squircle_link( array(
 						'url'				=> $linkedin_url,
 						'target'			=> '_blank',
 						'icon'				=> array(
+							'fill-color'		=> $args['colors']['icon'],
 							'name'				=> 'social/linkedin',
 						),
-						'squircle_color'	=> 'linkedin',
+						'squircle_color'	=> $squircle_color,
 					) ); 
 					?>
 				</li>
 			<?php endif; ?>
 
-			<?php if ( $twitter_url ) : ?>
+			<?php if ( $twitter_url ) : 
+				$squircle_color = $args['colors']['background'] == 'service' ? 'twitter' : $args['colors']['background'];
+				?>
 				<li class="share-twitter">
 					<?php 
 					echo lnob_get_squircle_link( array(
 						'url'				=> $twitter_url,
 						'target'			=> '_blank',
 						'icon'				=> array(
+							'fill-color'		=> $args['colors']['icon'],
 							'name'				=> 'social/twitter',
 						),
-						'squircle_color'	=> 'twitter',
+						'squircle_color'	=> $squircle_color,
 					) ); 
 					?>
 				</li>
@@ -340,5 +359,44 @@ function lnob_get_share_url( $args = array() ) {
 	}
 
 	return $url;
+	
+}
+
+
+/*	-----------------------------------------------------------------------------------------------
+	GET GLOBAL GOAL TEXT COLOR
+--------------------------------------------------------------------------------------------------- */
+
+function lnob_get_gg_text_color( $gg_number ) {
+
+	switch ( $gg_number ) {
+
+		case '1' :
+		case '4' :
+		case '8' :
+		case '10' :
+		case '13' :
+		case '14' :
+		case '16' :
+		case '17' :
+			return 'white';
+			break;
+
+		case '2' :
+		case '3' :
+		case '5' :
+		case '6' :
+		case '7' :
+		case '9' :
+		case '11' :
+		case '12' :
+		case '15' :
+			return 'black';
+			break;
+
+		default : 
+			return 'white';
+
+	}
 	
 }

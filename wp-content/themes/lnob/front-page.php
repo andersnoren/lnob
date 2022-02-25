@@ -141,13 +141,26 @@ while ( have_posts() ) : the_post();
 		/* Global Goals ---------------------- */
 		/* ----------------------------------- */
 
-		?>
+		if ( $GLOBALS['global_goals'] ) : 
+			?>
 		
-		<div class="global-goals bg-black screen-height">
+			<div id="section-global-goals" class="global-goals">
 
-		</div>
+				<?php
+				global $post;
+				foreach ( $global_goals as $post ) : 
+					setup_postdata( $post );
 
-		<?php
+					get_template_part( 'inc/parts/global-goal' );
+
+				endforeach;
+				wp_reset_postdata();
+				?>
+
+			</div>
+
+			<?php 
+		endif;
 
 		/* ----------------------------------- */
 		/* Missing In Stats ------------------ */
