@@ -81,8 +81,6 @@ add_action( 'wp_enqueue_scripts', 'lnob_register_styles' );
 --------------------------------------------------------------------------------------------------- */
 
 function lnob_register_scripts() {
-
-	// wp_register_script( 'lnob-name', LNOB_TEMPLATE_DIR_URI . '/assets/javascript/file.js', array(), '1.0' );
 	
 	$js_dependencies = array( 'jquery' );
 

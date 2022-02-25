@@ -759,8 +759,11 @@ LNOB.frontPage = {
 
 	init: function() {
 
-		// Focus loops.
+		// Rotating LNOB symbol.
 		LNOB.frontPage.lnobSymbol();
+
+		// Global Goals.
+		LNOB.frontPage.gg();
 
 	},
 
@@ -771,6 +774,19 @@ LNOB.frontPage = {
 		$( '.lnob-symbol-inner' ).css( { 'transform': 'rotate(' + degrees + 'deg)' } );
 		$( '.lnob-symbol' ).addClass( 'do-spot' );
 		$lnobWin.trigger( 'ajax-content-loaded' );
+
+	},
+
+	gg: function() {
+
+		// Scroll behavior on expanding/collapsing.
+		$lnobDoc.on( 'click', '.gg-content-toggle', function() {
+			LNOB.smoothScroll.scrollToTarget( $( $( this ).data( 'toggle-target' ) ) );
+		} );
+
+		$lnobDoc.on( 'click', '.gg-content-untoggle', function() {
+			LNOB.smoothScroll.scrollToTarget( $( this ).closest( '.gg' ) );
+		} );
 
 	}
 

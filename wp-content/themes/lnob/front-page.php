@@ -106,7 +106,7 @@ while ( have_posts() ) : the_post();
 							<?php endif; ?>
 
 							<?php if ( $rec_shortcut_text ) : ?>
-								<div class="rec-shortcut-text contain-margins pu-24 fs-16 fs-t-18"><?php echo wpautop( $rec_shortcut_text ); ?></div>
+								<div class="rec-shortcut-text contain-margins pu-24 fs-16 fs-t-18 mw-readable"><?php echo wpautop( $rec_shortcut_text ); ?></div>
 							<?php endif; ?>
 
 							<div class="rec-shortcut-button pu-32">

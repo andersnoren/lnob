@@ -176,11 +176,22 @@ function lnob_get_squircle_link( $args ) {
 			'width'				=> null,
 		),
 		'squircle_color'	=> 'yellow',
+		'attributes'		=> array() // A nested array with a [name]=[value] structure.
 	) );
 
 	if ( ! $args['url'] ) return;
 
-	$target_attr 		= $args['target'] ? ' target="' . $args['target'] . '"' : '';
+	$attributes_str = '';
+
+	if ( ! empty( $args['attributes'] ) ) {
+		foreach ( $args['attributes'] as $name => $value ) {
+			if ( $name ) $attributes_str .= ' ' . $name;
+			if ( $value ) $attributes_str .= '="' . $value . '"';
+		}
+	}
+
+	if ( $args['target'] ) $attributes_str .= ' target="' . $args['target'] . '"';
+
 	$link_classes_str	= $args['link_classes'] ? ' ' . implode( ' ', $args['link_classes'] ) : '';
 
 	ob_start();
@@ -197,7 +208,7 @@ function lnob_get_squircle_link( $args ) {
 
 	?>
 
-	<a class="squircle-link<?php echo esc_attr( $link_classes_str ); ?>" href="<?php echo esc_url( $args['url'] ); ?>"<?php echo $target_attr; ?>>
+	<a class="squircle-link<?php echo esc_attr( $link_classes_str ); ?>" href="<?php echo esc_url( $args['url'] ); ?>"<?php echo $attributes_str; ?>>
 		<div class="squircle-wrapper pos-relative">
 			<div class="squircle pos-cover fill-cc c-<?php echo $args['squircle_color']; ?>">
 				<?php lnob_the_svg( 'squircle' ); ?>
@@ -398,5 +409,91 @@ function lnob_get_gg_text_color( $gg_number ) {
 			return 'white';
 
 	}
+	
+}
+
+
+/*	-----------------------------------------------------------------------------------------------
+	GET GLOBAL GOAL WEBSITE URL
+	Returns the URL for the global goal on the globalamalen.se website.
+--------------------------------------------------------------------------------------------------- */
+
+function lnob_get_gg_website_url( $gg_number ) {
+
+	$url = '';
+
+	switch ( $gg_number ) {
+
+		case '1' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-1-ingen-fattigdom/';
+			break;
+
+		case '2' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-2-ingen-hunger/';
+			break;
+
+		case '3' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-3-halsa-och-valbefinnande/';
+			break;
+
+		case '4' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-4-god-utbildning-alla/';
+			break;
+
+		case '5' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-5-jamstalldhet/';
+			break;
+
+		case '6' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-6-rent-vatten-och-sanitet/';
+			break;
+
+		case '7' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-7-hallbar-energi-alla/';
+			break;
+
+		case '8' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-8-anstandiga-arbetsvillkor-och-ekonomisk-tillvaxt/';
+			break;
+
+		case '9' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-9-hallbar-industri-innovationer-och-infrastruktur/';
+			break;
+
+		case '10' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-10-minskad-ojamlikhet/';
+			break;
+
+		case '11' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-11-hallbara-stader-och-samhallen/';
+			break;
+
+		case '12' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-12-hallbar-konsumtion-och-produktion/';
+			break;
+
+		case '13' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-13-bekampa-klimatforandringarna/';
+			break;
+
+		case '14' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-14-hav-och-marina-resurser/';
+			break;
+
+		case '15' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-15-ekosystem-och-biologisk-mangfald/';
+			break;
+
+		case '16' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-16-fredliga-och-inkluderande-samhallen/';
+			break;
+
+		case '17' :
+			$url = 'https://www.globalamalen.se/om-globala-malen/mal-17-genomforande-och-globalt-partnerskap/';
+			break;
+
+	}
+
+	return $url;
 	
 }

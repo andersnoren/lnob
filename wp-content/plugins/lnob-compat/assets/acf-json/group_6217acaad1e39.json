@@ -185,6 +185,235 @@
             ]
         },
         {
+            "key": "field_6218c7bd50f17",
+            "label": "Sidfot",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6218c7e350f18",
+            "label": "Sidfot",
+            "name": "footer",
+            "type": "group",
+            "instructions": "Inställningar för innehållet i botten av det globala målet.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6218c7fe50f19",
+                    "label": "Vill du veta mer?",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6218c80c50f1a",
+                    "label": "Vill du veta mer?",
+                    "name": "more_info_box",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6218c82d50f1b",
+                            "label": "Rubrik",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Visar \"Vill du veta mer?\" om fältet lämnas tomt.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "Vill du veta mer?",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6218c84950f1c",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "instructions": "Om fältet lämnas tomt visas \"Du hittar mer information om mål X på Globala Målens officiella webbplats.\", med X ersatt med siffran för det globala målet.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Du hittar mer information om mål X på Globala Målens officiella webbplats.",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_6218c89d50f1d",
+                            "label": "Knapptext",
+                            "name": "button_text",
+                            "type": "text",
+                            "instructions": "\"Till webbplatsen\" visas om fältet lämnas tomt.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Till webbplatsen",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6218c8ea50f1e",
+                            "label": "URL",
+                            "name": "url",
+                            "type": "url",
+                            "instructions": "Kan lämnas tomt. Knappen länkar då till sidan för det här målet på globalamalen.se.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_6218c91250f24",
+                    "label": "Våra rekommendationer",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6218c91050f1f",
+                    "label": "Våra rekommendationer",
+                    "name": "recommendations_box",
+                    "type": "group",
+                    "instructions": "Länkar till \"Rekommendationer\"-sektionen. Om de här fälten lämnas tomma så används samma innehåll som i rutan i \"Introduktion\"-sektionen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6218c91050f20",
+                            "label": "Rubrik",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6218c91050f21",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_6218c91050f22",
+                            "label": "Knapptext",
+                            "name": "button_text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "key": "field_6217acb5b8a36",
             "label": "Delningsinställningar",
             "name": "",
@@ -235,5 +464,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645719502
+    "modified": 1645791658
 }

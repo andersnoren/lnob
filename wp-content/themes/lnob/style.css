@@ -272,8 +272,11 @@ html.scroll-locked #wpadminbar {
 
 
 main {
+	background: var( --c-white );
 	display: block;
 	overflow: hidden;
+	position: relative;
+	z-index: 1;
 }
 
 h1, .h1,
@@ -666,6 +669,7 @@ section {
 :root .mw-thin { max-width: var( --mw-thin ); }
 :root .mw-small { max-width: var( --mw-small ); }
 :root .mw-medium { max-width: var( --mw-medium ); }
+:root .mw-readable { max-width: 30em; }
 
 .section-inner.no-margin { margin: 0; }
 
@@ -1265,8 +1269,12 @@ section {
 	gap: .5em;
 }
 
-.icon-text .icon {
+.icon-text > .icon {
 	flex-shrink: 0;
+}
+
+.icon-text > .text {
+	padding-top: .2em;
 }
 
 /* Squircle Link ----------------------------- */
@@ -1386,6 +1394,7 @@ section {
 .navigation-bar {
 	display: flex;
 	gap: calc( var( --body-margin ) / 3 );
+	justify-content: flex-end;
 	padding-right: max( var( --body-margin ), calc( ( 100vw - var( --mw-max ) ) / 2 ) );
 	position: fixed;
 		right: 0;
@@ -1434,11 +1443,16 @@ section {
 }
 
 .navigation-bar .scroll-to-top {
+	position: relative;
+		left: -9999rem;
 	opacity: 0;
+	transition: opacity .1s linear, left 0s .1s;
 }
 
 .scrolled-screen-height .navigation-bar .scroll-to-top {
+	left: 0;
 	opacity: 1;
+	transition: opacity .1s .1s linear;
 }
 
 
@@ -1456,10 +1470,6 @@ section {
 
 .nav-untoggle .icon-text {
 	gap: 1.6rem;
-}
-
-.nav-untoggle .icon-text .text {
-	padding-top: .2em;
 }
 
 .menu-top .nav-untoggle {
@@ -1640,6 +1650,16 @@ section {
 	font-size: 11.6rem;
 }
 
+.gg-hero .squircle-link:not(.active) .show-active,
+.gg-hero .squircle-link.active .show-inactive {
+	display: none;
+}
+
+.gg-hero .squircle-link:not(.active) .show-inactive,
+.gg-hero .squircle-link.active .show-active  {
+	display: block;
+}
+
 /* SECTION SPECIFIC WIDTHS */
 
 #gg-1 .gg-title { max-width: 4em; }
@@ -1660,7 +1680,55 @@ section {
 #gg-17 .gg-title { max-width: 8em; }
 
 /* GG Content -------------------------------- */
+
+.gg-content-inner {
+	display: flex;
+	flex-direction: column;
+}
+
+.gg-content-inner .entry-content {
+	flex-grow: 1;
+}
+
 /* GG Footer --------------------------------- */
+
+/* FOOTER ACTIONS */
+
+:root .sources-button {
+	padding: 1.2rem 2.4rem;
+}
+
+.sources-button .icon-text {
+	gap: 1.6rem;
+}
+
+/* FOOTER INFO BOXES */
+
+.gg-info-boxes-grid {
+	--grid-gutter-v: 2.4rem;
+}
+
+.gg-info-boxes-grid > .col {
+	display: flex;
+}
+
+.gg-info-boxes .rec-shortcut,
+.gg-info-boxes .more-info {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.gg-info-boxes .rec-shortcut-button,
+.gg-info-boxes .more-info-button {
+	margin-top: auto;
+}
+
+/* FOOTER COLLAPSE */
+
+.gg-content-untoggle .icon-text {
+	gap: 1.6rem;
+}
 
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1745,6 +1813,11 @@ section {
 /*	12. Site Footer
 /* --------------------------------------------------------------------------------------------- */
 
+
+#site-footer {
+	position: sticky;
+  		bottom: 0;
+}
 
 #site-footer a {
 	color: inherit;
@@ -1976,10 +2049,6 @@ section {
 
 	.navigation-bar .nav-toggle .icon-text {
 		gap: 1.6rem;
-	}
-
-	.navigation-bar .nav-toggle .text {
-		padding-top: .15em;
 	}
 
 	/* Navigation ---------------------------- */
