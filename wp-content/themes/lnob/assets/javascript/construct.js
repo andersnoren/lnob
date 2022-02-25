@@ -248,6 +248,12 @@ LNOB.toggles = {
 			// Trigger the toggled event on the toggle target.
 			$target.trigger( 'toggled' );
 
+			if ( $toggle.hasClass( 'active' ) ) {
+				$target.trigger( 'toggled-active' );
+			} else {
+				$target.trigger( 'toggled-inactive' );
+			}
+
 			return false;
 
 		} );
@@ -786,6 +792,14 @@ LNOB.frontPage = {
 
 		$lnobDoc.on( 'click', '.gg-content-untoggle', function() {
 			LNOB.smoothScroll.scrollToTarget( $( this ).closest( '.gg' ) );
+		} );
+
+		$( '.gg-content' ).on( 'toggled-active', function() {
+			$( this ).closest( '.gg' ).addClass( 'showing-content' );
+			$lnobWin.trigger( 'resize' );
+		} ).on( 'toggled-inactive', function() {
+			$( this ).closest( '.gg' ).removeClass( 'showing-content' );
+			$lnobWin.trigger( 'resize' );
 		} );
 
 	}

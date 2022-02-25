@@ -274,7 +274,6 @@ html.scroll-locked #wpadminbar {
 main {
 	background: var( --c-white );
 	display: block;
-	overflow: hidden;
 	position: relative;
 	z-index: 1;
 }
@@ -1552,6 +1551,10 @@ section {
 /* --------------------------------------------------------------------------------------------- */
 
 
+.hero-intro-wrapper {
+	overflow: hidden;
+}
+
 .hero {
 	display: flex;
 	margin-top: calc( -1 * var( --header-height ) );
@@ -1618,6 +1621,16 @@ section {
 /* --------------------------------------------------------------------------------------------- */
 
 
+.gg {
+	background-color: var( --c-white );
+	position: sticky;
+		top: 0;
+}
+
+.gg.showing-content {
+	position: relative;
+}
+
 /* GG Hero ----------------------------------- */
 
 .gg-hero,
@@ -1680,6 +1693,10 @@ section {
 #gg-17 .gg-title { max-width: 8em; }
 
 /* GG Content -------------------------------- */
+
+.js .gg-content {
+	display: none;
+}
 
 .gg-content-inner {
 	display: flex;

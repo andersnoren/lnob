@@ -10,7 +10,7 @@ $gg_text_c = lnob_get_gg_text_color( $gg_number );
 $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 ?>
 
-<section id="gg-<?php echo $gg_number; ?>" class="gg pv-0">
+<section id="gg-<?php echo $gg_number; ?>" class="gg pv-0" style="z-index: <?php echo $gg_number; ?>;">
 
 	<?php
 	// Set the --c-gg CSS variable to the color of the current section, for the current section.
@@ -91,7 +91,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 	</div><!-- .gg-hero -->
 
-	<div class="gg-content d-none" id="gg-<?php echo $gg_number; ?>-content">
+	<div class="gg-content" id="gg-<?php echo $gg_number; ?>-content">
 
 		<div class="gg-content-inner screen-height">
 
