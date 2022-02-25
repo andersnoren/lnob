@@ -92,9 +92,7 @@ while ( have_posts() ) : the_post();
 						<?php if ( $content_post_obj ) : ?>
 
 							<div class="entry-content disable-alignwide mw-small">
-
-								<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj->ID ) ); ?>
-
+								<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
 							</div><!-- .entry-content -->
 
 						<?php endif; ?>
@@ -170,15 +168,65 @@ while ( have_posts() ) : the_post();
 		/* Missing In Stats ------------------ */
 		/* ----------------------------------- */
 
+		$missing_in_stats 	= get_field( 'missing_in_stats' );
+		$title 				= ! empty( $missing_in_stats['title'] ) ? $missing_in_stats['title'] : '';
+		$intro_text 		= ! empty( $missing_in_stats['intro_text'] ) ? $missing_in_stats['intro_text'] : '';
+		$content_post_obj 	= ! empty( $missing_in_stats['content_post_object'] ) ? $missing_in_stats['content_post_object'] : false;
+
 		?>
 
-		<section id="section-missing-in-stats" class="missing-in-stats">
+		<section id="section-missing" class="missing-in-stats p-0">
 
-			<div class="section-inner">
+			<header class="missing-header">
 
+				<div class="missing-header-bg bg-yellow pu-64 pd-32 pu-t-96 pd-t-0 overflow-hidden">
 
+					<div class="missing-header-inner section-inner">
 
-			</div><!-- .section-inner -->
+						<div class="missing-header-grid grid cols-tl-6">
+
+							<div class="col">
+								<?php if ( $title ) : ?>
+									<h2 class="section-title h1 no-margin"><?php echo $title; ?></h2>
+								<?php endif; ?>
+							</div>
+
+							<div class="col">
+								<?php if ( $intro_text ) : ?>
+									<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
+								<?php endif; ?>
+
+								<div class="social-wrapper pu-24 pu-t-32">
+									<?php lnob_the_share_links( array(
+										'colors'	=> array(
+											'icon'			=> 'white',
+											'background'	=> 'black',
+										),
+									) ); ?>
+								</div><!-- .social-wrapper -->
+							</div>
+
+						</div><!-- .missing-header-grid -->
+
+					</div><!-- .missing-header-inner -->
+
+				</div><!-- .missing-header-bg -->
+
+				<div class="section-sep">
+					<?php lnob_the_svg( 'section-jagged-edge' ); ?>
+				</div>
+
+			</header><!-- .missing-header -->
+
+			<?php if ( $content_post_obj ) : ?>
+
+				<div class="section-inner entry-content mw-small pv-48 pd-64 pv-t-96">
+
+					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+
+				</div><!-- .section-inner -->
+
+			<?php endif; ?>
 
 		</section><!-- #section-missing-in-stats -->
 

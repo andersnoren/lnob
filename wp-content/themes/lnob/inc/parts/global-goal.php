@@ -48,7 +48,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 				<?php endif; ?>
 
 				<?php if ( $intro_text ) : ?>
-					<div class="gg-intro-text fs-intro-text pu-24 pu-t-32 pu-tl-40 contain-margins mw-small c-<?php echo $gg_text_c; ?>"><?php echo wpautop( $intro_text ); ?></div>
+					<div class="gg-intro-text fs-intro-text pu-24 pu-t-32 pu-tl-40 contain-margins mw-readable c-<?php echo $gg_text_c; ?>"><?php echo wpautop( $intro_text ); ?></div>
 				<?php endif; ?>
 
 				<div class="social-wrapper pu-24 pu-t-32 pu-tl-40">
