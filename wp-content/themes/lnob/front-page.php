@@ -236,15 +236,78 @@ while ( have_posts() ) : the_post();
 		/* Recommendations ------------------- */
 		/* ----------------------------------- */
 
+		$recommendations 	= get_field( 'recommendations' );
+		$title 				= ! empty( $recommendations['title'] ) ? $recommendations['title'] : '';
+		$intro_text 		= ! empty( $recommendations['intro_text'] ) ? $recommendations['intro_text'] : '';
+		$scroll_button_text = ! empty( $recommendations['scroll_button_text'] ) ? $recommendations['scroll_button_text'] : __( 'Scrolla', 'lnob' );
+		$content_post_obj 	= ! empty( $recommendations['content_post_object'] ) ? $recommendations['content_post_object'] : false;
+
 		?>
 
-		<section id="section-recommendations" class="recommendations">
+		<section id="section-recommendations" class="recommendations p-0">
 
-			<div class="section-inner">
+			<header class="recommendations-hero screen-height bg-yellow pu-64 pd-32 pd-tl-48 pd-d-64">
 
+				<div class="recommendations-hero-inner section-inner">
 
+					<div class="recommendations-hero-grid grid">
 
-			</div><!-- .section-inner -->
+						<div class="col">
+							<?php if ( $title ) : 
+								$title_classes = $title == 'Det här behöver göras' ? ' prettify-line-breaks' : '';
+								?>
+								<h2 class="recommendations-title h1 no-margin<?php echo $title_classes; ?>"><?php echo $title; ?></h2>
+							<?php endif; ?>
+						</div>
+
+						<div class="col col-tl-6">
+							<?php if ( $intro_text ) : ?>
+								<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
+							<?php endif; ?>
+
+							<div class="social-wrapper pu-24 pu-t-32">
+								<?php lnob_the_share_links( array(
+									'colors'	=> array(
+										'icon'			=> 'white',
+										'background'	=> 'black',
+									),
+								) ); ?>
+							</div><!-- .social-wrapper -->
+						</div>
+
+						<div class="col col-tl-6">
+
+							<div class="scroll-button-wrapper">
+								<?php 
+								echo lnob_get_squircle_link( array(
+									'icon'				=> array(
+										'name'				=> 'arrow-down',
+									),
+									'link_classes'		=> array( 'large', 'fs-t-24' ),
+									'squircle_color'	=> 'white',
+									'text'				=> $scroll_button_text,
+									'url'				=> '#recommendations-content',
+								) );
+								?>
+							</div>
+
+						</div>
+
+					</div><!-- .recommendations-hero-grid -->
+
+				</div><!-- .recommendations-hero-inner -->
+
+			</header><!-- .recommendations-hero -->
+
+			<?php if ( $content_post_obj ) : ?>
+
+				<div class="section-inner entry-content mw-small pv-48 pd-64 pv-t-96" id="recommendations-content">
+
+					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+
+				</div><!-- .section-inner -->
+
+			<?php endif; ?>
 
 		</section><!-- #section-recommendations -->
 

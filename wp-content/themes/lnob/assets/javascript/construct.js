@@ -206,6 +206,8 @@ LNOB.toggles = {
 			if ( $toggle.data( 'toggle-type' ) == 'slidetoggle' ) {
 				var duration = $toggle.data( 'toggle-duration' ) ? $toggle.data( 'toggle-duration' ) : 250;
 				$target.slideToggle( duration );
+			} else if ( $toggle.data( 'toggle-type' ) == 'toggle' ) {
+				$target.toggle();
 			} else {
 				$target.toggleClass( classToToggle );
 			}
@@ -561,14 +563,22 @@ LNOB.smoothScroll = {
 				}
 			}
 
-			// Animate.
-			$( 'html, body' ).animate( {
-				scrollTop: scrollOffset,
-			}, scrollSpeed, function() {
-				$lnobWin.trigger( 'did-interval-scroll' );
-			} );
+			// Scroll to position.
+			LNOB.smoothScroll.scrollToPosition( scrollOffset, scrollSpeed );
 
 		}
+
+	},
+
+	// Scroll to position.
+	scrollToPosition: function( scrollOffset, scrollSpeed = 500 ) {
+
+		// Animate.
+		$( 'html, body' ).animate( {
+			scrollTop: scrollOffset,
+		}, scrollSpeed, function() {
+			$lnobWin.trigger( 'did-interval-scroll' );
+		} );
 
 	}
 
@@ -758,6 +768,31 @@ LNOB.focusManagement = {
 
 
 /*	-----------------------------------------------------------------------------------------------
+	Dynamic Screen Height
+--------------------------------------------------------------------------------------------------- */
+
+LNOB.dynamicScreenHeight = {
+
+	init: function() {
+
+		var $screenHeight = $( '.screen-height' );
+
+		$screenHeight.css( 'min-height', $win.innerHeight() );
+
+		setTimeout( function() {
+			$screenHeight.css( 'min-height', $win.innerHeight() );
+		}, 500 );
+
+		$win.on( 'resize orientationchange', function() {
+			$screenHeight.css( 'min-height', $win.innerHeight() );
+		} );
+
+	},
+
+} // LNOB.dynamicScreenHeight
+
+
+/*	-----------------------------------------------------------------------------------------------
 	Front Page
 --------------------------------------------------------------------------------------------------- */
 
@@ -786,20 +821,32 @@ LNOB.frontPage = {
 	gg: function() {
 
 		// Scroll behavior on expanding/collapsing.
-		$lnobDoc.on( 'click', '.gg-content-toggle', function() {
-			LNOB.smoothScroll.scrollToTarget( $( $( this ).data( 'toggle-target' ) ) );
-		} );
-
-		$lnobDoc.on( 'click', '.gg-content-untoggle', function() {
-			LNOB.smoothScroll.scrollToTarget( $( this ).closest( '.gg' ) );
-		} );
-
 		$( '.gg-content' ).on( 'toggled-active', function() {
 			$( this ).closest( '.gg' ).addClass( 'showing-content' );
 			$lnobWin.trigger( 'resize' );
-		} ).on( 'toggled-inactive', function() {
+			LNOB.smoothScroll.scrollToTarget( $( $( this ) ) );
+		} );
+		
+		$( '.gg-content' ).on( 'toggled-inactive', function() {
 			$( this ).closest( '.gg' ).removeClass( 'showing-content' );
 			$lnobWin.trigger( 'resize' );
+
+			// Get the offset of the current global goal.
+			// Note: offset().top doesn't work with elements set to a sticky position.
+			var ggOffset 		= $( '.global-goals' ).offset().top,
+				currentIndex 	= $( this ).closest( '.gg' ).index();
+
+			$( '.global-goals .gg' ).each( function() {
+				if ( $( this ).index() < currentIndex ) {
+					ggOffset += $( this ).outerHeight();
+				} else {
+					return false;
+				}
+			} );
+			
+			// Scroll to the global goal.
+			LNOB.smoothScroll.scrollToPosition( ggOffset );
+			
 		} );
 
 	}
@@ -823,5 +870,6 @@ $lnobDoc.ready( function() {
 	LNOB.smoothScroll.init();			// Smooth scroll to anchor link or a specific element.
 	LNOB.focusManagement.init();		// Focus Management.
 	LNOB.frontPage.init();				// Front Page.
+	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
 
 } );

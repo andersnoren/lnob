@@ -179,7 +179,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 				<div class="gg-content-untoggle-wrapper d-flex justify-center">
 
-					<button class="gg-content-untoggle reset" data-toggle-target="#gg-<?php echo $gg_number; ?>-content" data-toggle-type="slidetoggle">
+					<button class="gg-content-untoggle reset" data-toggle-target="#gg-<?php echo $gg_number; ?>-content" data-toggle-type="toggle">
 						<div class="icon-text pv-32">
 							<div class="icon fill-cc"><?php lnob_the_svg( 'cross', 16, 16 ); ?></div>
 							<div class="text h-uppercase fs-14"><?php printf( __( 'Stäng mål %s', 'lnob' ), $gg_number ); ?></div>

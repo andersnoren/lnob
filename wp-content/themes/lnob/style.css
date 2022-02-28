@@ -439,6 +439,7 @@ object {
 svg {
 	display: block;
 	max-width: 100%;
+	overflow: visible;
 }
 
 iframe {
@@ -1315,6 +1316,11 @@ section {
 	width: 50%;
 }
 
+.squircle-wrapper .icon svg {
+	height: auto;
+	width: 100%;
+}
+
 /* STYLE: SMALL */
 
 .squircle-link.small {
@@ -1763,6 +1769,39 @@ section {
 /*	10. Section: Recommendations
 /* --------------------------------------------------------------------------------------------- */
 
+
+.recommendations-hero,
+.recommendations-hero-inner {
+	display: flex;
+	flex-direction: column;
+}
+
+.recommendations-hero-inner,
+.recommendations-hero-grid {
+	flex-grow: 1;
+}
+
+.recommendations-hero-grid {
+	--grid-gutter-v: 3.2rem;
+
+	align-content: space-between;
+}
+
+.recommendations-hero .scroll-button-wrapper .icon * {
+	stroke-width: .2rem;
+}
+
+.recommendations-title {
+	font-size: clamp( var( --fs-h1 ), min( 17vw, 17vh ), 19.6rem );
+	letter-spacing: -0.03em;
+	line-height: 1;
+}
+
+.recommendations-title.prettify-line-breaks {
+	max-width: 6em;
+}
+
+
 /* --------------------------------------------------------------------------------------------- */
 /*	11. Entry Content
 /* --------------------------------------------------------------------------------------------- */
@@ -1795,11 +1834,11 @@ section {
 
 .alignwide {
 	max-width: var( --mw-max );
-	width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
 }
 
 .entry-content > .alignwide {
-	max-width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
+	margin-left: max( calc( ( var( --mw-max ) - var( --mw-thin ) ) / -2 ), calc( ( 100vw - 100% - ( var( --body-margin ) * 2 ) ) / -2 ) );
+	width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
 }
 
 .entry-content > .alignfull {
@@ -2365,6 +2404,16 @@ section {
 
 	/* Section: Missing In Stats ------------- */
 	/* Section: Recommendations -------------- */
+
+	.recommendations-hero-grid .col:nth-child(1) { order: 1; }
+	.recommendations-hero-grid .col:nth-child(3) { order: 2; }
+	.recommendations-hero-grid .col:nth-child(2) { order: 3; }
+
+	.recommendations-hero-grid .col:nth-child(2),
+	.recommendations-hero-grid .col:nth-child(3) {
+		margin-top: auto;
+	}
+
 	/* Entry Content ------------------------- */
 	/* Site Footer --------------------------- */
 
