@@ -11,18 +11,20 @@
 
 /* CUSTOM COLORS */
 
-:root .has-accent-color { color: var( --c-yellow ); }
+:root .has-yellow-color { color: var( --c-yellow ); }
+:root .has-magenta-color { color: var( --c-magenta ); }
+:root .has-lavender-color { color: var( --c-lavender ); }
 :root .has-black-color { color: var( --c-black ); }
-:root .has-gray-color { color: var( --c-gray-dark ); }
-:root .has-light-gray-color { color: var( --c-gray-light ); }
-:root .has-lightest-gray-color { color: var( --c-gray-lightest ); }
+:root .has-gray-dark-color { color: var( --c-gray-dark ); }
+:root .has-gray-light-color { color: var( --c-gray-light ); }
 :root .has-white-color { color: var( --c-white ); }
 
-:root .has-accent-background-color { background-color: var( --c-yellow ); }
+:root .has-yellow-background-color { background-color: var( --c-yellow ); }
+:root .has-magenta-background-color { background-color: var( --c-magenta ); }
+:root .has-lavender-background-color { background-color: var( --c-lavender ); }
 :root .has-black-background-color { background-color: var( --c-black ); }
-:root .has-gray-background-color { background-color: var( --c-gray-dark ); }
-:root .has-light-gray-background-color { background-color: var( --c-gray-light ); }
-:root .has-lightest-gray-background-color { background-color: var( --c-gray-lightest ); }
+:root .has-gray-dark-background-color { background-color: var( --c-gray-dark ); }
+:root .has-gray-light-background-color { background-color: var( --c-gray-light ); }
 :root .has-white-background-color { background-color: var( --c-white ); }
 
 /* Block Font Sizes -------------------------- */
@@ -84,10 +86,23 @@ body {
 
 /* STYLE: OUTLINE */
 
+.wp-block-button__link {
+	background: var( --c-black );
+	border-radius: 2.1rem;
+	font-size: 1.4rem;
+	font-weight: 700;
+	letter-spacing: .025em;
+	line-height: var( --lh-input );
+	padding: 1.2em 2.25em 1.15em;
+	text-align: center;
+	text-transform: uppercase;
+	transition: opacity .15s linear;
+}
+
 .wp-block-button__link:not(.has-text-color),
 .is-style-outline > .wp-block-button__link:not( .has-text-color ), 
 .wp-block-button__link.is-style-outline:not( .has-text-color ) {
-	color: var( --c-yellow );
+	color: var( --c-white );
 }
 
 .is-style-outline > .wp-block-button__link, 
@@ -240,6 +255,16 @@ section.wp-block-cover-image > h2 {
 .has-drop-cap:not(:focus):first-letter {
 	font-size: 6.8em;
 	margin: .1em .1em 0 0;
+}
+
+@media ( min-width: 1000px ) {
+
+	.entry-content.centered-content > p.has-large-font-size:not(.align-wide):not(.alignfull) {
+		margin-left: calc( ( 100% - 30em ) / 2 );
+		max-width: 30em;
+		width: 30em;
+	}
+
 }
 
 /* Block: Preformatted ----------------------- */

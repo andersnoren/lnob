@@ -91,7 +91,7 @@ while ( have_posts() ) : the_post();
 
 						<?php if ( $content_post_obj ) : ?>
 
-							<div class="entry-content disable-alignwide mw-small">
+							<div class="entry-content mw-small">
 								<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
 							</div><!-- .entry-content -->
 
@@ -220,7 +220,7 @@ while ( have_posts() ) : the_post();
 
 			<?php if ( $content_post_obj ) : ?>
 
-				<div class="section-inner entry-content mw-small pv-48 pd-64 pv-t-96">
+				<div class="section-inner entry-content centered-content mw-thin pv-48 pd-64 pv-t-96">
 
 					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
 
@@ -301,7 +301,7 @@ while ( have_posts() ) : the_post();
 
 			<?php if ( $content_post_obj ) : ?>
 
-				<div class="section-inner entry-content mw-small pv-48 pd-64 pv-t-96" id="recommendations-content">
+				<div class="section-inner entry-content centered-content mw-thin pv-48 pd-64 pv-t-96" id="recommendations-content">
 
 					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
 

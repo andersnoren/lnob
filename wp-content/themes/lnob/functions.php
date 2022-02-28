@@ -239,29 +239,34 @@ function lnob_add_block_editor_features() {
 
 	add_theme_support( 'editor-color-palette', array(
 		array(
-			'name' 	=> __( 'Accent', 'lnob' ),
-			'slug' 	=> 'accent',
-			'color' => '#BF75AE',
+			'name' 	=> __( 'Gult', 'lnob' ),
+			'slug' 	=> 'yellow',
+			'color' => '#ffcc00',
+		),
+		array(
+			'name' 	=> __( 'Magenta', 'lnob' ),
+			'slug' 	=> 'magenta',
+			'color' => '#e20c7b',
+		),
+		array(
+			'name' 	=> __( 'Lavender', 'lnob' ),
+			'slug' 	=> 'lavender',
+			'color' => '#71628f',
 		),
 		array(
 			'name' 	=> __( 'Svart', 'lnob' ),
 			'slug' 	=> 'black',
-			'color' => '#151619',
+			'color' => '#000',
 		),
 		array(
 			'name' 	=> __( 'Grå', 'lnob' ),
-			'slug' 	=> 'gray',
-			'color' => '#666666',
+			'slug' 	=> 'gray-dark',
+			'color' => '#d2d2d2',
 		),
 		array(
 			'name' 	=> __( 'Ljusgrå', 'lnob' ),
-			'slug' 	=> 'light-gray',
-			'color' => '#dddddd',
-		),
-		array(
-			'name' 	=> __( 'Mest ljusgrå', 'lnob' ),
-			'slug' 	=> 'lightest-gray',
-			'color' => '#f1f1f1',
+			'slug' 	=> 'gray-light',
+			'color' => '#f2f2f2',
 		),
 		array(
 			'name' 	=> __( 'Vit', 'lnob' ),

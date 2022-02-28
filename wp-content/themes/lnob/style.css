@@ -523,7 +523,6 @@ input[type="search"]::-webkit-search-results-decoration {
 button,
 .button,
 .faux-button,
-.wp-block-button__link,
 .wp-block-file .wp-block-file__button,
 input[type="button"],
 input[type="reset"],
@@ -1759,6 +1758,10 @@ section {
 /* --------------------------------------------------------------------------------------------- */
 
 
+.missing-header .section-sep {
+	margin-top: -.1rem;
+}
+
 .missing-header .section-sep svg {
 	height: auto;
 	width: 100%;
@@ -1836,12 +1839,15 @@ section {
 	max-width: var( --mw-max );
 }
 
-.entry-content > .alignwide {
-	margin-left: max( calc( ( var( --mw-max ) - var( --mw-thin ) ) / -2 ), calc( ( 100vw - 100% - ( var( --body-margin ) * 2 ) ) / -2 ) );
+.entry-content.centered-content > .alignwide {
+	margin-left: max( 
+		calc( ( var( --mw-max ) - var( --mw-thin ) ) / -2 ), 
+		calc( ( 100vw - 100% - ( var( --body-margin ) * 2 ) ) / -2 ) 
+	);
 	width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
 }
 
-.entry-content > .alignfull {
+.entry-content.centered-content > .alignfull {
 	margin-left: calc( 50% - 50vw );
 	max-width: 100vw;
     width: 100vw;
@@ -2578,19 +2584,5 @@ section {
 	/* Section: Recommendations -------------- */
 	/* Entry Content ------------------------- */
 	/* Site Footer --------------------------- */
-
-}
-
-@media ( min-width: 1760px ) {
-
-	/* Entry Content ------------------------- */
-
-	.alignwide {
-		width: var( --mw-max );
-	}
-
-	.entry-content > .alignwide {
-		max-width: var( --mw-max );
-	}
 
 }

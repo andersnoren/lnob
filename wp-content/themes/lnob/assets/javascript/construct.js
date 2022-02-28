@@ -777,14 +777,14 @@ LNOB.dynamicScreenHeight = {
 
 		var $screenHeight = $( '.screen-height' );
 
-		$screenHeight.css( 'min-height', $win.innerHeight() );
+		$screenHeight.css( 'min-height', $lnobWin.innerHeight() );
 
 		setTimeout( function() {
-			$screenHeight.css( 'min-height', $win.innerHeight() );
+			$screenHeight.css( 'min-height', $lnobWin.innerHeight() );
 		}, 500 );
 
-		$win.on( 'resize orientationchange', function() {
-			$screenHeight.css( 'min-height', $win.innerHeight() );
+		$lnobWin.on( 'resize orientationchange', function() {
+			$screenHeight.css( 'min-height', $lnobWin.innerHeight() );
 		} );
 
 	},
