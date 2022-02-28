@@ -520,7 +520,7 @@ LNOB.smoothScroll = {
 	init: function() {
 
 		// Scroll to on-page elements by hash.
-		$( 'a[href*="#"]' ).not( '[href="#"]' ).not( '[href="#0"]' ).on( 'click', function( e ) {
+		$( 'a[href*="#"]' ).not( '[href="#"]' ).not( '[href="#0"]' ).not( '.disable-hash-scroll' ).on( 'click', function( e ) {
 			if ( location.pathname.replace(/^\//, '' ) == this.pathname.replace(/^\//, '' ) && location.hostname == this.hostname ) {
 				$target = $( this.hash ).length ? $( this.hash ) : $( '[name=' + this.hash.slice(1) + ']' );
 				var updateHistory = $( this ).attr( 'data-update-history' ) == 'true' ? true : false;
@@ -540,7 +540,7 @@ LNOB.smoothScroll = {
 	},
 
 	// Scroll to target.
-	scrollToTarget: function( $target, $clickElem, updateHistory ) {
+	scrollToTarget: function( $target, $clickElem = null, updateHistory ) {
 
 		if ( $target.length ) {
 
@@ -554,7 +554,7 @@ LNOB.smoothScroll = {
 			}
 
 			// Close any parent modal before calculating offset and scrolling.
-			if ( $clickElem.closest( '.cover-modal' ).length ) {
+			if ( $clickElem && $clickElem.closest( '.cover-modal' ) ) {
 				LNOB.coverModals.toggleModal( $clickElem.closest( '.cover-modal' ).attr( 'id' ) );
 			}
 
@@ -813,6 +813,9 @@ LNOB.frontPage = {
 		// Main Menu.
 		LNOB.frontPage.mainMenu();
 
+		// Footnotes.
+		LNOB.frontPage.footnotes();
+
 	},
 
 	lnobSymbol: function() {
@@ -846,8 +849,6 @@ LNOB.frontPage = {
 			$( '.global-goals .gg' ).each( function() {
 				if ( $( this ).index() < currentIndex ) {
 					ggOffset += $( this ).outerHeight();
-				} else {
-					return false;
 				}
 			} );
 			
@@ -860,8 +861,6 @@ LNOB.frontPage = {
 
 	mainMenu: function() {
 
-		console.log( 'test' );
-
 		$lnobDoc.on( 'mouseenter focus', '.menu-gg-grid a', function() {
 			$( '.menu-gg-grid a' ).addClass( 'not-hover' );
 			$( this ).removeClass( 'not-hover' );
@@ -872,6 +871,26 @@ LNOB.frontPage = {
 		} );
 
 	},
+
+	footnotes: function() {
+
+		$( '.footnotes-button' ).on( 'click', function() {
+			$( this ).add( $( this ).closest( '.gg' ).find( '.footnotes-box-wrapper' ) ).toggleClass( 'active' );
+		} );
+
+		$lnobDoc.on( 'click', '.footnote-identifier-link', function() {
+
+			var $gg 				= $( this ).closest( '.gg' ),
+				$footnotesBox 		= $gg.find( '.footnotes-box-wrapper' ),
+				$footnotesButton 	= $gg.find( '.footnotes-button' );
+
+			$footnotesBox.add( $footnotesButton ).addClass( 'active' );
+			LNOB.smoothScroll.scrollToTarget( $footnotesBox, $( this ) );
+
+			return false;
+		} );
+
+	}
 
 } // LNOB.frontPage
 

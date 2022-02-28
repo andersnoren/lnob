@@ -108,16 +108,40 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 						<?php lnob_the_share_links(); ?>
 					</div><!-- .social-wrapper -->
 
-					<div class="sources-button-wrapper d-flex pu-64 pu-t-0">
-						<button class="sources-button faux-button bg-gray-dark c-black width-full" data-toggle-target="gg-<?php echo $gg_number; ?>-content .sources">
-							<div class="icon-text">
-								<div class="icon"><?php lnob_the_svg( 'book', 24, 24 ); ?></div>
-								<div class="text"><?php _e( 'Visa källor', 'lnob' ); ?></div>
-							</div><!-- .icon-text -->
-						</button>
-					</div>
+					<?php 
+					
+					$footnotes = lnob_get_footnotes( $post->ID );
+
+					if ( $footnotes ) : 
+						?>
+
+						<div class="footnotes-button-wrapper d-flex pu-64 pu-t-0 d-no-js-none">
+							<button class="footnotes-button faux-button bg-gray-dark c-black width-full">
+								<div class="icon-text">
+									<div class="icon"><?php lnob_the_svg( 'book', 24, 24 ); ?></div>
+									<div class="text">
+										<span class="show-inactive"><?php _e( 'Visa källor', 'lnob' ); ?></span>
+										<span class="show-active"><?php _e( 'Dölj källor', 'lnob' ); ?></span>
+									</div>
+								</div><!-- .icon-text -->
+							</button>
+						</div><!-- .footnotes-button-wrapper -->
+
+						<?php
+					endif;
+					?>
 
 				</div><!-- .gg-actions -->
+
+				<?php if ( $footnotes ) : ?>
+
+					<div class="footnotes-box-wrapper pu-24 pu-t-48 d-none d-no-js-block d-active-block">
+						<div class="footnotes-box bg-gray-light contain-margins p-24 p-t-48">
+							<?php echo $footnotes; ?>
+						</div><!-- .footnotes-box -->
+					</div><!-- .footnotes-box-wrapper -->
+
+				<?php endif; ?>
 
 				<div class="gg-info-boxes pu-24 pu-t-48">
 

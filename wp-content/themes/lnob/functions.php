@@ -277,3 +277,47 @@ function lnob_add_block_editor_features() {
 
 }
 add_action( 'after_setup_theme', 'lnob_add_block_editor_features' );
+
+
+/* ---------------------------------------------------------------------------------------------
+   COMMENT OUT DEFAULT FOOTNOTES
+------------------------------------------------------------------------------------------------ */
+
+function lnob_remove_footnotes( $content ) {
+
+	global $post;
+
+	if ( $post->post_type == 'lnob_global_goal' && strpos( $content, '<ol class="footnotes">' ) ) {
+
+		// Comment out the footnotes section in the bottom.
+		preg_match( '#<ol class="footnotes">(.*?)</ol>#', $content, $footnotes );
+		$footnotes_commented_out = '<!--' . $footnotes[0] . '-->';
+		$content = preg_replace( '#<ol class="footnotes">(.*?)</ol>#', $footnotes_commented_out, $content );
+
+		// Add a class to the footnote links, disabling hash scroll.
+		$content = str_replace( 'footnote-identifier-link', 'footnote-identifier-link disable-hash-scroll', $content );
+	}
+
+	return $content;
+
+}
+add_filter( 'the_content', 'lnob_remove_footnotes', 12 );
+
+
+/* ---------------------------------------------------------------------------------------------
+   GET FOOTNOTES FOR A POST ID
+------------------------------------------------------------------------------------------------ */
+
+function lnob_get_footnotes( $post_id ) {
+
+	$content = apply_filters( 'the_content', get_post_field( 'post_content', $post_id ) );
+
+	$footnotes = false;
+
+	if ( strpos( $content, '<ol class="footnotes">' ) ) {
+		preg_match( '#<ol class="footnotes">(.*?)</ol>#', $content, $footnotes );
+	}
+
+	return $footnotes ? $footnotes[0] : false;
+
+}

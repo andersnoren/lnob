@@ -36,7 +36,7 @@
             
 		</header><!-- #site-header -->
 
-		<div class="navigation-bar pv-24 pv-t-40 pv-tl-56">
+		<div class="navigation-bar pu-24 pu-t-40 pu-tl-56">
 			
 			<a class="scroll-to-top nav-bar-button" href="#site-header">
 				<div class="squircle"><?php lnob_the_svg( 'squircle' ); ?></div>

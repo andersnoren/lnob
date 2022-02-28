@@ -1353,6 +1353,30 @@ section {
 	gap: 1.2rem;
 }
 
+/* Footnotes --------------------------------- */
+
+.footnote-back-link-wrapper {
+	margin-left: .5em;
+}
+
+.entry-content sup {
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin-left: .2em;
+	vertical-align: super;
+}
+
+.entry-content sup a {
+	color: inherit;
+	position: relative;
+	text-decoration: none;
+}
+
+.entry-content sup a:hover,
+.entry-content sup a:focus {
+	text-decoration: underline;
+}
+
 /* CSS Animations ---------------------------- */
 
 .i-a, .will-be-spotted, .spot-child { 
@@ -1566,7 +1590,6 @@ section {
 
 .gg-menu-item-link svg {
 	transition: .15s;
-	transform: scale( 1 );
 }
 
 .gg-menu-item-link.not-hover svg {
@@ -1712,6 +1735,14 @@ section {
 	display: block;
 }
 
+.gg-hero .squircle-link.active .icon {
+	transition: transform .15s linear;
+}
+
+.gg-hero .squircle-link.active .icon {
+	transform: rotate( 45deg );
+}
+
 /* SECTION SPECIFIC WIDTHS */
 
 .gg:nth-child(1) .gg-title { max-width: 4em; }
@@ -1746,16 +1777,25 @@ section {
 	flex-grow: 1;
 }
 
+.gg-content .entry-content .footnotes {
+	display: none;
+}
+
 /* GG Footer --------------------------------- */
 
 /* FOOTER ACTIONS */
 
-:root .sources-button {
+:root .footnotes-button {
 	padding: 1.2rem 2.4rem;
 }
 
-.sources-button .icon-text {
+.footnotes-button .icon-text {
 	gap: 1.6rem;
+}
+
+.footnotes-button.active .show-inactive,
+.footnotes-button:not(.active) .show-active {
+	display: none;
 }
 
 /* FOOTER INFO BOXES */
