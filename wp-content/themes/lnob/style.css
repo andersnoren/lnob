@@ -173,6 +173,8 @@ body {
 
 * {
 	vector-effect: non-scaling-stroke;
+	text-underline-offset: .15em;
+	-webkit-backface-visibility: hidden;
 }
 
 ::selection {
@@ -531,7 +533,7 @@ input[type="submit"] {
 	-moz-appearance: none;
 	background: var( --c-black );
 	border: none;
-	border-radius: 2.1rem;
+	border-radius: var( --br-squircle );
 	color: var( --c-white );
 	cursor: pointer;
 	display: inline-flex;
@@ -546,6 +548,16 @@ input[type="submit"] {
 	text-decoration: none;
 	text-transform: uppercase;
 	transition: opacity .15s linear;
+}
+
+button:hover,
+.button:hover,
+.faux-button:hover,
+.wp-block-file .wp-block-file__button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	text-decoration: underline;
 }
 
 /* Buttons Group ----------------------------- */
@@ -1331,6 +1343,10 @@ section {
 	width: 3.2rem;
 }
 
+.squircle-link.small .icon {
+	width: 45%;
+}
+
 /* Share Buttons ----------------------------- */
 
 .share-buttons-list {
@@ -1422,6 +1438,11 @@ section {
 	color: var( --c-white );
 }
 
+.navigation-bar .nav-bar-button:hover,
+.navigation-bar .nav-bar-button:focus {
+	text-decoration: none;
+}
+
 .navigation-bar .nav-bar-button .squircle {
 	position: absolute;
 		bottom: 0;
@@ -1464,6 +1485,10 @@ section {
 /*	5.  Navigation
 /* --------------------------------------------------------------------------------------------- */
 
+
+.menu * {
+	outline: none;
+}
 
 /* Menu Top ---------------------------------- */
 
@@ -1537,6 +1562,15 @@ section {
 
 .gg-menu-item-link {
 	display: block;
+}
+
+.gg-menu-item-link svg {
+	transition: .15s;
+	transform: scale( 1 );
+}
+
+.gg-menu-item-link.not-hover svg {
+	opacity: .75;
 }
 
 .gg-menu-item-link svg {
@@ -1680,22 +1714,22 @@ section {
 
 /* SECTION SPECIFIC WIDTHS */
 
-#gg-1 .gg-title { max-width: 4em; }
-#gg-2 .gg-title { max-width: 4em; }
-#gg-3 .gg-title { max-width: 6em; }
-#gg-4 .gg-title { max-width: 4em; }
-#gg-6 .gg-title { max-width: 7em; }
-#gg-7 .gg-title { max-width: 5em; }
-#gg-8 .gg-title { max-width: 9em; }
-#gg-9 .gg-title { max-width: 6em; }
-#gg-10 .gg-title { max-width: 4em; }
-#gg-11 .gg-title { max-width: 6em; }
-#gg-12 .gg-title { max-width: 7em; }
-#gg-13 .gg-title { max-width: 6em; }
-#gg-14 .gg-title { max-width: 6em; }
-#gg-15 .gg-title { max-width: 7em; }
-#gg-16 .gg-title { max-width: 6em; }
-#gg-17 .gg-title { max-width: 8em; }
+.gg:nth-child(1) .gg-title { max-width: 4em; }
+.gg:nth-child(2) .gg-title { max-width: 4em; }
+.gg:nth-child(3) .gg-title { max-width: 6em; }
+.gg:nth-child(4) .gg-title { max-width: 4em; }
+.gg:nth-child(6) .gg-title { max-width: 7em; }
+.gg:nth-child(7) .gg-title { max-width: 5em; }
+.gg:nth-child(8) .gg-title { max-width: 9em; }
+.gg:nth-child(9) .gg-title { max-width: 6em; }
+.gg:nth-child(10) .gg-title { max-width: 4em; }
+.gg:nth-child(11) .gg-title { max-width: 6em; }
+.gg:nth-child(12) .gg-title { max-width: 7em; }
+.gg:nth-child(13) .gg-title { max-width: 6em; }
+.gg:nth-child(14) .gg-title { max-width: 6em; }
+.gg:nth-child(15) .gg-title { max-width: 7em; }
+.gg:nth-child(16) .gg-title { max-width: 6em; }
+.gg:nth-child(17) .gg-title { max-width: 8em; }
 
 /* GG Content -------------------------------- */
 

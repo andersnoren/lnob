@@ -151,6 +151,11 @@ html {
 	color: inherit;
 }
 
+.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+	max-width: var( --mw-max );
+	text-align: center;
+}
+
 
 /* --------------------------------------------------------------------------------------------- */
 /*	Elements

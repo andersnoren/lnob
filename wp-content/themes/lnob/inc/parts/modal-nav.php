@@ -191,7 +191,7 @@ $front_page_id = get_option( 'page_on_front' );
 						?>
 
 						<div class="col gg-menu-item">
-							<a class="gg-menu-item-link" href="<?php echo esc_url( get_permalink( $global_goal ) ); ?>">
+							<a class="gg-menu-item-link" href="<?php echo esc_url( get_permalink( $global_goal ) ); ?>" data-scroll-to="#gg-<?php echo esc_attr( get_post_field( 'post_name', $global_goal->ID ) ); ?>">
 								<?php lnob_the_svg( $gg_icon ); ?>
 								<span class="screen-reader-text"><?php echo get_the_title( $global_goal ); ?></span>
 							</a>

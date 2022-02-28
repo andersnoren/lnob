@@ -88,7 +88,7 @@ body {
 
 .wp-block-button__link {
 	background: var( --c-black );
-	border-radius: 2.1rem;
+	border-radius: var( --br-squircle );
 	font-size: 1.4rem;
 	font-weight: 700;
 	letter-spacing: .025em;
@@ -108,6 +108,11 @@ body {
 .is-style-outline > .wp-block-button__link, 
 .wp-block-button__link.is-style-outline {
 	padding: calc( .8em - .2rem ) calc( 1.2em - .2rem );
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+	text-decoration: underline;
 }
 
 /* Block: Calendar --------------------------- */
@@ -205,6 +210,21 @@ section.wp-block-cover-image > h2 {
 	margin-bottom: 0; 
 }
 
+/* Make full background groups fill the width on mobile. */
+@media ( max-width: 700px ) {
+	.entry-content.centered-content > .wp-block-group.has-background.alignwide {
+		margin-left: calc( 50% - 50vw );
+		max-width: 100vw;
+		width: 100vw;
+	}	
+}
+
+@media ( min-width: 700px ) {
+	.wp-block-group.has-background {
+		border-radius: var( --br-squircle );
+	}
+}
+
 /* Block: HTML ------------------------------- */
 /* Block: Image ------------------------------ */
 
@@ -255,6 +275,10 @@ section.wp-block-cover-image > h2 {
 .has-drop-cap:not(:focus):first-letter {
 	font-size: 6.8em;
 	margin: .1em .1em 0 0;
+}
+
+.is-root-container > p.has-large-font-size {
+	max-width: 30em;
 }
 
 @media ( min-width: 1000px ) {

@@ -175,7 +175,7 @@ while ( have_posts() ) : the_post();
 
 		?>
 
-		<section id="section-missing" class="missing-in-stats p-0">
+		<section id="section-missing-in-stats" class="missing-in-stats p-0">
 
 			<header class="missing-header">
 

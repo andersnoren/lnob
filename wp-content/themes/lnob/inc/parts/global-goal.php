@@ -2,22 +2,23 @@
 $gg_number 			= get_field( 'general_global_goal' ) ?: 1;
 $gg_icon 			= 'gg/gg-' . $gg_number;
 $gg_icon_symbol 	= 'gg/gg-' . $gg_number . '-symbol';
+$gg_id				= 'gg-' . get_post_field( 'post_name', $post->ID );
 
 
 // Determine the text color for this global goal (ensures contrast).
 // The contrasting color is the opposite of the text color.
-$gg_text_c = lnob_get_gg_text_color( $gg_number );
+$gg_text_c 			= lnob_get_gg_text_color( $gg_number );
 $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 ?>
 
-<section id="gg-<?php echo $gg_number; ?>" class="gg pv-0" style="z-index: <?php echo $gg_number; ?>;">
+<section id="<?php echo $gg_id; ?>" class="gg pv-0" style="z-index: <?php echo $gg_number; ?>;">
 
 	<?php
 	// Set the --c-gg CSS variable to the color of the current section, for the current section.
 	?>
 
 	<style>
-		#gg-<?php echo $gg_number; ?> {
+		#<?php echo $gg_id; ?> {
 			--c-gg: var( --c-gg-<?php echo $gg_number; ?> );
 		}
 	</style>

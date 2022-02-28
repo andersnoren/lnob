@@ -73,6 +73,9 @@
 
 	--header-height: 9.6rem;
 
+	/* Other */
+	--br-squircle: 2.1rem;
+
 }
 
 @media ( min-width: 700px ) {

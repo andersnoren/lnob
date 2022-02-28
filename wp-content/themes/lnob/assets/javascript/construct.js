@@ -12,7 +12,7 @@ var LNOB = LNOB || {},
 
 var $lnobDoc 		= $( document ),
     $lnobWin 		= $( window ),
-	lnobIsIE11 	= !!window.MSInputMethodContext && !!document.documentMode;
+	lnobIsIE11 		= !!window.MSInputMethodContext && !!document.documentMode;
 
 
 /*	-----------------------------------------------------------------------------------------------
@@ -107,12 +107,16 @@ LNOB.isScrolling = {
 
 		$lnobWin.on( 'did-interval-scroll', function() {
 
-			var currentScrollPos = $lnobWin.scrollTop(),
-				docHeight = $body.outerHeight(),
-				winHeight = $lnobWin.outerHeight();
+			var currentScrollPos 	= $lnobWin.scrollTop(),
+				scrollLockPos 		= $( 'html' ).attr( 'scrollock-position' ),
+				docHeight 			= $body.outerHeight(),
+				winHeight 			= $lnobWin.outerHeight();
+
+			// If scroll lock has been set, use the position stored before locking.
+			if ( scrollLockPos ) currentScrollPos = scrollLockPos;
 
 			// Detect scrolling.
-			if ( currentScrollPos > 0 || $( 'html' ).css( 'position' ) == 'fixed' ) {
+			if ( currentScrollPos > 0 ) {
 				$body.addClass( 'is-scrolling' );
 			} else {
 				$body.removeClass( 'is-scrolling' );
@@ -374,22 +378,25 @@ LNOB.coverModals = {
 		// Show modal on load.
 		if ( window.location.search.indexOf( key ) !== -1 ) {
 			var modalID = getQueryStringValue( key )
-			LNOB.coverModals.showModal( modalID );
+			LNOB.coverModals.toggleModal( modalID );
 		}
 
 		// Show modal on link click.
 		$lnobDoc.on( 'click', 'a', function() {
 			if ( $( this ).attr( 'href' ) && $( this ).attr( 'href' ).indexOf( key ) !== -1 ) {
 				var modalID = getQueryStringValue( key, $( this ).attr( 'href' ) );
-				LNOB.coverModals.showModal( modalID );
+				LNOB.coverModals.toggleModal( modalID );
 				return false;
 			}
 		} );
 
+		$lnobDoc.on( '.cover-modal', 'toggled-inactive', function() {
+			$lnobWin.trigger( 'did-interval-scroll' )
+		} );
+
 	},
 
-	// Show a modal based on ID.
-	showModal: function( modalID ) {
+	toggleModal: function( modalID ) {
 
 		var modalTargetStr 	= '#' + modalID,
 			$modalTarget 	= $( modalTargetStr );
@@ -401,11 +408,6 @@ LNOB.coverModals = {
 			// Trigger by clicking one of the toggles, if they exist.
 			if ( $modalToggles.length ) {
 				$modalToggles.first().trigger( 'click' );
-
-			// If not, approximate toggle trigger behavior.
-			} else {
-				$modalTarget.addClass( 'active' ).trigger( 'toggled' );
-				LNOB.scrollLock.setTo( true );
 			}
 
 		}
@@ -530,7 +532,7 @@ LNOB.smoothScroll = {
 		// Scroll to elements specified with a data attribute.
 		$lnobDoc.on( 'click', '*[data-scroll-to]', function( e ) {
 			var $target = $( $( this ).data( 'scroll-to' ) ),
-				updateHistory = $( this ).attr( 'data-update-history' ) == 'false' ? false : true;
+				updateHistory = $( this ).attr( 'data-update-history' ) == 'true' ? true : false;
 			LNOB.smoothScroll.scrollToTarget( $target, $( this ), updateHistory );
 			e.preventDefault();
 		} );
@@ -551,9 +553,14 @@ LNOB.smoothScroll = {
 				scrollSpeed 		= $clickElem.data( 'scroll-speed' ) ? $clickElem.data( 'scroll-speed' ) : 500;
 			}
 
+			// Close any parent modal before calculating offset and scrolling.
+			if ( $clickElem.closest( '.cover-modal' ).length ) {
+				LNOB.coverModals.toggleModal( $clickElem.closest( '.cover-modal' ).attr( 'id' ) );
+			}
+
 			// Determine offset.
-			var originalOffset = $target.offset().top,
-				scrollOffset = originalOffset + additionalOffset;
+			var originalOffset 	= $target.offset().top,
+				scrollOffset 	= originalOffset + additionalOffset;
 
 			// Update history, if set.
 			if ( updateHistory ) {
@@ -646,9 +653,7 @@ LNOB.scrollLock = {
 
 		var appliedLock = {};
 
-		if ( scrollLocked ) {
-			return;
-		}
+		if ( scrollLocked ) return;
 
 		// Save scroll state and styles.
 		prevScroll = {
@@ -666,6 +671,7 @@ LNOB.scrollLock = {
 
 		// Then lock styles and state.
 		$( 'html' ).css( appliedLock ).addClass( 'scroll-locked' );
+		$( 'html' ).attr( 'scrollock-position', prevScroll.scrollTop );
 		$lnobWin.scrollLeft( 0 ).scrollTop( 0 );
 
 		scrollLocked = true;
@@ -674,13 +680,11 @@ LNOB.scrollLock = {
 	// Unlock the scroll (do not call this directly).
 	unlock: function() {
 
-		if ( ! scrollLocked ) {
-			return;
-		}
+		if ( ! scrollLocked ) return;
 
 		// Revert styles and state.
 		$( 'html' ).attr( 'style', $( '<x>' ).css( prevLockStyles ).attr( 'style' ) || '' );
-		$( 'html' ).removeClass( 'scroll-locked' );
+		$( 'html' ).removeClass( 'scroll-locked' ).removeAttr( 'scrollock-position' );
 		$lnobWin.scrollLeft( prevScroll.scrollLeft ).scrollTop( prevScroll.scrollTop );
 
 		scrollLocked = false;
@@ -806,6 +810,9 @@ LNOB.frontPage = {
 		// Global Goals.
 		LNOB.frontPage.gg();
 
+		// Main Menu.
+		LNOB.frontPage.mainMenu();
+
 	},
 
 	lnobSymbol: function() {
@@ -849,7 +856,22 @@ LNOB.frontPage = {
 			
 		} );
 
-	}
+	},
+
+	mainMenu: function() {
+
+		console.log( 'test' );
+
+		$lnobDoc.on( 'mouseenter focus', '.menu-gg-grid a', function() {
+			$( '.menu-gg-grid a' ).addClass( 'not-hover' );
+			$( this ).removeClass( 'not-hover' );
+		} );
+
+		$lnobDoc.on( 'mouseleave blur', '.menu-gg-grid', function() {
+			$( '.menu-gg-grid a' ).removeClass( 'not-hover' );
+		} );
+
+	},
 
 } // LNOB.frontPage
 
