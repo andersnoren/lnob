@@ -1360,7 +1360,7 @@ section {
 }
 
 .entry-content sup {
-	font-size: 1.2rem;
+	font-size: .65em;
 	font-weight: 700;
 	margin-left: .2em;
 	vertical-align: super;
@@ -1375,6 +1375,10 @@ section {
 .entry-content sup a:hover,
 .entry-content sup a:focus {
 	text-decoration: underline;
+}
+
+:root ol.footnotes {
+	color: var( --c-black );
 }
 
 /* CSS Animations ---------------------------- */
