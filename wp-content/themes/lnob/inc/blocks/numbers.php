@@ -38,7 +38,7 @@ if ( $bg_color == 'none' ) {
 	$block_social_bg = 'gg';
 } else {
 
-	$block_inner_classes .= ' p-24 pd-32 p-t-48 p-d-64 br-squircle';
+	$block_inner_classes .= ' ph-24 pv-32 p-t-48 p-d-64 br-squircle';
 	$block_social_icon = 'black';
 	$block_social_bg = 'white';
 
