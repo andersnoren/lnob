@@ -19,6 +19,24 @@
 :root .has-gray-light-color { color: var( --c-gray-light ); }
 :root .has-white-color { color: var( --c-white ); }
 
+:root .has-gg-1-color { color: var( --c-gg-1 ); }
+:root .has-gg-2-color { color: var( --c-gg-2 ); }
+:root .has-gg-3-color { color: var( --c-gg-3 ); }
+:root .has-gg-4-color { color: var( --c-gg-4 ); }
+:root .has-gg-5-color { color: var( --c-gg-5 ); }
+:root .has-gg-6-color { color: var( --c-gg-6 ); }
+:root .has-gg-7-color { color: var( --c-gg-7 ); }
+:root .has-gg-8-color { color: var( --c-gg-8 ); }
+:root .has-gg-9-color { color: var( --c-gg-9 ); }
+:root .has-gg-10-color { color: var( --c-gg-10 ); }
+:root .has-gg-11-color { color: var( --c-gg-11 ); }
+:root .has-gg-12-color { color: var( --c-gg-12 ); }
+:root .has-gg-13-color { color: var( --c-gg-13 ); }
+:root .has-gg-14-color { color: var( --c-gg-14 ); }
+:root .has-gg-15-color { color: var( --c-gg-15 ); }
+:root .has-gg-16-color { color: var( --c-gg-16 ); }
+:root .has-gg-17-color { color: var( --c-gg-17 ); }
+
 :root .has-yellow-background-color { background-color: var( --c-yellow ); }
 :root .has-magenta-background-color { background-color: var( --c-magenta ); }
 :root .has-lavender-background-color { background-color: var( --c-lavender ); }
@@ -26,6 +44,24 @@
 :root .has-gray-dark-background-color { background-color: var( --c-gray-dark ); }
 :root .has-gray-light-background-color { background-color: var( --c-gray-light ); }
 :root .has-white-background-color { background-color: var( --c-white ); }
+
+:root .has-gg-1-background-color { background-color: var( --c-gg-1 ); }
+:root .has-gg-2-background-color { background-color: var( --c-gg-2 ); }
+:root .has-gg-3-background-color { background-color: var( --c-gg-3 ); }
+:root .has-gg-4-background-color { background-color: var( --c-gg-4 ); }
+:root .has-gg-5-background-color { background-color: var( --c-gg-5 ); }
+:root .has-gg-6-background-color { background-color: var( --c-gg-6 ); }
+:root .has-gg-7-background-color { background-color: var( --c-gg-7 ); }
+:root .has-gg-8-background-color { background-color: var( --c-gg-8 ); }
+:root .has-gg-9-background-color { background-color: var( --c-gg-9 ); }
+:root .has-gg-10-background-color { background-color: var( --c-gg-10 ); }
+:root .has-gg-11-background-color { background-color: var( --c-gg-11 ); }
+:root .has-gg-12-background-color { background-color: var( --c-gg-12 ); }
+:root .has-gg-13-background-color { background-color: var( --c-gg-13 ); }
+:root .has-gg-14-background-color { background-color: var( --c-gg-14 ); }
+:root .has-gg-15-background-color { background-color: var( --c-gg-15 ); }
+:root .has-gg-16-background-color { background-color: var( --c-gg-16 ); }
+:root .has-gg-17-background-color { background-color: var( --c-gg-17 ); }
 
 /* Block Font Sizes -------------------------- */
 
@@ -41,6 +77,8 @@ body {
 *[class*="_inner-container"] > *:first-child { margin-top: 0; }
 *[class*="_inner-container"] > *:last-child { margin-bottom: 0; }
 
+.lnob-block-numbers,
+.lnob-block-recommendation,
 .wp-block-archives,
 .wp-block-buttons,
 .wp-block-calendar,
@@ -61,6 +99,7 @@ body {
 .wp-block-rss,
 .wp-block-search,
 .wp-block-social-links,
+.wp-block-createwithrani-superlist-block,
 .wp-block-quote,
 .wp-block-quote.is-large,
 .wp-block-quote.is-style-large,
@@ -71,6 +110,8 @@ body {
 	margin-top: 4rem;
 }
 
+/* Block: LNOB Numbers ----------------------- */
+/* Block: LNOB Recommendation ---------------- */
 /* Block: Archives --------------------------- */
 /* Block: Audio ------------------------------ */
 
@@ -125,6 +166,10 @@ body {
 /* Block: Classic ---------------------------- */
 /* Block: Code ------------------------------- */
 /* Block: Columns ---------------------------- */
+
+.wp-block-column.has-background {
+	border-radius: var( --br-squircle );
+}
 
 .wp-block-column > *:first-child { margin-top: 0; }
 .wp-block-column > *:last-child { margin-bottom: 0; }
@@ -277,16 +322,18 @@ section.wp-block-cover-image > h2 {
 	margin: .1em .1em 0 0;
 }
 
-.is-root-container > p.has-large-font-size {
-	max-width: 30em;
+.is-root-container > p.has-large-font-size,
+.is-root-container > p.has-larger-font-size {
+	max-width: 72rem;
 }
 
 @media ( min-width: 1000px ) {
 
-	.entry-content.centered-content > p.has-large-font-size:not(.align-wide):not(.alignfull) {
-		margin-left: calc( ( 100% - 30em ) / 2 );
-		max-width: 30em;
-		width: 30em;
+	.entry-content.centered-content > p.has-large-font-size:not(.align-wide):not(.alignfull),
+	.entry-content.centered-content > p.has-larger-font-size:not(.align-wide):not(.alignfull) {
+		margin-left: calc( ( 100% - 72rem ) / 2 );
+		max-width: 72rem;
+		width: 72rem;
 	}
 
 }

@@ -239,6 +239,11 @@ path {
 		transition-delay: 0s !important;
 		transition-duration: 0s !important;
 	}
+
+	.gg,
+	#site-footer {
+		position: relative;
+	}
 }
 
 /* Admin Bar --------------------------------- */
@@ -291,7 +296,7 @@ h6, .h6 {
 	font-weight: 700;
 	letter-spacing: -0.02em;
 	line-height: var( --lh-heading );
-	margin: 3rem 0 2rem;
+	margin: 4.8rem 0 3.2rem;
 }
 
 h1, .h1 { font-size: var( --fs-h1 ); font-weight: 900; line-height: 1.1; }
@@ -783,6 +788,10 @@ section {
 .pl-80, .ph-80 { padding-left: 8rem; }
 .pr-80, .ph-80 { padding-right: 8rem; }
 
+/* Border Radius ----------------------------- */
+
+.br-squircle { border-radius: var( --br-squircle ); }
+
 /* Toggles ----------------------------------- */
 
 .toggle {
@@ -1238,6 +1247,7 @@ section {
 /* Cover Modal ------------------------------- */
 
 .cover-modal {
+	display: none;
 	opacity: 0;
 	overflow: auto;
 	position: fixed;
@@ -1254,6 +1264,7 @@ section {
 }
 
 .cover-modal.active {
+	display: block;
 	left: 0;
 	right: 0;
 	opacity: 1;
@@ -2672,4 +2683,29 @@ section {
 
 	/* Site Footer --------------------------- */
 
+}
+
+
+
+
+
+
+
+
+
+/* TEMPORARY */
+
+
+
+
+
+
+
+
+.gg-content {
+	display: block !important;
+}
+
+.gg {
+	position: static;
 }

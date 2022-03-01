@@ -173,12 +173,9 @@ function lnob_redirects() {
 
 	// Redirect visits to GGs to the right section.
 	if ( strpos( $request_uri, '/globalt-mal/' ) !== false ) {
-		$post_name = basename( $request_uri );
-		error_log( $post_name );
-		$hash = '#gg-' . $post_name;
-		$redirect_url = home_url() . $hash;
+		$redirect_url = home_url() . '#gg-' . basename( $request_uri );
 
-	// Redirect all visitors to the front page.
+	// Redirect all other visitors to the front page.
 	} else if ( ! is_front_page() ) {
 		$redirect_url = home_url();
 	}
@@ -226,7 +223,7 @@ function lnob_add_block_editor_features() {
 		array(
 			'name'      => __( 'Normal', 'lnob' ),
 			'shortName' => __( 'M', 'lnob' ),
-			'size'      => 18,
+			'size'      => 20,
 			'slug'      => 'normal',
 		),
 		array(
@@ -244,6 +241,9 @@ function lnob_add_block_editor_features() {
 	) );
 
 	/* Block Editor Palette -------------- */
+
+	add_theme_support( 'disable-custom-colors' );	
+	add_theme_support( 'disable-custom-gradients' );
 
 	add_theme_support( 'editor-color-palette', array(
 		array(
@@ -281,6 +281,23 @@ function lnob_add_block_editor_features() {
 			'slug' 	=> 'white',
 			'color' => '#ffffff',
 		),
+		array( 'name' => __( 'Globalt mål 1', 'lnob' ), 'slug' => 'gg-1', 'color' => '#E5243B' ),
+		array( 'name' => __( 'Globalt mål 2', 'lnob' ), 'slug' => 'gg-2', 'color' => '#DDA63A' ),
+		array( 'name' => __( 'Globalt mål 3', 'lnob' ), 'slug' => 'gg-3', 'color' => '#4C9F38' ),
+		array( 'name' => __( 'Globalt mål 4', 'lnob' ), 'slug' => 'gg-4', 'color' => '#C5192D' ),
+		array( 'name' => __( 'Globalt mål 5', 'lnob' ), 'slug' => 'gg-5', 'color' => '#FF3A21' ),
+		array( 'name' => __( 'Globalt mål 6', 'lnob' ), 'slug' => 'gg-6', 'color' => '#26BDE2' ),
+		array( 'name' => __( 'Globalt mål 7', 'lnob' ), 'slug' => 'gg-7', 'color' => '#FCC30B' ),
+		array( 'name' => __( 'Globalt mål 8', 'lnob' ), 'slug' => 'gg-8', 'color' => '#A21942' ),
+		array( 'name' => __( 'Globalt mål 9', 'lnob' ), 'slug' => 'gg-9', 'color' => '#FD6925' ),
+		array( 'name' => __( 'Globalt mål 10', 'lnob' ), 'slug' => 'gg-10', 'color' => '#DD1367' ),
+		array( 'name' => __( 'Globalt mål 11', 'lnob' ), 'slug' => 'gg-11', 'color' => '#FD9D24' ),
+		array( 'name' => __( 'Globalt mål 12', 'lnob' ), 'slug' => 'gg-12', 'color' => '#BF8B2E' ),
+		array( 'name' => __( 'Globalt mål 13', 'lnob' ), 'slug' => 'gg-13', 'color' => '#3F7E44' ),
+		array( 'name' => __( 'Globalt mål 14', 'lnob' ), 'slug' => 'gg-14', 'color' => '#0A97D9' ),
+		array( 'name' => __( 'Globalt mål 15', 'lnob' ), 'slug' => 'gg-15', 'color' => '#56C02B' ),
+		array( 'name' => __( 'Globalt mål 16', 'lnob' ), 'slug' => 'gg-16', 'color' => '#00689D' ),
+		array( 'name' => __( 'Globalt mål 17', 'lnob' ), 'slug' => 'gg-17', 'color' => '#19486A' ),
 	) );
 
 }
