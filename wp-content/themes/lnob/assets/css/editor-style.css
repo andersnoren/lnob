@@ -121,6 +121,9 @@ html {
 
 .wp-block[data-align="wide"] {
     max-width: var( --mw-max );
+}
+
+.is-root-container > .wp-block[data-align="wide"] {
 	width: calc( 100% - calc( 2 * var( --body-margin ) ) );
 }
 

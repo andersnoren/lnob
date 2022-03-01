@@ -96,7 +96,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 		<div class="gg-content-inner screen-height">
 
-			<div class="entry-content centered-content section-inner mw-small pu-48 pd-32 pv-t-96">
+			<div class="entry-content centered-content section-inner mw-thin pu-48 pd-32 pv-t-96">
 				<?php the_content(); ?>
 			</div><!-- .entry-content -->
 

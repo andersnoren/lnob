@@ -29,6 +29,15 @@ function getQueryStringValue( key, string ) {
     return results === null ? '' : decodeURIComponent( results[1].replace(/\+/g, ' ' ) );
 }
 
+/* Comma Seperate Number --------------------- */
+
+function commaSeparateNumber( val ) {
+	while ( /(\d+)(\d{3})/.test( val.toString() ) ) {
+		val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+	}
+	return val;
+}
+
 
 /*	-----------------------------------------------------------------------------------------------
 	Interval Scroll
@@ -896,6 +905,65 @@ LNOB.frontPage = {
 
 
 /*	-----------------------------------------------------------------------------------------------
+	Count Up
+--------------------------------------------------------------------------------------------------- */
+
+LNOB.countUp = {
+
+	init: function() {
+
+		$( '.count-up' ).each( function() {
+
+			// Remove thousand decimals, since we add those ourselves on count
+			var countValue = $( this ).text().replace( ',', '' );
+
+			// Skip counters with dot decimals
+			if ( countValue.indexOf( '.' ) >= 0 ) return;
+
+			// Skip non numeric values
+			if ( ! $.isNumeric( countValue ) ) return;
+
+			$( this ).attr( 'data-count-value', countValue.replace( /[^0-9]/g, "" ) );
+			$( this ).css( 'width', $( this ).outerWidth() );
+			$( this ).text( '0' );
+		} );
+
+		$lnobWin.on( 'resize-end', function() {
+			$( '.count-up' ).css( 'width', 'auto' );
+		} );
+
+		$( '.count-up' ).closest( '.do-spot' ).on( 'spotted', function() {
+
+			var $countElem = $( this ).find( '.count-up' ),
+				countValue = $countElem.attr( 'data-count-value' ),
+				countDuration = $countElem.data( 'count-duration' ) ? $countElem.data( 'count-duration' ) : 1000;
+
+			// Skip counters that aren't setup
+			if ( ! countValue ) return;
+
+			if ( $countElem.hasClass( 'started-count' ) ) return;
+			$countElem.addClass( 'started-count' );
+
+			$( { countNum: '0' } ).animate( { countNum: countValue }, {
+				duration: countDuration,
+				easing: 'linear',
+				step: function() {
+					$countElem.text( commaSeparateNumber( Math.floor( this.countNum ) ) );
+				},
+				complete: function() {
+					$countElem.text( commaSeparateNumber( countValue ) );
+					$countElem.addClass( 'counted' );
+				}
+			} );
+
+		} );
+
+	},
+
+} // LNOB.countUp
+
+
+/*	-----------------------------------------------------------------------------------------------
 	Function Calls
 --------------------------------------------------------------------------------------------------- */
 
@@ -912,5 +980,6 @@ $lnobDoc.ready( function() {
 	LNOB.focusManagement.init();		// Focus Management.
 	LNOB.frontPage.init();				// Front Page.
 	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
+	LNOB.countUp.init();				// Count Up.
 
 } );

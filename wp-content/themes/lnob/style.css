@@ -1929,10 +1929,8 @@ section {
 }
 
 .entry-content.centered-content > .alignwide {
-	margin-left: max( 
-		calc( ( var( --mw-max ) - var( --mw-thin ) ) / -2 ), 
-		calc( ( 100vw - 100% - ( var( --body-margin ) * 2 ) ) / -2 ) 
-	);
+	margin-left: 50%;
+	transform: translateX( -50% );
 	width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
 }
 
@@ -2701,7 +2699,7 @@ section {
 
 
 
-
+/*
 .gg-content {
 	display: block !important;
 }
@@ -2709,3 +2707,4 @@ section {
 .gg {
 	position: static;
 }
+*/
