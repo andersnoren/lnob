@@ -387,6 +387,75 @@ section.wp-block-cover-image > h2 {
 }
 
 /* Block: Spacer ----------------------------- */
+/* Block: Super List ------------------------- */
+
+ul[class*="superlist-block"] {
+	margin-left: 0;
+}
+
+.wp-block-createwithrani-superlist-block.horizontal {
+	gap: 3.2rem;
+}
+
+ul > [class*="superlist-item"] {
+	list-style: none;
+	margin: 0;
+	min-width: 100%;
+	padding-left: 3.7rem;
+	position: relative;
+}
+
+ul > [class*="superlist-item"]:before {
+	background: url( ../images/svgs/squircle.svg ) no-repeat center;
+	background-size: cover;
+	content: "";
+	display: block;
+	height: 2.1rem;
+	position: absolute;
+		left: 0;
+		top: 0;
+	width: 2.1rem;
+}
+
+[class*="superlist-item"] > *:first-child { margin-top: 0; }
+[class*="superlist-item"] > *:last-child { margin-bottom: 0; }
+
+[class*="superlist-item"] h1,
+[class*="superlist-item"] h2,
+[class*="superlist-item"] h3,
+[class*="superlist-item"] h4,
+[class*="superlist-item"] h5,
+[class*="superlist-item"] h6 {
+	margin: 3.2rem 0 1.6rem;
+}
+
+[class*="superlist-item"] p {
+	max-width: 40em;
+}
+
+@media ( max-width: 700px ) {
+	ul[class*="superlist-block"] {
+		grid-template-columns: none !important;
+	}
+}
+
+@media ( min-width: 1000px ) {
+
+	.wp-block-createwithrani-superlist-block.horizontal {
+		gap: 4.8rem;
+	}
+
+	ul > [class*="superlist-item"] {
+		padding-left: 4.8rem;
+	}
+
+	ul > [class*="superlist-item"]:before {
+		height: 2.4rem;
+		width: 2.4rem;
+	}
+
+}
+
 /* Block: Tag Cloud -------------------------- */
 /* Block: Verse ------------------------------ */
 /* Block: Video ------------------------------ */

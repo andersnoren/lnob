@@ -168,10 +168,18 @@ add_filter( 'nav_menu_link_attributes', 'lnob_add_menu_attributes', 10, 3 );
 
 function lnob_redirects() {
 
+	global $post;
 	$request_uri = $_SERVER['REQUEST_URI'];
 
+	// Redirect visits to GGs to the right section.
+	if ( strpos( $request_uri, '/globalt-mal/' ) !== false ) {
+		$post_name = basename( $request_uri );
+		error_log( $post_name );
+		$hash = '#gg-' . $post_name;
+		$redirect_url = home_url() . $hash;
+
 	// Redirect all visitors to the front page.
-	if ( ! is_front_page() ) {
+	} else if ( ! is_front_page() ) {
 		$redirect_url = home_url();
 	}
 

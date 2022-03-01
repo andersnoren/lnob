@@ -196,7 +196,7 @@ while ( have_posts() ) : the_post();
 									<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
 								<?php endif; ?>
 
-								<div class="social-wrapper pu-24 pu-t-32">
+								<div class="social-wrapper pu-24 pu-t-32 pos-relative z-1">
 									<?php lnob_the_share_links( array(
 										'colors'	=> array(
 											'icon'			=> 'white',
