@@ -312,6 +312,7 @@ function lnob_remove_footnotes( $content ) {
 
 	global $post;
 
+	// Comment out default footnotes.
 	if ( $post->post_type == 'lnob_global_goal' && strpos( $content, '<ol class="footnotes">' ) ) {
 
 		// Comment out the footnotes section in the bottom.

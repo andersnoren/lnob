@@ -171,6 +171,12 @@ html {
 	line-height: var( --lh-body );
 }
 
+/* Strong ------------------------------------ */
+
+b, strong {
+	font-weight: 700;
+}
+
 /* Headings ---------------------------------- */
 
 .editor-post-title__block .editor-post-title__input,
