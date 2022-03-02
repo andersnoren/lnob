@@ -305,6 +305,27 @@ add_action( 'after_setup_theme', 'lnob_add_block_editor_features' );
 
 
 /* ---------------------------------------------------------------------------------------------
+   REGISTER BLOCK STYLES
+------------------------------------------------------------------------------------------------ */
+
+function lnob_register_block_styles() {
+
+	// Shared: Section Separator Blocks.
+	register_block_style( 'core/button', array(
+		'label' => __( 'Ikon: Svart pil nedåt', 'lnob' ),
+		'name'  => 'button-has-icon-arrow-down-black',
+	) );
+
+	register_block_style( 'core/button', array(
+		'label' => __( 'Ikon: Vit pil nedåt', 'lnob' ),
+		'name'  => 'button-has-icon-arrow-down-white',
+	) );
+
+}
+add_action( 'init', 'lnob_register_block_styles' );
+
+
+/* ---------------------------------------------------------------------------------------------
    COMMENT OUT DEFAULT FOOTNOTES
 ------------------------------------------------------------------------------------------------ */
 

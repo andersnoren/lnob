@@ -199,6 +199,29 @@ body {
 	text-decoration: underline;
 }
 
+/* STYLE: HAS ICON */
+
+.wp-block-button[class*="button-has-icon"] .wp-block-button__link {
+	padding: 1.2em 1.75em 1.15em calc( 1.75em + 3rem );
+	position: relative;
+}
+
+.wp-block-button[class*="button-has-icon"] .wp-block-button__link:before {
+	background: no-repeat center;
+	background-size: contain;
+	content: "";
+	display: block;
+	height: 1.6rem;
+	position: absolute;
+		left: 1.75em;
+		top: 50%;
+	transform: translateY( -50% );
+	width: 1.6rem;
+}
+
+.wp-block-button[class*="arrow-down-black"] .wp-block-button__link:before { background-image: url( ../images/svgs/button-icons/arrow-down-black.svg ); }
+.wp-block-button[class*="arrow-down-white"] .wp-block-button__link:before { background-image: url( ../images/svgs/button-icons/arrow-down-white.svg ); }
+
 /* Block: Calendar --------------------------- */
 
 .wp-block-calendar table {
