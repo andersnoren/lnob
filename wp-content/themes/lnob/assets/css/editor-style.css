@@ -211,3 +211,4 @@ figcaption {
 *[data-align="full"] > * > figcaption {
 	padding: 0 var( --body-margin );
 }
+

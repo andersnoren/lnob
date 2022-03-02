@@ -390,6 +390,36 @@ section.wp-block-cover-image > h2 {
 }
 
 /* Block: List ------------------------------- */
+
+/* STYLE: FORUMCIV BULLET */
+
+.is-style-forumciv-bullet:not([class*="block-editor"]) {
+	margin-left: 0;
+}
+
+.is-style-forumciv-bullet[class*="block-editor"] {
+	padding-left: 0;
+}
+
+.is-style-forumciv-bullet > li {
+	list-style: none;
+	margin: .75em 0;
+	padding-left: calc( 1em + 1.6rem );
+	position: relative;
+}
+
+.is-style-forumciv-bullet > li:before {
+	background-color: var( --c-gg );
+	border-radius: .41em;
+	content: "";
+	display: block;
+	height: 1em;
+	position: absolute;
+		left: 0;
+		top: .15em;
+	width: 1em;
+}
+
 /* Block: Media and Text --------------------- */
 
 .wp-block-media-text .wp-block-media-text__content {

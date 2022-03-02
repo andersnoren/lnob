@@ -17,8 +17,8 @@
 	--c-magenta: #e20c7b;
 	--c-lavender: #71628f;
 
-	/* This variable is set contextually for each Global Goal. */
-	--c-gg: transparent;
+	/* This variable is set contextually for each Global Goal, but defaults to ForumCiv yellow. */
+	--c-gg: #ffcc00;
 
 	--c-gg-1: #E5243B;
 	--c-gg-2: #DDA63A;

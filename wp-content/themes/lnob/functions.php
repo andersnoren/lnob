@@ -310,7 +310,7 @@ add_action( 'after_setup_theme', 'lnob_add_block_editor_features' );
 
 function lnob_register_block_styles() {
 
-	// Shared: Section Separator Blocks.
+	// Button: Icons.
 	register_block_style( 'core/button', array(
 		'label' => __( 'Ikon: Svart pil nedåt', 'lnob' ),
 		'name'  => 'button-has-icon-arrow-down-black',
@@ -319,6 +319,12 @@ function lnob_register_block_styles() {
 	register_block_style( 'core/button', array(
 		'label' => __( 'Ikon: Vit pil nedåt', 'lnob' ),
 		'name'  => 'button-has-icon-arrow-down-white',
+	) );
+
+	// List: ForumCiv List.
+	register_block_style( 'core/list', array(
+		'label' => __( 'ForumCiv-punkt', 'lnob' ),
+		'name'  => 'forumciv-bullet',
 	) );
 
 }
