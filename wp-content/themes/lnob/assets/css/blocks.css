@@ -91,6 +91,7 @@ body {
 .wp-block-image,
 .wp-block-gallery,
 .wp-block-group,
+.wp-block-hello-charts,
 .wp-block-latest-comments,
 .wp-block-latest-posts,
 .wp-block-media-text,
@@ -106,8 +107,46 @@ body {
 .wp-block-tag-cloud,
 .wp-block-verse,
 .wp-block-video {
-	margin-bottom: 4rem;
-	margin-top: 4rem;
+	margin-bottom: 3.2rem;
+	margin-top: 3.2rem;
+}
+
+@media ( min-width: 700px ) {
+
+	.lnob-block-numbers,
+	.lnob-block-recommendation,
+	.wp-block-archives,
+	.wp-block-buttons,
+	.wp-block-calendar,
+	.wp-block-categories,
+	.wp-block-code,
+	.wp-block-columns,
+	.wp-block-cover,
+	.wp-block-embed,
+	.wp-block-file,
+	.wp-block-image,
+	.wp-block-gallery,
+	.wp-block-group,
+	.wp-block-hello-charts,
+	.wp-block-latest-comments,
+	.wp-block-latest-posts,
+	.wp-block-media-text,
+	.wp-block-preformatted,
+	.wp-block-pullquote,
+	.wp-block-rss,
+	.wp-block-search,
+	.wp-block-social-links,
+	.wp-block-createwithrani-superlist-block,
+	.wp-block-quote,
+	.wp-block-quote.is-large,
+	.wp-block-quote.is-style-large,
+	.wp-block-tag-cloud,
+	.wp-block-verse,
+	.wp-block-video {
+		margin-bottom: 4.8rem;
+		margin-top: 4.8rem;
+	}
+	
 }
 
 /* Block: LNOB Numbers ----------------------- */
@@ -186,6 +225,10 @@ body {
 
 @media ( max-width: 599px ) {
 	.wp-block-column:not(:empty ) ~ .wp-block-column {
+		margin-top: 1em;
+	}
+
+	.wp-block-column:not(:empty ) ~ .wp-block-column > .lnob-block-numbers:not(.has-background) {
 		margin-top: 1em;
 	}
 }
