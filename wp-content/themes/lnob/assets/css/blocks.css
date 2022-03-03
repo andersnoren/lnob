@@ -408,15 +408,9 @@ section.wp-block-cover-image > h2 {
 	position: relative;
 }
 
-.is-style-forumciv-bullet > li:before {
-	background-color: var( --c-gg );
-	border-radius: .41em;
-	content: "";
-	display: block;
+:root .is-style-forumciv-bullet > li:before {
 	height: 1em;
-	position: absolute;
-		left: 0;
-		top: .15em;
+	top: .15em;
 	width: 1em;
 }
 
@@ -661,8 +655,9 @@ ul > [class*="superlist-item"] {
 	position: relative;
 }
 
+.is-style-forumciv-bullet > li:before,
 ul > [class*="superlist-item"]:before {
-	background: url( ../images/svgs/squircle.svg ) no-repeat center;
+	background: url( ../images/svgs/squircles/squircle.svg ) no-repeat center;
 	background-size: cover;
 	content: "";
 	display: block;
@@ -672,6 +667,24 @@ ul > [class*="superlist-item"]:before {
 		top: 0;
 	width: 2.1rem;
 }
+
+.gg-1 .is-style-forumciv-bullet > li:before, .gg-1 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-1.svg ); }
+.gg-2 .is-style-forumciv-bullet > li:before, .gg-2 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-2.svg ); }
+.gg-3 .is-style-forumciv-bullet > li:before, .gg-3 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-3.svg ); }
+.gg-4 .is-style-forumciv-bullet > li:before, .gg-4 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-4.svg ); }
+.gg-5 .is-style-forumciv-bullet > li:before, .gg-5 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-5.svg ); }
+.gg-6 .is-style-forumciv-bullet > li:before, .gg-6 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-6.svg ); }
+.gg-7 .is-style-forumciv-bullet > li:before, .gg-7 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-7.svg ); }
+.gg-8 .is-style-forumciv-bullet > li:before, .gg-8 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-8.svg ); }
+.gg-9 .is-style-forumciv-bullet > li:before, .gg-9 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-9.svg ); }
+.gg-10 .is-style-forumciv-bullet > li:before, .gg-10 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-10.svg ); }
+.gg-11 .is-style-forumciv-bullet > li:before, .gg-11 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-11.svg ); }
+.gg-12 .is-style-forumciv-bullet > li:before, .gg-12 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-12.svg ); }
+.gg-13 .is-style-forumciv-bullet > li:before, .gg-13 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-13.svg ); }
+.gg-14 .is-style-forumciv-bullet > li:before, .gg-14 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-14.svg ); }
+.gg-15 .is-style-forumciv-bullet > li:before, .gg-15 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-15.svg ); }
+.gg-16 .is-style-forumciv-bullet > li:before, .gg-16 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-16.svg ); }
+.gg-17 .is-style-forumciv-bullet > li:before, .gg-17 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-17.svg ); }
 
 [class*="superlist-item"] > *:first-child { margin-top: 0; }
 [class*="superlist-item"] > *:last-child { margin-bottom: 0; }
@@ -705,6 +718,7 @@ ul > [class*="superlist-item"]:before {
 		padding-left: 4.8rem;
 	}
 
+	.is-style-forumciv-bullet > li:before,
 	ul > [class*="superlist-item"]:before {
 		height: 2.4rem;
 		width: 2.4rem;

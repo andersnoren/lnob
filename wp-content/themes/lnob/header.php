@@ -39,7 +39,7 @@
 		<div class="navigation-bar pu-24 pu-t-40 pu-tl-56 d-no-js-none">
 			
 			<a class="scroll-to-top nav-bar-button" href="#site-header">
-				<div class="squircle"><?php lnob_the_svg( 'squircle' ); ?></div>
+				<div class="squircle"><?php lnob_the_svg( 'squircles/squircle' ); ?></div>
 				<div class="icon stroke-cc"><?php lnob_the_svg( 'arrow-up', 18, 18 ); ?></div>
 				<div class="screen-reader-text"><?php _e( 'Tillbaka till toppen', 'lnob' ); ?></div>
 			</a><!-- .scroll-to-top -->
@@ -50,7 +50,7 @@
 					<div class="icon stroke-cc"><?php lnob_the_svg( 'menu', 20, 14 ); ?></div>
 				</div><!-- .icon-text -->
 				<div class="icon-only d-t-none">
-					<div class="squircle"><?php lnob_the_svg( 'squircle' ); ?></div>
+					<div class="squircle"><?php lnob_the_svg( 'squircles/squircle' ); ?></div>
 					<div class="icon stroke-cc"><?php lnob_the_svg( 'menu', 20, 14 ); ?></div>
 				</div><!-- .icon-only -->
 			</button><!-- .nav-toggle -->

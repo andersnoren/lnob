@@ -11,7 +11,7 @@ $gg_text_c 			= lnob_get_gg_text_color( $gg_number );
 $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 ?>
 
-<section id="<?php echo $gg_id; ?>" class="gg pv-0" style="z-index: <?php echo $gg_number; ?>;">
+<section id="<?php echo esc_attr( $gg_id ); ?>" class="gg gg-<?php echo esc_attr( $gg_number ); ?> pv-0" style="z-index: <?php echo $gg_number; ?>;">
 
 	<?php
 	// Set the --c-gg CSS variable to the color of the current section, for the current section.

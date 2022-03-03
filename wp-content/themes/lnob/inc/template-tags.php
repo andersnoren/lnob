@@ -211,7 +211,7 @@ function lnob_get_squircle_link( $args ) {
 	<a class="squircle-link<?php echo esc_attr( $link_classes_str ); ?>" href="<?php echo esc_url( $args['url'] ); ?>"<?php echo $attributes_str; ?>>
 		<div class="squircle-wrapper pos-relative">
 			<div class="squircle pos-cover fill-cc c-<?php echo $args['squircle_color']; ?>">
-				<?php lnob_the_svg( 'squircle' ); ?>
+				<?php lnob_the_svg( 'squircles/squircle' ); ?>
 			</div>
 			<span class="icon<?php echo $icon_class; ?>"><?php lnob_the_svg( $icon_name, $icon_width, $icon_height ); ?></span>
 		</div>

@@ -211,7 +211,87 @@ add_action( 'wp_head', 'lnob_no_js_class' );
 
 function lnob_add_block_editor_features() {
 
-	/* Block Editor Font Sizes ----------- */
+
+	/* Block Styles -------------------------- */
+
+	// Button: Icons.
+	register_block_style( 'core/button', array(
+		'label' => __( 'Ikon: Svart pil nedåt', 'lnob' ),
+		'name'  => 'button-has-icon-arrow-down-black',
+	) );
+
+	register_block_style( 'core/button', array(
+		'label' => __( 'Ikon: Vit pil nedåt', 'lnob' ),
+		'name'  => 'button-has-icon-arrow-down-white',
+	) );
+
+	// List: ForumCiv List.
+	register_block_style( 'core/list', array(
+		'label' => __( 'ForumCiv-punkt', 'lnob' ),
+		'name'  => 'forumciv-bullet',
+	) );
+
+
+	/* Block Patterns ------------------------ */
+
+	remove_theme_support( 'core-block-patterns' );
+
+	register_block_pattern_category( 'lnob', array( 
+		'label' => esc_html__( 'Leave No One Behind', 'lnob' ) 
+	) );
+	
+	// Register block patterns.
+	$block_patterns = array(
+		'lnob/columns-heading-paragraph' => array(
+			'title'			=> esc_html__( 'Kolumner med rubrik och text', 'lnob' ),
+			'description'	=> esc_html__( 'Ett brett kolumner-block med en rubrik och ett textstycke.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/columns-heading-paragraph.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+		'lnob/columns-numbers' => array(
+			'title'			=> esc_html__( 'Kolumner med siffror', 'lnob' ),
+			'description'	=> esc_html__( 'Ett brett kolumner-block med två siffror-block med bakgrundsfärg.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/columns-numbers.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+		'lnob/columns-pullquote-columns' => array(
+			'title'			=> esc_html__( 'Högerjusterade textkolumner med stort citat', 'lnob' ),
+			'description'	=> esc_html__( 'En högerjusterad textkolumn, följd av ett stort citat, följd av en till högerjusterad textkolumn.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/columns-pullquote-columns.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+		'lnob/group-heading-paragraph' => array(
+			'title'			=> esc_html__( 'Färgad grupp med rubrik och text', 'lnob' ),
+			'description'	=> esc_html__( 'En bred grupp med svart bakgrundsfärg, rubrik och text.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/group-heading-paragraph.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+		'lnob/list-columns-heading-text' => array(
+			'title'			=> esc_html__( 'Lista i två kolumner med rubrik och text', 'lnob' ),
+			'description'	=> esc_html__( 'Lista med ForumCiv-symbolen som punkt, med rubrik och text i varje rad i listan.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/list-columns-heading-text.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+		'lnob/list-squircle' => array(
+			'title'			=> esc_html__( 'Lista med ForumCiv-symbolen', 'lnob' ),
+			'description'	=> esc_html__( 'Enkel lista med ren text och ForumCiv-symbolen som punkt.', 'lnob' ),
+			'content'		=> lnob_get_block_pattern_markup( 'inc/block-patterns/list-squircle.php' ),
+			'categories'	=> array( 'lnob' ),
+			'viewportWidth'	=> 1440,
+		),
+	);
+
+	foreach ( $block_patterns as $name => $data ) {
+		register_block_pattern( $name, $data );
+	}
+
+
+	/* Editor Font Sizes --------------------- */
 
 	add_theme_support( 'editor-font-sizes', array(
 		array(
@@ -239,8 +319,9 @@ function lnob_add_block_editor_features() {
 			'slug'      => 'larger',
 		),
 	) );
+	
 
-	/* Block Editor Palette -------------- */
+	/* Editor Palette ------------------------ */
 
 	add_theme_support( 'disable-custom-colors' );	
 	add_theme_support( 'disable-custom-gradients' );
@@ -305,30 +386,18 @@ add_action( 'after_setup_theme', 'lnob_add_block_editor_features' );
 
 
 /* ---------------------------------------------------------------------------------------------
-   REGISTER BLOCK STYLES
+   GET BLOCK PATTERN MARKUP
 ------------------------------------------------------------------------------------------------ */
 
-function lnob_register_block_styles() {
+function lnob_get_block_pattern_markup( $path ) {
 
-	// Button: Icons.
-	register_block_style( 'core/button', array(
-		'label' => __( 'Ikon: Svart pil nedåt', 'lnob' ),
-		'name'  => 'button-has-icon-arrow-down-black',
-	) );
+	if ( ! locate_template( $path ) ) return;
 
-	register_block_style( 'core/button', array(
-		'label' => __( 'Ikon: Vit pil nedåt', 'lnob' ),
-		'name'  => 'button-has-icon-arrow-down-white',
-	) );
-
-	// List: ForumCiv List.
-	register_block_style( 'core/list', array(
-		'label' => __( 'ForumCiv-punkt', 'lnob' ),
-		'name'  => 'forumciv-bullet',
-	) );
+	ob_start();
+	include( locate_template( $path ) );
+	return ob_get_clean();
 
 }
-add_action( 'init', 'lnob_register_block_styles' );
 
 
 /* ---------------------------------------------------------------------------------------------

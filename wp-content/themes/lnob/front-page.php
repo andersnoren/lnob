@@ -244,7 +244,7 @@ while ( have_posts() ) : the_post();
 
 		?>
 
-		<section id="section-recommendations" class="recommendations p-0">
+		<section id="section-recommendations" class="recommendations p-0 gg-1">
 
 			<header class="recommendations-hero screen-height bg-yellow pu-64 pd-32 pd-tl-48 pd-d-64">
 
