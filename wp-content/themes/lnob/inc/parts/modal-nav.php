@@ -108,7 +108,7 @@ $front_page_id = get_option( 'page_on_front' );
      						'order'       		=> 'DESC',
 						) );
 
-						$updated_date_str = $last_updated_posts ? sprintf( __( 'Uppdated %s', 'lnob' ), get_the_modified_date( 'j F Y', $last_updated_posts[0] ) ) : '';
+						$updated_date_str = $last_updated_posts ? sprintf( __( 'Uppdaterad %s', 'lnob' ), get_the_modified_date( 'j F Y', $last_updated_posts[0] ) ) : '';
 
 						if ( $text ) : 
 							?>
