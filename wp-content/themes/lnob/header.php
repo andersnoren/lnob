@@ -44,7 +44,7 @@
 				<div class="screen-reader-text"><?php _e( 'Tillbaka till toppen', 'lnob' ); ?></div>
 			</a><!-- .scroll-to-top -->
 
-			<button class="nav-toggle nav-bar-button reset" data-toggle-target="#menu" data-set-focus=".main-menu li:first-child a" data-toggle-body-class="showing-navigation" data-toggle-scroll-lock="true" data-untoggle-on-escape>
+			<button class="nav-toggle nav-bar-button reset" data-toggle-target="#menu" data-set-focus=".nav-untoggle:first" data-toggle-body-class="showing-navigation" data-toggle-scroll-lock="true" data-untoggle-on-escape>
 				<div class="icon-text d-none d-t-flex">
 					<div class="text h-uppercase fs-14"><?php _e( 'Meny', 'lnob' ); ?></div>
 					<div class="icon stroke-cc"><?php lnob_the_svg( 'menu', 20, 14 ); ?></div>

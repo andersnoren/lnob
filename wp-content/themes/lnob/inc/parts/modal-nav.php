@@ -4,7 +4,7 @@ $front_page_id = get_option( 'page_on_front' );
 
 ?>
 
-<nav id="menu" class="menu cover-modal bg-white">
+<nav id="menu" class="menu cover-modal bg-white focus-loop">
 
 	<div class="menu-inner section-inner">
 

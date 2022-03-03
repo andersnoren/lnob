@@ -592,33 +592,54 @@ LNOB.smoothScroll = {
 		if ( $target.length ) {
 
 			var additionalOffset 	= 0,
-				scrollSpeed			= 500;
+				scrollSpeed			= 500,
+				timeOutTime			= 5;
 
-			// Get options.
-			if ( $clickElem && $clickElem.length ) {
-				additionalOffset 	= $clickElem.data( 'additional-offset' ) ? $clickElem.data( 'additional-offset' ) : 0,
-				scrollSpeed 		= $clickElem.data( 'scroll-speed' ) ? $clickElem.data( 'scroll-speed' ) : 500;
-			}
+			// Unset the sticky position of the global goals and store the previous value.
+			$( '.gg' ).each( function() {
+				$( this ).data( 'previous-position', $( this ).css( 'position' ) ).css( 'position', 'static' );
+			} );
 
 			// Close any parent modal before calculating offset and scrolling.
+			// Also, set a timeout, to make sure elements have the correct offset before we scroll.
 			if ( $clickElem && $clickElem.closest( '.cover-modal' ) ) {
 				LNOB.coverModals.toggleModal( $clickElem.closest( '.cover-modal' ).attr( 'id' ) );
+				timeOutTime = 5;
 			}
 
-			// Determine offset.
-			var originalOffset 	= $target.offset().top,
-				scrollOffset 	= originalOffset + additionalOffset;
+			setTimeout( function() {
 
-			// Update history, if set.
-			if ( updateHistory ) {
-				var hash = $target.attr( 'id' ) ? '#' + $target.attr( 'id' ) : '';
-				if ( hash ) {
-					history.replaceState( {}, '', hash );
+				// Get options.
+				if ( $clickElem && $clickElem.length ) {
+					additionalOffset 	= $clickElem.data( 'additional-offset' ) ? $clickElem.data( 'additional-offset' ) : 0,
+					scrollSpeed 		= $clickElem.data( 'scroll-speed' ) ? $clickElem.data( 'scroll-speed' ) : 500;
 				}
-			}
 
-			// Scroll to position.
-			LNOB.smoothScroll.scrollToPosition( scrollOffset, scrollSpeed );
+				// Determine offset.
+				var originalOffset 	= $target.offset().top,
+					scrollOffset 	= originalOffset + additionalOffset;
+
+				console.log( 'originalOffset: ' + originalOffset );
+				console.log( 'additionalOffset: ' + additionalOffset );
+				console.log( 'scrollOffset: ' + scrollOffset );
+
+				// Update history, if set.
+				if ( updateHistory ) {
+					var hash = $target.attr( 'id' ) ? '#' + $target.attr( 'id' ) : '';
+					if ( hash ) {
+						history.replaceState( {}, '', hash );
+					}
+				}
+
+				// Scroll to position.
+				LNOB.smoothScroll.scrollToPosition( scrollOffset, scrollSpeed );
+
+				// Restore the position of the .gg sections to their previous values.
+				$( '.gg' ).each( function() {
+					$( this ).css( 'position', $( this ).data( 'previous-position' ) );
+				} );
+
+			}, timeOutTime );
 
 		}
 
@@ -626,6 +647,8 @@ LNOB.smoothScroll = {
 
 	// Scroll to position.
 	scrollToPosition: function( scrollOffset, scrollSpeed = 500 ) {
+
+		console.log( scrollOffset );
 
 		// Animate.
 		$( 'html, body' ).animate( {
@@ -906,7 +929,7 @@ LNOB.frontPage = {
 			} );
 			
 			// Scroll to the global goal.
-			LNOB.smoothScroll.scrollToPosition( ggOffset );
+			LNOB.smoothScroll.scrollToPosition( ggOffset, 0 );
 			
 		} );
 
@@ -1034,5 +1057,11 @@ $lnobDoc.ready( function() {
 	LNOB.frontPage.init();				// Front Page.
 	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
 	LNOB.countUp.init();				// Count Up.
+
+	$( '.gg' ).each( function() {
+		var offset = $( this ).offset().top,
+			index = $( this ).index();
+		console.log( 'gg ' + index + ': ' + offset );
+	} );
 
 } );
