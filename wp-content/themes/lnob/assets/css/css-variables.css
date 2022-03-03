@@ -61,6 +61,8 @@
 	--lh-heading-large: 1.1;
 	--lh-input: 1.1;
 
+	--ls-upper: .025em;
+
 	/* Layout */
 	--mw-thin: 60rem;
 	--mw-small: 72rem;
