@@ -420,6 +420,13 @@ function lnob_remove_footnotes( $content ) {
 		$content = str_replace( 'footnote-identifier-link', 'footnote-identifier-link disable-hash-scroll', $content );
 	}
 
+	// Add animation classes to all alignwide and alignfull elements.
+	$animation_class = 'do-spot spot-fade-up';
+	$content = str_replace( 
+		array( 'alignwide', 'alignfull' ), 
+		array( 'alignwide ' . $animation_class, 'alignfull ' . $animation_class ), 
+	$content );
+
 	return $content;
 
 }

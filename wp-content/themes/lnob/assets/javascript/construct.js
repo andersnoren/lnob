@@ -212,62 +212,76 @@ LNOB.toggles = {
 				var $target = $( targetString );
 			}
 
-			// Get the class to toggle, if specified.
-			var classToToggle = $toggle.data( 'class-to-toggle' ) ? $toggle.data( 'class-to-toggle' ) : 'active';
-
-			// Toggle the target of the clicked toggle.
-			if ( $toggle.data( 'toggle-type' ) == 'slidetoggle' ) {
-				var duration = $toggle.data( 'toggle-duration' ) ? $toggle.data( 'toggle-duration' ) : 250;
-				$target.slideToggle( duration );
-			} else if ( $toggle.data( 'toggle-type' ) == 'toggle' ) {
-				$target.toggle();
+			// Trigger events on the toggle targets before they are toggled.
+			if ( $target.is( '.active' ) ) {
+				$target.trigger( 'toggle-target-before-active' );
 			} else {
-				$target.toggleClass( classToToggle );
+				$target.trigger( 'toggle-target-before-inactive' );
 			}
 
-			// If the toggle target is 'next', only give the clicked toggle the active class.
-			if ( targetString == 'next' ) {
-				$toggle.toggleClass( 'active' )
+			// For cover modals, set a short timeout duration so the class animations have time to play out.
+			var timeOutTime = $target.hasClass( 'cover-modal' ) ? 5 : 0;
 
-			// If not, toggle all toggles with this toggle target.
-			} else {
-				$( '*[data-toggle-target="' + targetString + '"]' ).toggleClass( 'active' );
-			}
+			setTimeout( function() {
 
-			// Toggle body class.
-			if ( $toggle.data( 'toggle-body-class' ) ) {
-				$( 'body' ).toggleClass( $toggle.data( 'toggle-body-class' ) );
-			}
+				// Get the class to toggle, if specified.
+				var classToToggle = $toggle.data( 'class-to-toggle' ) ? $toggle.data( 'class-to-toggle' ) : 'active';
 
-			// Check whether to lock the screen scroll.
-			if ( $toggle.data( 'lock-scroll' ) ) {
-				LNOB.scrollLock.setTo( true );
-			} else if ( $toggle.data( 'unlock-scroll' ) ) {
-				LNOB.scrollLock.setTo( false );
-			} else if ( $toggle.data( 'toggle-scroll-lock' ) ) {
-				LNOB.scrollLock.setTo();
-			}
+				// Toggle the target of the clicked toggle.
+				if ( $toggle.data( 'toggle-type' ) == 'slidetoggle' ) {
+					var duration = $toggle.data( 'toggle-duration' ) ? $toggle.data( 'toggle-duration' ) : 250;
+					$target.slideToggle( duration );
+				} else if ( $toggle.data( 'toggle-type' ) == 'toggle' ) {
+					$target.toggle();
+				} else {
+					$target.toggleClass( classToToggle );
+				}
 
-			// Check whether to set focus.
-			if ( $toggle.data( 'set-focus' ) ) {
-				var $focusElement = $( $toggle.data( 'set-focus' ) );
-				if ( $focusElement.length ) {
-					if ( $toggle.is( '.active' ) ) {
-						$focusElement.focus();
-					} else {
-						$focusElement.blur();
+				// If the toggle target is 'next', only give the clicked toggle the active class.
+				if ( targetString == 'next' ) {
+					$toggle.toggleClass( 'active' )
+
+				// If not, toggle all toggles with this toggle target.
+				} else {
+					$( '*[data-toggle-target="' + targetString + '"]' ).toggleClass( 'active' );
+				}
+
+				// Toggle body class.
+				if ( $toggle.data( 'toggle-body-class' ) ) {
+					$( 'body' ).toggleClass( $toggle.data( 'toggle-body-class' ) );
+				}
+
+				// Check whether to lock the screen scroll.
+				if ( $toggle.data( 'lock-scroll' ) ) {
+					LNOB.scrollLock.setTo( true );
+				} else if ( $toggle.data( 'unlock-scroll' ) ) {
+					LNOB.scrollLock.setTo( false );
+				} else if ( $toggle.data( 'toggle-scroll-lock' ) ) {
+					LNOB.scrollLock.setTo();
+				}
+
+				// Check whether to set focus.
+				if ( $toggle.data( 'set-focus' ) ) {
+					var $focusElement = $( $toggle.data( 'set-focus' ) );
+					if ( $focusElement.length ) {
+						if ( $toggle.is( '.active' ) ) {
+							$focusElement.focus();
+						} else {
+							$focusElement.blur();
+						}
 					}
 				}
-			}
 
-			// Trigger the toggled event on the toggle target.
-			$target.trigger( 'toggled' );
+				// Trigger the toggled event on the toggle target.
+				$target.trigger( 'toggled' );
 
-			if ( $toggle.hasClass( 'active' ) ) {
-				$target.trigger( 'toggled-active' );
-			} else {
-				$target.trigger( 'toggled-inactive' );
-			}
+				if ( $toggle.hasClass( 'active' ) ) {
+					$target.trigger( 'toggled-active' );
+				} else {
+					$target.trigger( 'toggled-inactive' );
+				}
+
+			}, timeOutTime );
 
 			return false;
 
@@ -374,6 +388,7 @@ LNOB.coverModals = {
 
 		if ( $( '.cover-modal' ).length ) {
 			LNOB.coverModals.showOnLoadAndClick();
+			LNOB.coverModals.hideAndShowModals();
 		}
 
 	},
@@ -401,6 +416,29 @@ LNOB.coverModals = {
 
 		$lnobDoc.on( '.cover-modal', 'toggled-inactive', function() {
 			$lnobWin.trigger( 'did-interval-scroll' )
+		} );
+
+	},
+
+	// Hide and show modals before and after their animations have played out.
+	hideAndShowModals: function() {
+
+		var $modals = $( '.cover-modal' );
+
+		// Show the modal.
+		$modals.on( 'toggle-target-before-inactive', function( e ) {
+			if ( e.target != this ) return;
+			$( this ).addClass( 'show-modal' );
+		} );
+
+		// Hide the modal after a delay, so animations have time to play out.
+		$modals.on( 'toggle-target-before-active', function( e ) {
+			if ( e.target != this ) return;
+
+			var $modal = $( this );
+			setTimeout( function() {
+				$modal.removeClass( 'show-modal' );
+			}, 250 );
 		} );
 
 	},
@@ -434,12 +472,12 @@ LNOB.elementInView = {
 
 	init: function() {
 
-		$targets = $( '.do-spot' );
+		$targets = $( '.do-spot' ).filter( ':visible' );
 		LNOB.elementInView.run( $targets );
 
 		// Rerun on AJAX content loaded.
 		$lnobWin.on( 'ajax-content-loaded', function() {
-			$targets = $( '.do-spot' );
+			$targets = $( '.do-spot' ).filter( ':visible' );
 			LNOB.elementInView.run( $targets );
 		} );
 
@@ -847,6 +885,9 @@ LNOB.frontPage = {
 			$( this ).closest( '.gg' ).addClass( 'showing-content' );
 			$lnobWin.trigger( 'resize' );
 			LNOB.smoothScroll.scrollToTarget( $( $( this ) ) );
+
+			// Make sure that the do-spot elements are triggered.
+			$lnobWin.trigger( 'ajax-content-loaded' );
 		} );
 		
 		$( '.gg-content' ).on( 'toggled-inactive', function() {

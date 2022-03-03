@@ -28,7 +28,7 @@ while ( have_posts() ) : the_post();
 
 					<div class="hero-header-placeholder"></div>
 
-					<header class="page-header mw-small pu-48 pd-64 pu-t-64 pd-t-80">
+					<header class="page-header mw-small pu-48 pd-64 pu-t-64 pd-t-80 i-a a-fade-scale-up a-del-300">
 
 						<?php if ( $title ) : ?>
 							<h1 class="page-title no-margin"><?php echo $title; ?></h1>
@@ -44,7 +44,7 @@ while ( have_posts() ) : the_post();
 					
 					</header><!-- .page-header -->
 
-					<div class="scroll-button-wrapper">
+					<div class="scroll-button-wrapper i-a a-fade-in a-del-1000">
 						<?php 
 						echo lnob_get_squircle_link( array(
 							'icon'	=> array(
@@ -91,7 +91,7 @@ while ( have_posts() ) : the_post();
 
 						<?php if ( $content_post_obj ) : ?>
 
-							<div class="entry-content mw-small">
+							<div class="entry-content mw-small do-spot spot-fade-up">
 								<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
 							</div><!-- .entry-content -->
 
@@ -99,7 +99,7 @@ while ( have_posts() ) : the_post();
 
 						<div class="rec-shortcut-wrapper pu-48 pu-tl-0 pl-tl-64">
 
-							<div class="rec-shortcut bg-yellow p-24 p-t-40">
+							<div class="rec-shortcut bg-yellow p-24 p-t-40 do-spot spot-fade-up">
 
 								<?php if ( $rec_shortcut_title ) : ?>
 									<h2 class="rec-shortcut-title h6 no-margin"><?php echo $rec_shortcut_title; ?></h2>
@@ -119,7 +119,7 @@ while ( have_posts() ) : the_post();
 
 					</div><!-- .intro-content-wrapper -->
 
-					<div class="intro-scroll-button-wrapper">
+					<div class="intro-scroll-button-wrapper do-spot spot-fade-up">
 						<?php 
 						echo lnob_get_squircle_link( array(
 							'icon'	=> array(
@@ -179,24 +179,24 @@ while ( have_posts() ) : the_post();
 
 			<header class="missing-header">
 
-				<div class="missing-header-bg bg-yellow pu-64 pd-32 pu-t-96 pd-t-0 overflow-hidden">
+				<div class="missing-header-bg bg-yellow pu-64 pd-32 pu-t-96 pd-t-0">
 
-					<div class="missing-header-inner section-inner">
+					<div class="missing-header-inner section-inner pos-relative z-1">
 
-						<div class="missing-header-grid grid cols-tl-6">
+						<div class="missing-header-grid grid cols-tl-6 no-v-gutter">
 
-							<div class="col">
+							<div class="col do-spot spot-fade-up">
 								<?php if ( $title ) : ?>
 									<h2 class="section-title h1 no-margin"><?php echo $title; ?></h2>
 								<?php endif; ?>
 							</div>
 
-							<div class="col">
+							<div class="col do-spot spot-fade-up a-del-300">
 								<?php if ( $intro_text ) : ?>
-									<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
+									<div class="intro-text fs-intro-text contain-margins mw-readable pu-24 pu-t-32 pu-tl-0"><?php echo wpautop( $intro_text ); ?></div>
 								<?php endif; ?>
 
-								<div class="social-wrapper pu-24 pu-t-32 pos-relative z-1">
+								<div class="social-wrapper pu-24 pu-t-32">
 									<?php lnob_the_share_links( array(
 										'colors'	=> array(
 											'icon'			=> 'white',
@@ -220,11 +220,15 @@ while ( have_posts() ) : the_post();
 
 			<?php if ( $content_post_obj ) : ?>
 
-				<div class="section-inner entry-content centered-content mw-thin pv-48 pd-64 pv-t-96">
+				<div class="entry-content-container pv-48 pd-64 pv-t-96">
 
-					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+					<div class="entry-content section-inner centered-content mw-thin do-spot spot-fade-up">
 
-				</div><!-- .section-inner -->
+						<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+
+					</div><!-- .entry-content -->
+
+				</div><!-- .entry-content-container -->
 
 			<?php endif; ?>
 
@@ -252,7 +256,7 @@ while ( have_posts() ) : the_post();
 
 					<div class="recommendations-hero-grid grid">
 
-						<div class="col">
+						<div class="col do-spot spot-fade-up">
 							<?php if ( $title ) : 
 								$title_classes = $title == 'Det här behöver göras' ? ' prettify-line-breaks' : '';
 								?>
@@ -260,7 +264,7 @@ while ( have_posts() ) : the_post();
 							<?php endif; ?>
 						</div>
 
-						<div class="col col-tl-6">
+						<div class="col col-tl-6 do-spot spot-fade-up a-del-200">
 							<?php if ( $intro_text ) : ?>
 								<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
 							<?php endif; ?>
@@ -275,7 +279,7 @@ while ( have_posts() ) : the_post();
 							</div><!-- .social-wrapper -->
 						</div>
 
-						<div class="col col-tl-6">
+						<div class="col col-tl-6 do-spot spot-fade-up a-del-400">
 
 							<div class="scroll-button-wrapper">
 								<?php 

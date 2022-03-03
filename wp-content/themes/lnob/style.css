@@ -258,6 +258,11 @@ html.scroll-locked #wpadminbar {
 
 /* Animations -------------------------------- */
 
+@keyframes fade-in {
+	0% 		{ opacity: 0.0; }
+	100% 	{ opacity: 1.0; }
+}
+
 @keyframes fade-up {
 	0% 		{ opacity: 0.0; transform: translateY( 4rem ); }
 	100% 	{ opacity: 1.0; transform: translateY( 0 ); }
@@ -1250,13 +1255,18 @@ section {
 	display: none;
 	opacity: 0;
 	overflow: auto;
+	-ms-overflow-style: none;
 	position: fixed;
 		bottom: 0;
 		left: -9999rem;
 		right: 9999rem;
 		top: 0;
-	transition: opacity .25s linear, left 0s .25s, right 0s .25s;
+	transition: opacity .25s, left 0s .25s, right 0s .25s;
 	z-index: 9999;
+}
+
+.cover-modal::-webkit-scrollbar {
+	display: none !important;
 }
 
 .admin-bar .cover-modal {
@@ -1264,11 +1274,14 @@ section {
 }
 
 .cover-modal.active {
-	display: block;
 	left: 0;
 	right: 0;
 	opacity: 1;
-	transition: opacity .25s ease-out;
+	transition: opacity .25s;
+}
+
+.cover-modal.show-modal {
+	display: block;
 }
 
 .cover-modal-inner { 
@@ -1400,16 +1413,19 @@ section {
 
 /* INITIAL STATES */
 
+.js .a-fade-in, .js .spot-fade-in { opacity: 0; }
 .js .a-fade-up, .js .spot-fade-up { opacity: 0; transform: translateY( -4rem ); }
 .js .a-fade-scale-up, .js .spot-fade-scale-up { opacity: 0; transform: scale( .9 ); }
 
 /* INTRO ANIMATIONS */
 
+.a-fade-in { animation-name: fade-in; }
 .a-fade-up { animation-name: fade-up; }
 .a-fade-scale-up { animation-name: fade-scale-up; }
 
 /* SPOTTED ANIMATIONS */
 
+.spot-fade-in.spotted, .spotted .spot-child.spot-fade-in { animation-name: fade-in; }
 .spot-fade-up.spotted, .spotted .spot-child.spot-fade-up { animation-name: fade-up; }
 .spot-fade-scale-up.spotted, .spotted .spot-child.spot-fade-scale-up { animation-name: fade-scale-up; }
 
@@ -1426,6 +1442,11 @@ section {
 .a-del-300 { animation-delay: 0.3s; }
 .a-del-400 { animation-delay: 0.4s; }
 .a-del-500 { animation-delay: 0.5s; }
+.a-del-600 { animation-delay: 0.6s; }
+.a-del-700 { animation-delay: 0.7s; }
+.a-del-800 { animation-delay: 0.8s; }
+.a-del-900 { animation-delay: 0.9s; }
+.a-del-1000 { animation-delay: 1.0s; }
 
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1779,8 +1800,12 @@ section {
 
 /* GG Content -------------------------------- */
 
-.js .gg-content {
+.gg-content {
 	display: none;
+}
+
+.no-js .gg-content {
+	display: block;
 }
 
 .gg-content-inner {
@@ -1929,8 +1954,10 @@ section {
 }
 
 .entry-content.centered-content > .alignwide {
-	margin-left: 50%;
-	transform: translateX( -50% );
+	margin-left: calc( 50% - ( min( 
+		var( --mw-max ), 
+		( 100vw - ( var( --body-margin ) * 2 ) ) 
+	) / 2 ) );
 	width: calc( 100vw - calc( 2 * var( --body-margin ) ) );
 }
 
