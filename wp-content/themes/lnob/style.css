@@ -1260,7 +1260,7 @@ section {
 		left: -9999rem;
 		right: 9999rem;
 		top: 0;
-	transition: opacity .25s, left 0s .25s, right 0s .25s;
+	transition: opacity .4s, left 0s .4s, right 0s .4s;
 	z-index: 9999;
 }
 
@@ -1276,7 +1276,7 @@ section {
 	left: 0;
 	right: 0;
 	opacity: 1;
-	transition: opacity .25s;
+	transition: opacity .4s;
 }
 
 .cover-modal.show-modal {
@@ -1616,6 +1616,16 @@ span.modal-cacsp-toggle {
 
 .menu *:not(.logo) {
 	outline: none;
+}
+
+#menu .menu-top ~ * {
+	transform: translateY( 2.4rem );
+	transition: transform .4s .4s;
+}
+
+#menu.active .menu-top ~ * {
+	transform: translateY( 0 );
+	transition: transform .4s;
 }
 
 /* Menu Top ---------------------------------- */
