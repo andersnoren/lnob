@@ -321,7 +321,7 @@ address {
 
 hr {
 	border: none;
-	border-top: .1rem solid var( --c-gray-light );
+	border-top: .1rem solid var( --c-gray-dark );
 	margin: 2em 0;
 }
 

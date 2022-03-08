@@ -409,7 +409,7 @@ function lnob_remove_footnotes( $content ) {
 	global $post;
 
 	// Comment out default footnotes.
-	if ( $post->post_type == 'lnob_global_goal' && strpos( $content, '<ol class="footnotes">' ) ) {
+	if ( strpos( $content, '<ol class="footnotes">' ) ) {
 
 		// Comment out the footnotes section in the bottom.
 		preg_match( '#<ol class="footnotes">(.*?)</ol>#', $content, $footnotes );
@@ -448,5 +448,44 @@ function lnob_get_footnotes( $post_id ) {
 	}
 
 	return $footnotes ? $footnotes[0] : false;
+
+}
+
+
+/* ---------------------------------------------------------------------------------------------
+   GET FORMATTED FOOTNOTES FOR A POST ID
+   Used by Introduktion, Vilka syns inte? och Rekommendationer for outputting the footnotes button and box.
+------------------------------------------------------------------------------------------------ */
+
+function lnob_get_formatted_footnotes( $post_id ) {
+
+	$footnotes = lnob_get_footnotes( $post_id );
+
+	ob_start();
+
+	if ( ! $footnotes ) return '';
+	?>
+
+	<div class="footnotes-button-wrapper d-flex d-no-js-none">
+		<button class="footnotes-button faux-button bg-gray-dark c-black">
+			<div class="icon-text">
+				<div class="icon"><?php lnob_the_svg( 'book', 24, 24 ); ?></div>
+				<div class="text">
+					<span class="show-inactive"><?php _e( 'Visa källor', 'lnob' ); ?></span>
+					<span class="show-active"><?php _e( 'Dölj källor', 'lnob' ); ?></span>
+				</div>
+			</div><!-- .icon-text -->
+		</button>
+	</div><!-- .footnotes-button-wrapper -->
+
+	<div class="footnotes-box-wrapper pu-24 pu-t-48 d-none d-no-js-block d-active-block">
+		<div class="footnotes-box bg-gray-light contain-margins p-24 p-t-48">
+			<?php echo $footnotes; ?>
+		</div><!-- .footnotes-box -->
+	</div><!-- .footnotes-box-wrapper -->
+
+	<?php
+
+	return ob_get_clean();
 
 }

@@ -951,12 +951,12 @@ LNOB.frontPage = {
 	footnotes: function() {
 
 		$( '.footnotes-button' ).on( 'click', function() {
-			$( this ).add( $( this ).closest( '.gg' ).find( '.footnotes-box-wrapper' ) ).toggleClass( 'active' );
+			$( this ).add( $( this ).closest( '.footnotes-container' ).find( '.footnotes-box-wrapper' ) ).toggleClass( 'active' );
 		} );
 
 		$lnobDoc.on( 'click', '.footnote-identifier-link', function() {
 
-			var $gg 				= $( this ).closest( '.gg' ),
+			var $gg 				= $( this ).closest( '.footnotes-container' ),
 				$footnotesBox 		= $gg.find( '.footnotes-box-wrapper' ),
 				$footnotesButton 	= $gg.find( '.footnotes-button' );
 

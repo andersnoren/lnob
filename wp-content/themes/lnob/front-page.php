@@ -91,9 +91,23 @@ while ( have_posts() ) : the_post();
 
 						<?php if ( $content_post_obj ) : ?>
 
-							<div class="entry-content mw-small do-spot spot-fade-up">
-								<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
-							</div><!-- .entry-content -->
+							<div class="mw-small footnotes-container">
+
+								<div class="entry-content do-spot spot-fade-up">
+									<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+								</div><!-- .entry-content -->
+
+								<?php if ( $formatted_footnotes = lnob_get_formatted_footnotes( $content_post_obj->ID ) ) : ?>
+
+									<div class="footnotes-content-wrapper do-spot spot-fade-up pu-32 pu-t-48">
+
+										<?php echo $formatted_footnotes; ?>
+
+									</div><!-- .footnotes-content-wrapper -->
+
+								<?php endif; ?>
+
+							</div><!-- .mw-small -->
 
 						<?php endif; ?>
 
@@ -222,11 +236,19 @@ while ( have_posts() ) : the_post();
 
 				<div class="entry-content-container pv-48 pd-64 pv-t-96">
 
-					<div class="entry-content section-inner centered-content mw-thin do-spot spot-fade-up">
+					<div class="section-inner mw-thin footnotes-container">
 
-						<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+						<div class="entry-content centered-content do-spot spot-fade-up">
+							<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+						</div><!-- .entry-content -->
 
-					</div><!-- .entry-content -->
+						<?php if ( $formatted_footnotes = lnob_get_formatted_footnotes( $content_post_obj ) ) : ?>
+							<div class="footnotes-content-wrapper do-spot spot-fade-up pu-32 pu-t-48">
+								<?php echo $formatted_footnotes; ?>
+							</div><!-- .footnotes-content-wrapper -->
+						<?php endif; ?>
+
+					</div><!-- .mw-thin -->
 
 				</div><!-- .entry-content-container -->
 
@@ -305,9 +327,17 @@ while ( have_posts() ) : the_post();
 
 			<?php if ( $content_post_obj ) : ?>
 
-				<div class="section-inner entry-content centered-content mw-thin pv-48 pd-64 pv-t-96" id="recommendations-content">
+				<div class="section-inner mw-thin pv-48 pd-64 pv-t-96 footnotes-container" id="recommendations-content">
 
-					<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+					<div class="entry-content centered-content">
+						<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $content_post_obj ) ); ?>
+					</div><!-- .entry-content -->
+
+					<?php if ( $formatted_footnotes = lnob_get_formatted_footnotes( $content_post_obj ) ) : ?>
+						<div class="footnotes-content-wrapper do-spot spot-fade-up pu-32 pu-t-48">
+							<?php echo $formatted_footnotes; ?>
+						</div><!-- .footnotes-content-wrapper -->
+					<?php endif; ?>
 
 				</div><!-- .section-inner -->
 
