@@ -240,26 +240,66 @@ function lnob_the_share_links( $args = array() ) {
 			'icon'			=> 'white',
 		),
 		'parameters'	=> array(
-			'title'			=> '',
-			'excerpt'		=> '',
-			'permalink'		=> '',
-			'media'			=> '',
+			'default'		=> array(
+				'image'			=> '',
+				'title'			=> '',
+				'text'			=> '',
+				'permalink'		=> '',
+			),
+			'facebook'	=> array(
+				'image'			=> '',
+				'title'			=> '',
+				'text'			=> '',
+			),
+			'linkedin'	=> array(
+				'image'			=> '',
+				'title'			=> '',
+				'text'			=> '',
+			),
+			'twitter'	=> array(
+				'image'			=> '',
+				'title'			=> '',
+				'text'			=> '',
+			),
 		),
 	) );
 
+	$default_image 		= ! empty( $args['parameters']['default']['image'] ) ? $args['parameters']['default']['image'] : '';
+	$default_title 		= ! empty( $args['parameters']['default']['title'] ) ? $args['parameters']['default']['title'] : '';
+	$default_text 		= ! empty( $args['parameters']['default']['text'] ) ? $args['parameters']['default']['text'] : '';
+	$default_permalink 	= ! empty( $args['parameters']['default']['permalink'] ) ? $args['parameters']['default']['permalink'] : '';
+
+	$facebook_parameters = array();
+	$facebook_parameters['image'] 		= ! empty( $args['parameters']['facebook']['image'] ) ? $args['parameters']['facebook']['image'] : $default_image;
+	$facebook_parameters['title'] 		= ! empty( $args['parameters']['facebook']['title'] ) ? $args['parameters']['facebook']['title'] : $default_title;
+	$facebook_parameters['text'] 		= ! empty( $args['parameters']['facebook']['text'] ) ? $args['parameters']['facebook']['text'] : $default_text;
+	$facebook_parameters['permalink'] 	= $default_permalink;
+
 	$facebook_url = lnob_get_share_url( array(
 		'service'		=> 'facebook',
-		'parameters'	=> $args['parameters'],
+		'parameters'	=> $facebook_parameters,
 	) );
+
+	$twitter_parameters = array();
+	$twitter_parameters['image'] 		= ! empty( $args['parameters']['twitter']['image'] ) ? $args['parameters']['twitter']['image'] : $default_image;
+	$twitter_parameters['title'] 		= ! empty( $args['parameters']['twitter']['title'] ) ? $args['parameters']['twitter']['title'] : $default_title;
+	$twitter_parameters['text'] 		= ! empty( $args['parameters']['twitter']['text'] ) ? $args['parameters']['twitter']['text'] : $default_text;
+	$twitter_parameters['permalink'] 	= $default_permalink;
 
 	$twitter_url = lnob_get_share_url( array(
 		'service'		=> 'twitter',
-		'parameters'	=> $args['parameters'],
+		'parameters'	=> $twitter_parameters,
 	) );
+
+	$linkedin_parameters = array();
+	$linkedin_parameters['image'] 		= ! empty( $args['parameters']['linkedin']['image'] ) ? $args['parameters']['linkedin']['image'] : $default_image;
+	$linkedin_parameters['title'] 		= ! empty( $args['parameters']['linkedin']['title'] ) ? $args['parameters']['linkedin']['title'] : $default_title;
+	$linkedin_parameters['text'] 		= ! empty( $args['parameters']['linkedin']['text'] ) ? $args['parameters']['linkedin']['text'] : $default_text;
+	$linkedin_parameters['permalink'] 	= $default_permalink;
 
 	$linkedin_url = lnob_get_share_url( array(
 		'service'		=> 'linkedin',
-		'parameters'	=> $args['parameters'],
+		'parameters'	=> $linkedin_parameters,
 	) );
 
 	?>
@@ -341,25 +381,29 @@ function lnob_get_share_url( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'service'		=> 'facebook',
 		'parameters'	=> array(
+			'image'			=> '',
 			'title'			=> '',
-			'excerpt'		=> '',
+			'text'			=> '',
 			'permalink'		=> '',
-			'media'			=> '',
 		),
 	) );
 
 	global $post;
 
 	// Get the post variables for the sharing links
-	$title 				= ! empty( $args['parameters']['title'] ) ? $args['parameters']['title'] : ( wp_strip_all_tags( get_the_title( $post ) ) );
-	$excerpt 			= ! empty( $args['parameters']['excerpt'] ) ? $args['parameters']['excerpt'] : ( get_field( 'content_intro_text', $post ) ? wp_strip_all_tags( get_field( 'content_intro_text', $post ) ) : '' );
-	$permalink 			= ! empty( $args['parameters']['permalink'] ) ? $args['parameters']['permalink'] : ( get_permalink( $post ) );
-	$media 				= ! empty( $args['parameters']['media'] ) ? $args['parameters']['media'] : ( has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post, 'large' ) : '' );
+	$title 				= ! empty( $args['parameters']['title'] ) ? $args['parameters']['title'] : get_bloginfo( 'name' );
+	$excerpt 			= ! empty( $args['parameters']['text'] ) ? $args['parameters']['text'] : '';
+	$permalink 			= ! empty( $args['parameters']['permalink'] ) ? $args['parameters']['permalink'] : home_url();
+	$media 				= ! empty( $args['parameters']['image'] ) ? wp_get_attachment_image_url( $args['parameters']['image'], 'full' ) : '';
 	$facebook_app_id 	= lnob_get_facebook_app_id();
 	
 	switch ( $args['service'] ) {
 		case 'facebook' : 
-			$url = 'https://www.facebook.com/dialog/feed?app_id=' . $facebook_app_id . '&display=page&redirect_uri=' . esc_url( $permalink ) . '&caption=' . esc_attr( $title ) . '&description=' . esc_attr( $excerpt ) . '&link=' . esc_url( $permalink ) . '&picture=' . esc_url( $media );
+			$url = 'https://www.facebook.com/dialog/feed?app_id=' . $facebook_app_id . '&display=page&redirect_uri=' . esc_url( $permalink );
+			if ( $title ) $url .= '&caption=' . esc_attr( $title );
+			if ( $excerpt ) $url .= '&description=' . esc_attr( $excerpt );
+			if ( $permalink ) $url .= '&link=' . esc_url( $permalink );
+			if ( $media ) $url .= '&picture=' . esc_url( $media );
 			break;
 		case 'twitter' : 
 			$url = 'http://twitter.com/share?text=' . esc_attr( $title ) . '&url=' . esc_url( $permalink );

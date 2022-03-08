@@ -17,6 +17,10 @@ while ( have_posts() ) : the_post();
 		$title 				= ! empty( $hero['title'] ) ? $hero['title'] : '';
 		$intro_text 		= ! empty( $hero['intro_text'] ) ? $hero['intro_text'] : '';
 		$scroll_button_text = ! empty( $hero['scroll_button_text'] ) ? $hero['scroll_button_text'] : __( 'Scrolla', 'lnob' );
+		$share_show			= ! empty( $hero['share']['show'] ) ? $hero['share']['show'] : false;
+		$share_settings 	= ! empty( $hero['share']['settings'] ) ? $hero['share']['settings'] : array();
+
+		$share_settings['default']['permalink'] = home_url();
 
 		?>
 
@@ -38,9 +42,17 @@ while ( have_posts() ) : the_post();
 							<div class="intro-text fs-intro-text contain-margins pu-24 pu-t-32"><?php echo wpautop( $intro_text ); ?></div>
 						<?php endif; ?>
 
-						<div class="social-wrapper pu-24 pu-t-32">
-							<?php lnob_the_share_links(); ?>
-						</div><!-- .social-wrapper -->
+						<?php if ( $share_show ) : ?>
+
+							<div class="social-wrapper pu-24 pu-t-32">
+								<?php
+								lnob_the_share_links( array(
+									'parameters'	=> $share_settings
+								) );
+								?>
+							</div><!-- .social-wrapper -->
+
+						<?php endif; ?>
 					
 					</header><!-- .page-header -->
 
@@ -187,6 +199,11 @@ while ( have_posts() ) : the_post();
 		$intro_text 		= ! empty( $missing_in_stats['intro_text'] ) ? $missing_in_stats['intro_text'] : '';
 		$content_post_obj 	= ! empty( $missing_in_stats['content_post_object'] ) ? $missing_in_stats['content_post_object'] : false;
 
+		$share_show			= ! empty( $missing_in_stats['share']['show'] ) ? $missing_in_stats['share']['show'] : false;
+		$share_settings 	= ! empty( $missing_in_stats['share']['settings'] ) ? $missing_in_stats['share']['settings'] : array();
+
+		$share_settings['default']['permalink'] = home_url() . '#section-missing-in-stats';
+
 		?>
 
 		<section id="section-missing-in-stats" class="missing-in-stats p-0">
@@ -210,14 +227,17 @@ while ( have_posts() ) : the_post();
 									<div class="intro-text fs-intro-text contain-margins mw-readable pu-24 pu-t-32 pu-tl-0"><?php echo wpautop( $intro_text ); ?></div>
 								<?php endif; ?>
 
-								<div class="social-wrapper pu-24 pu-t-32">
-									<?php lnob_the_share_links( array(
-										'colors'	=> array(
-											'icon'			=> 'white',
-											'background'	=> 'black',
-										),
-									) ); ?>
-								</div><!-- .social-wrapper -->
+								<?php if ( $share_show ) : ?>
+									<div class="social-wrapper pu-24 pu-t-32">
+										<?php lnob_the_share_links( array(
+											'colors'		=> array(
+												'icon'			=> 'white',
+												'background'	=> 'black',
+											),
+											'parameters'	=> $share_settings,
+										) ); ?>
+									</div><!-- .social-wrapper -->
+								<?php endif; ?>
 							</div>
 
 						</div><!-- .missing-header-grid -->
@@ -268,6 +288,11 @@ while ( have_posts() ) : the_post();
 		$scroll_button_text = ! empty( $recommendations['scroll_button_text'] ) ? $recommendations['scroll_button_text'] : __( 'Scrolla', 'lnob' );
 		$content_post_obj 	= ! empty( $recommendations['content_post_object'] ) ? $recommendations['content_post_object'] : false;
 
+		$share_show			= ! empty( $recommendations['share']['show'] ) ? $recommendations['share']['show'] : false;
+		$share_settings 	= ! empty( $recommendations['share']['settings'] ) ? $recommendations['share']['settings'] : array();
+
+		$share_settings['default']['permalink'] = home_url() . '#section-recommendations';
+
 		?>
 
 		<section id="section-recommendations" class="recommendations p-0 gg-1">
@@ -291,14 +316,17 @@ while ( have_posts() ) : the_post();
 								<div class="intro-text fs-intro-text contain-margins mw-readable"><?php echo wpautop( $intro_text ); ?></div>
 							<?php endif; ?>
 
-							<div class="social-wrapper pu-24 pu-t-32">
-								<?php lnob_the_share_links( array(
-									'colors'	=> array(
-										'icon'			=> 'white',
-										'background'	=> 'black',
-									),
-								) ); ?>
-							</div><!-- .social-wrapper -->
+							<?php if ( $share_show ) : ?>
+								<div class="social-wrapper pu-24 pu-t-32">
+									<?php lnob_the_share_links( array(
+										'colors'		=> array(
+											'icon'			=> 'white',
+											'background'	=> 'black',
+										),
+										'parameters'	=> $share_settings
+									) ); ?>
+								</div><!-- .social-wrapper -->
+							<?php endif; ?>
 						</div>
 
 						<div class="col col-tl-6 do-spot spot-fade-up a-del-400">

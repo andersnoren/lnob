@@ -4,6 +4,10 @@ $gg_icon 			= 'gg/gg-' . $gg_number;
 $gg_icon_symbol 	= 'gg/gg-' . $gg_number . '-symbol';
 $gg_id				= 'gg-' . get_post_field( 'post_name', $post->ID );
 
+$share_show			= ( get_post_meta( $post->ID, 'share_show', true ) === '' || get_post_meta( $post->ID, 'share_show', true ) === '1' );
+$share_settings 	= get_field( 'share_settings' );
+
+$share_settings['default']['permalink'] = get_permalink();
 
 // Determine the text color for this global goal (ensures contrast).
 // The contrasting color is the opposite of the text color.
@@ -56,14 +60,17 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 						<div class="gg-intro-text fs-intro-text pu-24 pu-t-32 pu-tl-40 contain-margins mw-readable c-<?php echo $gg_text_c; ?>"><?php echo wpautop( $intro_text ); ?></div>
 					<?php endif; ?>
 
-					<div class="social-wrapper pu-24 pu-t-32 pu-tl-40">
-						<?php lnob_the_share_links( array(
-							'colors'	=> array(
-								'background'	=> $gg_text_c,
-								'icon'			=> $gg_text_contrast_c,
-							),
-						) ); ?>
-					</div><!-- .social-wrapper -->
+					<?php if ( $share_show ) : ?>
+						<div class="social-wrapper pu-24 pu-t-32 pu-tl-40">
+							<?php lnob_the_share_links( array(
+								'colors'		=> array(
+									'background'	=> $gg_text_c,
+									'icon'			=> $gg_text_contrast_c,
+								),
+								'parameters'	=> $share_settings,
+							) ); ?>
+						</div><!-- .social-wrapper -->
+					<?php endif; ?>
 
 				</div><!-- .do-spot -->
 
@@ -110,9 +117,13 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 				<div class="gg-actions d-t-flex justify-between">
 
-					<div class="social-wrapper">
-						<?php lnob_the_share_links(); ?>
-					</div><!-- .social-wrapper -->
+					<?php if ( $share_show ) : ?>
+						<div class="social-wrapper">
+							<?php lnob_the_share_links( array(
+								'parameters'	=> $share_settings,
+							) ); ?>
+						</div><!-- .social-wrapper -->
+					<?php endif; ?>
 
 					<?php 
 					

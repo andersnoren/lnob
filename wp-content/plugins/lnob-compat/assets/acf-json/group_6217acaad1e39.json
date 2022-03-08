@@ -432,8 +432,8 @@
         {
             "key": "field_6217acd3b8a37",
             "label": "Delningsinställningar",
-            "name": "share_settings",
-            "type": "group",
+            "name": "share",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -442,8 +442,13 @@
                 "class": "",
                 "id": ""
             },
+            "clone": [
+                "group_62275ecdbd9d5"
+            ],
+            "display": "seamless",
             "layout": "block",
-            "sub_fields": []
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -464,5 +469,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645791658
+    "modified": 1646748359
 }

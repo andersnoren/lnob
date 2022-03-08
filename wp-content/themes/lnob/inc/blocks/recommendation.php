@@ -6,14 +6,23 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'products-' . $block['id'];
+$id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'recommendation-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
 $class_name = 'lnob-block-recommendation';
 if ( ! empty( $block['className'] ) ) $class_name .= ' ' . $block['className'];
 
 // Prepare variables
-$text 		= get_field( 'content_text' );
+$text 				= get_field( 'content_text' );
+$share				= get_field( 'share' );
+
+// Handle ACF Blocks nesting of group values.
+if ( isset( $share['share'] ) ) $share = $share['share'];
+
+$share_show			= ( isset( $share['show'] ) && ( $share['show'] === '' || $share['show'] == '1' ) ) || ( ! isset( $share['show'] ) );
+$share_settings 	= ! empty( $share['settings'] ) ? $share['settings'] : array();
+
+$share_settings['default']['permalink'] = home_url() . '#' . $id;
 
 ?>
 
@@ -27,14 +36,17 @@ $text 		= get_field( 'content_text' );
 			</div><!-- .recommendation-text -->
 		<?php endif; ?>
 
-		<div class="social-wrapper d-flex justify-center pu-24 pu-t-32">
-			<?php lnob_the_share_links( array(
-				'colors'	=> array(
-					'icon'			=> 'black',
-					'background'	=> 'white',
-				),
-			) ); ?>
-		</div><!-- .social-wrapper -->
+		<?php if ( $share_show ) : ?>
+			<div class="social-wrapper d-flex justify-center pu-24 pu-t-32">
+				<?php lnob_the_share_links( array(
+					'colors'		=> array(
+						'icon'			=> 'black',
+						'background'	=> 'white',
+					),
+					'parameters'	=> $share_settings,
+				) ); ?>
+			</div><!-- .social-wrapper -->
+		<?php endif; ?>
 
 	</div><!-- .block-inner -->
 

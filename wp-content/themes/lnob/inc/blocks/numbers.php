@@ -6,7 +6,7 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'products-' . $block['id'];
+$id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'numbers-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
 $class_name = 'lnob-block-numbers';
@@ -19,6 +19,16 @@ $number_s 	= get_field( 'content_number_suffix' );
 $text 		= get_field( 'content_text' );
 
 $bg_color 	= get_field( 'appearance_color_bg' );
+
+$share		= get_field( 'share' );
+
+// Handle ACF Blocks nesting of group values.
+if ( isset( $share['share'] ) ) $share = $share['share'];
+
+$share_show			= ( isset( $share['show'] ) && ( $share['show'] === '' || $share['show'] == '1' ) ) || ( ! isset( $share['show'] ) );
+$share_settings 	= ! empty( $share['settings'] ) ? $share['settings'] : array();
+
+$share_settings['default']['permalink'] = home_url() . '#' . $id;
 
 // Determine the text color for this global goal (ensures contrast).
 // The contrasting color is the opposite of the text color.
@@ -72,14 +82,17 @@ if ( $bg_color == 'none' ) {
 			</div><!-- .numbers-text -->
 		<?php endif; ?>
 
-		<div class="social-wrapper d-flex justify-center pu-24 pu-t-32">
-			<?php lnob_the_share_links( array(
-				'colors'	=> array(
-					'icon'			=> $block_social_icon,
-					'background'	=> $block_social_bg,
-				),
-			) ); ?>
-		</div><!-- .social-wrapper -->
+		<?php if ( $share_show ) : ?>
+			<div class="social-wrapper d-flex justify-center pu-24 pu-t-32">
+				<?php lnob_the_share_links( array(
+					'colors'	=> array(
+						'icon'			=> $block_social_icon,
+						'background'	=> $block_social_bg,
+					),
+					'parameters'	=> $share_settings,
+				) ); ?>
+			</div><!-- .social-wrapper -->
+		<?php endif; ?>
 
 	</div><!-- .block-inner -->
 

@@ -870,8 +870,11 @@ LNOB.frontPage = {
 		// Rotating LNOB symbol.
 		LNOB.frontPage.lnobSymbol();
 
-		// Global Goals.
-		LNOB.frontPage.gg();
+		// Global Goals: Handle visibility toggles.
+		LNOB.frontPage.ggToggles();
+
+		// Global Goals: Scroll to hidden elements on load.
+		LNOB.frontPage.ggLoadScrollToHiddenElement();
 
 		// Main Menu.
 		LNOB.frontPage.mainMenu();
@@ -884,6 +887,7 @@ LNOB.frontPage = {
 
 	},
 
+	// Rotating LNOB symbol.
 	lnobSymbol: function() {
 
 		var degrees = Math.random() * ( 360 - 0 ) + 0;
@@ -894,7 +898,22 @@ LNOB.frontPage = {
 
 	},
 
-	gg: function() {
+	// Show a global goal.
+	ggShow: function( $gg ) {
+		$gg.addClass( 'showing-content' ).find( '.gg-content-toggle' ).addClass( 'active' );
+		$gg.find( '.gg-content' ).show();
+		$lnobWin.trigger( 'ajax-content-loaded' );
+	},
+
+	// Hide a global goal.
+	ggHide: function( $gg ) {
+		$gg.removeClass( 'showing-content' ).find( '.gg-content-toggle' ).removeClass( 'active' );
+		$gg.find( '.gg-content' ).hide();
+		$lnobWin.trigger( 'ajax-content-loaded' );
+	},
+
+	// Global Goals: Handle visibility toggles.
+	ggToggles: function() {
 
 		// Scroll behavior on expanding/collapsing.
 		$( '.gg-content' ).on( 'toggled-active', function() {
@@ -906,15 +925,14 @@ LNOB.frontPage = {
 			// Hide all other GG Content.
 			$gg.siblings( '.showing-content' ).each( function() {
 				ggContentHeight += $( this ).find( '.gg-content' ).outerHeight();
-				$( this ).removeClass( 'showing-content' ).find( '.gg-content-toggle' ).removeClass( 'active' );
-				$( this ).find( '.gg-content' ).hide();
+				LNOB.frontPage.ggHide( $( this ) );
 			} );
 
 			// Update the scroll position to subtract the height of the other GG content, without smooth scroll.
 			var newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
 			LNOB.smoothScroll.scrollToPosition( newScrollPos, 0 );
 
-			// After a delay, smoothn scroll to this GG content.
+			// After a delay, smooth scroll to this GG content.
 			setTimeout( function() {
 				$gg.addClass( 'showing-content' );
 				$lnobWin.trigger( 'resize' );
@@ -948,6 +966,24 @@ LNOB.frontPage = {
 
 	},
 
+	// Global Goals: Scroll to hidden elements on load.
+	ggLoadScrollToHiddenElement: function() {
+
+		var hash = window.location.hash,
+			$hashElem = hash ? $( hash ) : false;
+
+		if ( ! ( $hashElem || $hashElem.length ) ) return;
+
+		var $ggParent = $hashElem.closest( '.gg' );
+
+		if ( $ggParent ) {
+			LNOB.frontPage.ggShow( $ggParent );
+			LNOB.smoothScroll.scrollToTarget( $hashElem );
+		}
+
+	},
+
+	// Main Menu.
 	mainMenu: function() {
 
 		$lnobDoc.on( 'mouseenter focus', '.menu-gg-grid a', function() {
@@ -961,6 +997,7 @@ LNOB.frontPage = {
 
 	},
 
+	// Footnotes.
 	footnotes: function() {
 
 		$( '.footnotes-button' ).on( 'click', function() {

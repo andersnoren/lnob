@@ -191,6 +191,23 @@ add_action( 'template_redirect', 'lnob_redirects' );
 
 
 /*	-----------------------------------------------------------------------------------------------
+	FILTER POST TYPE LINK
+	Filter the link for global goals.
+--------------------------------------------------------------------------------------------------- */
+
+function lnob_filter_post_type_link( $url, $post ) {
+
+    if ( 'lnob_global_goal' == get_post_type( $post ) ) {
+        $url = home_url() . '#gg-' . $post->post_name;
+    }
+
+    return $url;
+	
+}
+add_filter( 'post_type_link', 'lnob_filter_post_type_link', 10, 2 );
+
+
+/*	-----------------------------------------------------------------------------------------------
 	NO-JS CLASS
 	If we're missing JavaScript support, the HTML element will have a no-js class.
 --------------------------------------------------------------------------------------------------- */

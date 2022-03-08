@@ -184,6 +184,27 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_622762cd7b2a8",
+            "label": "Delning",
+            "name": "share",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_62275ecdbd9d5"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -204,5 +225,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1646144088
+    "modified": 1646748380
 }
