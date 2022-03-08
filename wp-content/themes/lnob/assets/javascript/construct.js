@@ -587,17 +587,16 @@ LNOB.smoothScroll = {
 	},
 
 	// Scroll to target.
-	scrollToTarget: function( $target, $clickElem = null, updateHistory ) {
+	scrollToTarget: function( $target, $clickElem = null, updateHistory = false, scrollSpeed = 500 ) {
 
 		if ( $target.length ) {
 
 			var additionalOffset 	= 0,
-				scrollSpeed			= 500,
 				timeOutTime			= 5;
 
-			// Unset the sticky position of the global goals and store the previous value.
+			// Unset the sticky position of the global goals.
 			$( '.gg' ).each( function() {
-				$( this ).data( 'previous-position', $( this ).css( 'position' ) ).css( 'position', 'static' );
+				$( this ).css( 'position', 'static' );
 			} );
 
 			// Close any parent modal before calculating offset and scrolling.
@@ -619,10 +618,6 @@ LNOB.smoothScroll = {
 				var originalOffset 	= $target.offset().top,
 					scrollOffset 	= originalOffset + additionalOffset;
 
-				console.log( 'originalOffset: ' + originalOffset );
-				console.log( 'additionalOffset: ' + additionalOffset );
-				console.log( 'scrollOffset: ' + scrollOffset );
-
 				// Update history, if set.
 				if ( updateHistory ) {
 					var hash = $target.attr( 'id' ) ? '#' + $target.attr( 'id' ) : '';
@@ -636,7 +631,7 @@ LNOB.smoothScroll = {
 
 				// Restore the position of the .gg sections to their previous values.
 				$( '.gg' ).each( function() {
-					$( this ).css( 'position', $( this ).data( 'previous-position' ) );
+					$( this ).css( 'position', '' );
 				} );
 
 			}, timeOutTime );
@@ -647,8 +642,6 @@ LNOB.smoothScroll = {
 
 	// Scroll to position.
 	scrollToPosition: function( scrollOffset, scrollSpeed = 500 ) {
-
-		console.log( scrollOffset );
 
 		// Animate.
 		$( 'html, body' ).animate( {
@@ -905,12 +898,32 @@ LNOB.frontPage = {
 
 		// Scroll behavior on expanding/collapsing.
 		$( '.gg-content' ).on( 'toggled-active', function() {
-			$( this ).closest( '.gg' ).addClass( 'showing-content' );
-			$lnobWin.trigger( 'resize' );
-			LNOB.smoothScroll.scrollToTarget( $( $( this ) ) );
 
-			// Make sure that the do-spot elements are triggered.
-			$lnobWin.trigger( 'ajax-content-loaded' );
+			var $ggContent 		= $( this ),
+				$gg 			= $ggContent.closest( '.gg' ),
+				ggContentHeight = 0;
+
+			// Hide all other GG Content.
+			$gg.siblings( '.showing-content' ).each( function() {
+				ggContentHeight += $( this ).find( '.gg-content' ).outerHeight();
+				$( this ).removeClass( 'showing-content' ).find( '.gg-content-toggle' ).removeClass( 'active' );
+				$( this ).find( '.gg-content' ).hide();
+			} );
+
+			// Update the scroll position to subtract the height of the other GG content, without smooth scroll.
+			var newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
+			LNOB.smoothScroll.scrollToPosition( newScrollPos, 0 );
+
+			// After a delay, smoothn scroll to this GG content.
+			setTimeout( function() {
+				$gg.addClass( 'showing-content' );
+				$lnobWin.trigger( 'resize' );
+				LNOB.smoothScroll.scrollToTarget( $ggContent );
+
+				// Make sure that the do-spot elements are triggered.
+				$lnobWin.trigger( 'ajax-content-loaded' );
+			}, 5 );
+
 		} );
 		
 		$( '.gg-content' ).on( 'toggled-inactive', function() {
@@ -1057,11 +1070,5 @@ $lnobDoc.ready( function() {
 	LNOB.frontPage.init();				// Front Page.
 	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
 	LNOB.countUp.init();				// Count Up.
-
-	$( '.gg' ).each( function() {
-		var offset = $( this ).offset().top,
-			index = $( this ).index();
-		console.log( 'gg ' + index + ': ' + offset );
-	} );
 
 } );

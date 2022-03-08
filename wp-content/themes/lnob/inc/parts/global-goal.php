@@ -42,24 +42,30 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 			<div class="gg-hero-content pv-64 pv-t-96">
 
-				<div class="gg-number ff-giorgio-sans pu-t-96 d-none d-tl-block c-<?php echo $gg_text_contrast_c; ?>"><?php echo $gg_number; ?></div>
+				<div class="gg-number ff-giorgio-sans pu-t-96 d-none d-tl-block c-<?php echo $gg_text_contrast_c; ?>">
+					<div class="do-spot spot-fade-up a-del-300"><?php echo $gg_number; ?></div>
+				</div>
+				
+				<div class="do-spot spot-fade-up a-del-300">
 
-				<?php if ( $title ) : ?>
-					<h2 class="gg-title ff-giorgio-sans fs-48 fs-t-80 fs-tl-96 no-margin c-<?php echo $gg_text_c; ?>"><?php echo $title; ?></h2>
-				<?php endif; ?>
+					<?php if ( $title ) : ?>
+						<h2 class="gg-title ff-giorgio-sans fs-48 fs-t-80 fs-tl-96 no-margin c-<?php echo $gg_text_c; ?>"><?php echo $title; ?></h2>
+					<?php endif; ?>
 
-				<?php if ( $intro_text ) : ?>
-					<div class="gg-intro-text fs-intro-text pu-24 pu-t-32 pu-tl-40 contain-margins mw-readable c-<?php echo $gg_text_c; ?>"><?php echo wpautop( $intro_text ); ?></div>
-				<?php endif; ?>
+					<?php if ( $intro_text ) : ?>
+						<div class="gg-intro-text fs-intro-text pu-24 pu-t-32 pu-tl-40 contain-margins mw-readable c-<?php echo $gg_text_c; ?>"><?php echo wpautop( $intro_text ); ?></div>
+					<?php endif; ?>
 
-				<div class="social-wrapper pu-24 pu-t-32 pu-tl-40">
-					<?php lnob_the_share_links( array(
-						'colors'	=> array(
-							'background'	=> $gg_text_c,
-							'icon'			=> $gg_text_contrast_c,
-						),
-					) ); ?>
-				</div><!-- .social-wrapper -->
+					<div class="social-wrapper pu-24 pu-t-32 pu-tl-40">
+						<?php lnob_the_share_links( array(
+							'colors'	=> array(
+								'background'	=> $gg_text_c,
+								'icon'			=> $gg_text_contrast_c,
+							),
+						) ); ?>
+					</div><!-- .social-wrapper -->
+
+				</div><!-- .do-spot -->
 
 			</div><!-- .gg-hero-content -->
 

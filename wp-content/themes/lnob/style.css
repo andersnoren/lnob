@@ -1076,7 +1076,7 @@ section {
 .pos-static { position: static; }
 .pos-relative { position: relative; }
 .pos-absolute { position: absolute; }
-.pos-sticky { position: sticky; }
+.pos-sticky { position: sticky; position: -webkit-sticky; }
 
 .pos-cover {
 	position: absolute;
@@ -1804,11 +1804,12 @@ span.modal-cacsp-toggle {
 .gg {
 	background-color: var( --c-white );
 	position: sticky;
+	position: -webkit-sticky;
 		top: 0;
 }
 
 .gg.showing-content {
-	position: relative;
+	position: relative !important;
 }
 
 /* GG Hero ----------------------------------- */
@@ -2081,6 +2082,7 @@ span.modal-cacsp-toggle {
 
 #site-footer {
 	position: sticky;
+	position: -webkit-sticky;
   		bottom: 0;
 }
 
