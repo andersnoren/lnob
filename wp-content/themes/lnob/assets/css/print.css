@@ -1,0 +1,73 @@
+/* --------------------------------------------------------------------------------------------- */
+/*	Print Styles
+/*  Included by style.css. This file is minified in that file when included,
+/*  so it doesn't need to be minified separately.
+/* --------------------------------------------------------------------------------------------- */
+
+@media print {
+
+	html {
+		font-size: 50% !important; /* 1rem = 8px */
+	}
+
+	.gg-content,
+	.footnotes-box-wrapper {
+		display: block !important;
+	}
+
+	.hero-header-placeholder,
+	.gg-hero-symbol,
+	.lnob-symbol,
+	.rec-shortcut-wrapper,
+	.social-wrapper,
+	.share-buttons,
+	.navigation-bar,
+	.gg-content-untoggle-wrapper,
+	.gg-info-boxes,
+	.gg-actions,
+	.section-sep,
+	.footnotes-button-wrapper,
+	.intro-scroll-button-wrapper,
+	.scroll-button-wrapper,
+	#site-footer {
+		display: none !important;
+	}
+
+	.hero,
+	.introduction {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.section-inner,
+	*[class^="mw-"] {
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+
+	.alignwide,
+	.entry-content.centered-content>p.has-large-font-size:not(.align-wide):not(.alignfull), 
+	.entry-content.centered-content>p.has-larger-font-size:not(.align-wide):not(.alignfull) {
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+
+	.gg-hero * {
+		color: var( --c-black ) !important;
+	}
+
+	.hero,
+	.introduction,
+	.screen-height {
+		height: auto !important;
+		min-height: auto !important;
+	}
+
+	.recommendations-title {
+		font-size: var( --fs-h1 ) !important;
+		max-width: 100% !important;
+	}
+
+}
