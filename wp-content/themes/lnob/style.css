@@ -50,62 +50,78 @@
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
+    src: local('Avenir Next LT Pro'), 
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium.woff') format('woff');
     font-weight: 400;
     font-style: normal;
+	font-display: auto;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium-It.woff') format('woff');
+    src: local('Avenir Next LT Pro'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-Medium-It.woff') format('woff');
     font-weight: 400;
     font-style: italic;
+	font-display: auto;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Demi.woff') format('woff');
+    src: local('Avenir Next LT Pro'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-Demi.woff') format('woff');
     font-weight: 600;
     font-style: normal;
+	font-display: auto;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Bold.woff') format('woff');
+    src: local('Avenir Next LT Pro'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+	font-display: auto;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldIt.woff') format('woff');
+    src: local('Avenir Next LT Pro'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldIt.woff') format('woff');
     font-weight: 700;
     font-style: italic;
+	font-display: auto;
 }
 
 @font-face {
     font-family: 'Avenir Next LT Pro';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-Heavy.woff') format('woff');
+    src: local('Avenir Next LT Pro'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-Heavy.woff') format('woff');
     font-weight: 900;
     font-style: normal;
+	font-display: auto;
 }
 
 /* CONDENSED */
 
 @font-face {
     font-family: 'Avenir Next LT Pro Condensed';
-    src: url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldCn.woff') format('woff');
+    src: local('Avenir Next LT Pro Condensed'),
+		url('./assets/fonts/avenir-next/AvenirNextLTPro-BoldCn.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+	font-display: auto;
 }
 
 /* Giorgio Sans ------------------------------ */
 
 @font-face {
     font-family: 'Giorgio Sans';
-    src: url('./assets/fonts/giorgio-sans/GiorgioSans-Bold.woff2') format('woff2');
+    src: local('Giorgio Sans'),
+		url('./assets/fonts/giorgio-sans/GiorgioSans-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+	font-display: auto;
 }
 
 
