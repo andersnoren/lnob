@@ -623,11 +623,6 @@ LNOB.smoothScroll = {
 			var additionalOffset 	= 0,
 				timeOutTime			= 5;
 
-			// Unset the sticky position of the global goals.
-			$( '.gg' ).each( function() {
-				$( this ).css( 'position', 'static' );
-			} );
-
 			// Close any parent modal before calculating offset and scrolling.
 			// Also, set a timeout, to make sure elements have the correct offset before we scroll.
 			if ( $clickElem && $clickElem.closest( '.cover-modal' ) ) {
@@ -657,11 +652,6 @@ LNOB.smoothScroll = {
 
 				// Scroll to position.
 				LNOB.smoothScroll.scrollToPosition( scrollOffset, scrollSpeed );
-
-				// Restore the position of the .gg sections to their previous values.
-				$( '.gg' ).each( function() {
-					$( this ).css( 'position', '' );
-				} );
 
 			}, timeOutTime );
 
@@ -982,22 +972,14 @@ LNOB.frontPage = {
 		} );
 		
 		$( '.gg-content' ).on( 'toggled-inactive', function() {
-			$( this ).closest( '.gg' ).removeClass( 'showing-content' );
+			var $gg = $( this ).closest( '.gg' );
+
+			$gg.removeClass( 'showing-content' );
+
 			$lnobWin.trigger( 'resize' );
-
-			// Get the offset of the current global goal.
-			// Note: offset().top doesn't work with elements set to a sticky position.
-			var ggOffset 		= $( '.global-goals' ).offset().top,
-				currentIndex 	= $( this ).closest( '.gg' ).index();
-
-			$( '.global-goals .gg' ).each( function() {
-				if ( $( this ).index() < currentIndex ) {
-					ggOffset += $( this ).outerHeight();
-				}
-			} );
 			
 			// Scroll to the global goal.
-			LNOB.smoothScroll.scrollToPosition( ggOffset, 0 );
+			LNOB.smoothScroll.scrollToTarget( $gg, null, false, 0 );
 			
 		} );
 
@@ -1056,18 +1038,11 @@ LNOB.frontPage = {
 				enableScrolling();
 
 				$( '.global-goals .gg' ).each( function() {
-
-					var $gg 		= $( this ),
-						ggHeight 	= $gg.outerHeight(),
-						ggTop		= ggsOffset,
-						ggBottom 	= ggTop + ggHeight;
-
-					if ( winMiddle > ggTop ) {
-						$scrollTo = $gg;
+					if ( winMiddle > $( this ).offset().top ) {
+						$scrollTo = $( this );
+					} else {
+						return false;
 					}
-
-					ggsOffset = ggBottom;
-
 				} );
 
 				if ( $scrollTo && ! $scrollTo.hasClass( 'showing-content' ) ) {
@@ -1079,7 +1054,6 @@ LNOB.frontPage = {
 		} );
 
 	},
-
 
 	// Global Goals: Scroll to the right section depending on focus.
 	ggFocusScroll: function() {

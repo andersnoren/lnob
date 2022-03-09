@@ -10,7 +10,7 @@
 
 	?>
 
-	<footer id="site-footer" class="bg-black c-white pu-48 pd-32 pv-t-64">
+	<footer id="site-footer" class="bg-black c-white pu-48 pd-32 pv-t-64 pos-sticky">
 
 		<div class="footer-inner section-inner">
 

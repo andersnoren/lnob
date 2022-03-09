@@ -239,9 +239,8 @@ path {
 		transition-duration: 0s !important;
 	}
 
-	.gg,
-	#site-footer {
-		position: relative;
+	.pos-sticky {
+		position: relative !important;
 	}
 }
 
@@ -1803,9 +1802,6 @@ span.modal-cacsp-toggle {
 
 .gg {
 	background-color: var( --c-white );
-	position: sticky;
-	position: -webkit-sticky;
-		top: 0;
 }
 
 .no-js .gg,
@@ -2082,9 +2078,7 @@ span.modal-cacsp-toggle {
 
 
 #site-footer {
-	position: sticky;
-	position: -webkit-sticky;
-  		bottom: 0;
+	bottom: 0;
 }
 
 #site-footer a {
@@ -2799,29 +2793,3 @@ span.modal-cacsp-toggle {
 	/* Site Footer --------------------------- */
 
 }
-
-
-
-
-
-
-
-
-
-/* TEMPORARY */
-
-
-
-
-
-
-
-/*
-.gg-content {
-	display: block !important;
-}
-
-.gg {
-	position: static;
-}
-*/
