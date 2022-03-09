@@ -511,6 +511,10 @@ section.wp-block-cover-image > h2 {
 	width: 1.77em;
 }
 
+.wp-block-pullquote blockquote svg * {
+	fill: currentColor;
+}
+
 .wp-block-pullquote.has-text-align-center blockquote svg {
 	margin-left: auto;
 	margin-right: auto;
