@@ -230,7 +230,7 @@ path {
 /* Accessibility Settings -------------------- */
 
 @media ( prefers-reduced-motion: reduce ) {
-	*
+	*,
 	*:before,
 	*:after {
 		animation-delay: 0s !important;
@@ -1808,6 +1808,7 @@ span.modal-cacsp-toggle {
 		top: 0;
 }
 
+.no-js .gg,
 .gg.showing-content {
 	position: relative !important;
 }

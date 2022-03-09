@@ -10,9 +10,11 @@ var LNOB = LNOB || {},
 	Global variables
 --------------------------------------------------------------------------------------------------- */
 
-var $lnobDoc 		= $( document ),
-    $lnobWin 		= $( window ),
-	lnobIsIE11 		= !!window.MSInputMethodContext && !!document.documentMode;
+var $lnobDoc 			= $( document ),
+    $lnobWin 			= $( window ),
+	lnobIsIE11 			= !!window.MSInputMethodContext && !!document.documentMode;
+	reduceMotionMedia	= window.matchMedia( "(prefers-reduced-motion: reduce)" ),
+	reduceMotion		= ( ! reduceMotionMedia || reduceMotionMedia.matches );
 
 
 /*	-----------------------------------------------------------------------------------------------
@@ -36,6 +38,32 @@ function commaSeparateNumber( val ) {
 		val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
 	}
 	return val;
+}
+
+/* Is In Viewport ---------------------------- */
+
+function isInViewport(elm, threshold, mode) {
+	threshold = threshold || 0;
+	mode = mode || 'visible';
+
+	var rect = elm.getBoundingClientRect();
+	var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+	var above = rect.bottom - threshold < 0;
+	var below = rect.top - viewHeight + threshold >= 0;
+
+	return mode === 'above' ? above : (mode === 'below' ? below : !above && !below);
+}
+
+/* Toggle Scrolling -------------------------- */
+
+function disableScrolling() {
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
+
+function enableScrolling() {
+    window.onscroll=function(){};
 }
 
 
@@ -473,6 +501,7 @@ LNOB.elementInView = {
 	init: function() {
 
 		$targets = $( '.do-spot' ).filter( ':visible' );
+
 		LNOB.elementInView.run( $targets );
 
 		// Rerun on AJAX content loaded.
@@ -488,11 +517,15 @@ LNOB.elementInView = {
 		if ( $targets.length ) {
 
 			// Add class indicating the elements will be spotted.
-			$targets.each( function() {
-				$( this ).addClass( 'will-be-spotted' );
-			} );
+			$targets.addClass( 'will-be-spotted' )
 
 			LNOB.elementInView.handleFocus( $targets );
+
+			// If we're set to reduce motion, show everything and exit out.
+			if ( reduceMotion ) {
+				$targets.addClass( 'spotted' );
+				return false;
+			}
 
 			$lnobWin.on( 'load resize orientationchange did-interval-scroll', function() {
 				LNOB.elementInView.handleFocus( $targets );
@@ -518,11 +551,7 @@ LNOB.elementInView = {
 	},
 
 	// Determine whether the element is in view.
-	isVisible: function( $elem, checkAbove ) {
-
-		if ( typeof checkAbove === 'undefined' ) {
-			checkAbove = true;
-		}
+	isVisible: function( $elem, checkAbove = true ) {
 
 		var winHeight 				= $lnobWin.height();
 
@@ -546,12 +575,12 @@ LNOB.elementInView = {
 		}
 
 		// If checkAbove is set to true, which is default, return true if the browser has already scrolled past the element.
-		if ( checkAbove && ( elemTop <= docViewBottom ) ) {
-			return true;
+		if ( checkAbove ) {
+			return ( elemTop <= docViewBottom );
 		}
 
 		// If not, check whether the scroll limit exceeds the element top.
-		return ( docViewLimit >= elemTop );
+		return isInViewport( $elem[0] );
 
 	}
 
@@ -642,6 +671,8 @@ LNOB.smoothScroll = {
 
 	// Scroll to position.
 	scrollToPosition: function( scrollOffset, scrollSpeed = 500 ) {
+
+		if ( reduceMotion ) scrollSpeed = 0;
 
 		// Animate.
 		$( 'html, body' ).animate( {
@@ -876,6 +907,12 @@ LNOB.frontPage = {
 		// Global Goals: Scroll to hidden elements on load.
 		LNOB.frontPage.ggLoadScrollToHiddenElement();
 
+		// Global Goals: Lock scroll to hero.
+		LNOB.frontPage.ggLockScrollToHero();
+
+		// Global Goals: Scroll to the right section depending on focus.
+		LNOB.frontPage.ggFocusScroll();
+
 		// Main Menu.
 		LNOB.frontPage.mainMenu();
 
@@ -980,6 +1017,84 @@ LNOB.frontPage = {
 			LNOB.frontPage.ggShow( $ggParent );
 			LNOB.smoothScroll.scrollToTarget( $hashElem );
 		}
+
+	},
+
+	// Global Goals: Lock scroll to hero.
+	ggLockScrollToHero: function() {
+
+		if ( reduceMotion ) return false;
+
+		$lnobWin.scroll( function() {
+
+			clearTimeout( $.data( this, 'ggLockScrollToHeroTimer' ) );
+
+			disableScrolling();
+
+			$.data( this, 'ggLockScrollToHeroTimer', setTimeout( function() {
+
+				var $scrollTo 	= false;
+
+				// Note: offset().top doesn't work with elements set to a sticky position – hence the manual calculation of ggOffset + $gg.outerHeight().
+				var ggsOffset 	= $( '.global-goals' ).offset().top,
+					ggsBottom	= ggsOffset + $( '.global-goals' ).outerHeight(),
+					winOffset 	= $lnobWin.scrollTop(),
+					winMiddle	= winOffset + ( $lnobWin.outerHeight() / 2 );
+
+				// If we've scrolled past the Global Goals, do nothing.
+				if ( winMiddle > ggsBottom ) {
+					return false;
+				}
+
+				// Scroll to the first GG if it's within half of the screen height.
+				if ( winOffset < ggsOffset && winMiddle > ggsOffset ) {
+					LNOB.smoothScroll.scrollToPosition( ggsOffset );
+					$( '.global-goals .gg:first-child' ).addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
+					return false;
+				}
+
+				enableScrolling();
+
+				$( '.global-goals .gg' ).each( function() {
+
+					var $gg 		= $( this ),
+						ggHeight 	= $gg.outerHeight(),
+						ggTop		= ggsOffset,
+						ggBottom 	= ggTop + ggHeight;
+
+					if ( winMiddle > ggTop ) {
+						$scrollTo = $gg;
+					}
+
+					ggsOffset = ggBottom;
+
+				} );
+
+				if ( $scrollTo && ! $scrollTo.hasClass( 'showing-content' ) ) {
+					$scrollTo.addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
+					LNOB.smoothScroll.scrollToTarget( $scrollTo );
+				}
+
+			}, 100 ) );
+		} );
+
+	},
+
+
+	// Global Goals: Scroll to the right section depending on focus.
+	ggFocusScroll: function() {
+
+		$( '.gg *' ).on( 'focus', function() {
+
+			var $focusElem 	= $( this ),
+				$gg 		= $focusElem.closest( '.gg' );
+
+			if ( $gg.hasClass( 'scrolled-to' ) && $gg.hasClass( 'showing-content' ) ) return false;
+
+			$gg.addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
+			LNOB.smoothScroll.scrollToTarget( $gg, null, false, 0 );
+
+		} );
 
 	},
 
