@@ -643,7 +643,7 @@ section.wp-block-cover-image > h2 {
 /* Block: Spacer ----------------------------- */
 /* Block: Super List ------------------------- */
 
-ul[class*="superlist-block"] {
+ul[class*="superlist-block"]:not(.wp-block) {
 	margin-left: 0;
 }
 
