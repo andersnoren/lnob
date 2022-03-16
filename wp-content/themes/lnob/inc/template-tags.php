@@ -67,7 +67,7 @@ function lnob_get_svg( $svg_name, $width = null, $height = null ) {
 --------------------------------------------------------------------------------------------------- */
 
 function lnob_get_facebook_app_id() {
-	return '';
+	return '661175455109581';
 }
 
 
@@ -399,17 +399,17 @@ function lnob_get_share_url( $args = array() ) {
 	
 	switch ( $args['service'] ) {
 		case 'facebook' : 
-			$url = 'https://www.facebook.com/dialog/feed?app_id=' . $facebook_app_id . '&display=page&redirect_uri=' . esc_url( $permalink );
+			$url = 'https://facebook.com/dialog/feed?app_id=' . $facebook_app_id . '&display=page&redirect_uri=' . esc_url( $permalink );
 			if ( $title ) $url .= '&caption=' . esc_attr( $title );
 			if ( $excerpt ) $url .= '&description=' . esc_attr( $excerpt );
 			if ( $permalink ) $url .= '&link=' . esc_url( $permalink );
 			if ( $media ) $url .= '&picture=' . esc_url( $media );
 			break;
 		case 'twitter' : 
-			$url = 'http://twitter.com/share?text=' . esc_attr( $title ) . '&url=' . esc_url( $permalink );
+			$url = 'https://twitter.com/intent/tweet?text=' . esc_attr( $title ) . esc_attr( ' ' ) . esc_url( $permalink );
 			break;
 		case 'linkedin' : 
-			$url = 'https://www.linkedin.com/shareArticle?mini=true&url=' . $permalink . '&title=' . $title;
+			$url = 'https://www.linkedin.com/sharing/share-offsite/?url=' . esc_url( $permalink );
 			break;
 	}
 
