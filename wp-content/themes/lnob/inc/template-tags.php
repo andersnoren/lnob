@@ -377,14 +377,14 @@ function lnob_get_share_url( $args = array() ) {
 	
 	switch ( $args['service'] ) {
 		case 'facebook' : 
-			$url = 'https://facebook.com/dialog/share?app_id=' . $facebook_app_id . '&display=popup&href=' . esc_url( $permalink );
+			$url = 'https://facebook.com/dialog/share?app_id=' . $facebook_app_id . '&display=popup&href=' . urlencode( $permalink );
 			if ( $facebook_title ) $url .= '&quote=' . esc_attr( $facebook_title );
 			break;
 		case 'twitter' : 
-			$url = 'https://twitter.com/intent/tweet?text=' . esc_attr( $twitter_title ) . esc_attr( ' ' ) . esc_url( $permalink );
+			$url = 'https://twitter.com/intent/tweet?text=' . esc_attr( $twitter_title ) . esc_attr( ' ' ) . urlencode( $permalink );
 			break;
 		case 'linkedin' : 
-			$url = 'https://linkedin.com/sharing/share-offsite/?url=' . esc_url( $permalink );
+			$url = 'https://linkedin.com/sharing/share-offsite/?url=' . urlencode( $permalink );
 			break;
 	}
 
