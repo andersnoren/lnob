@@ -91,30 +91,6 @@
                             "layout": "block",
                             "sub_fields": [
                                 {
-                                    "key": "field_6227604cd1f14",
-                                    "label": "Bild",
-                                    "name": "image",
-                                    "type": "image",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "",
-                                    "preview_size": "medium",
-                                    "library": "",
-                                    "min_width": "",
-                                    "min_height": "",
-                                    "min_size": "",
-                                    "max_width": "",
-                                    "max_height": "",
-                                    "max_size": "",
-                                    "mime_types": ""
-                                },
-                                {
                                     "key": "field_62276024d1f12",
                                     "label": "Rubrik",
                                     "name": "title",
@@ -132,25 +108,6 @@
                                     "prepend": "",
                                     "append": "",
                                     "maxlength": ""
-                                },
-                                {
-                                    "key": "field_62276029d1f13",
-                                    "label": "Text",
-                                    "name": "text",
-                                    "type": "textarea",
-                                    "instructions": "Kan endast innehålla ett stycke.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "maxlength": "",
-                                    "rows": 3,
-                                    "new_lines": ""
                                 }
                             ]
                         },
@@ -186,30 +143,6 @@
                             "layout": "block",
                             "sub_fields": [
                                 {
-                                    "key": "field_62276084d1f16",
-                                    "label": "Bild",
-                                    "name": "image",
-                                    "type": "image",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "",
-                                    "preview_size": "medium",
-                                    "library": "",
-                                    "min_width": "",
-                                    "min_height": "",
-                                    "min_size": "",
-                                    "max_width": "",
-                                    "max_height": "",
-                                    "max_size": "",
-                                    "mime_types": ""
-                                },
-                                {
                                     "key": "field_62276084d1f17",
                                     "label": "Rubrik",
                                     "name": "title",
@@ -227,25 +160,6 @@
                                     "prepend": "",
                                     "append": "",
                                     "maxlength": ""
-                                },
-                                {
-                                    "key": "field_62276084d1f18",
-                                    "label": "Text",
-                                    "name": "text",
-                                    "type": "textarea",
-                                    "instructions": "Kan endast innehålla ett stycke.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "maxlength": "",
-                                    "rows": 3,
-                                    "new_lines": ""
                                 }
                             ]
                         },
@@ -282,9 +196,9 @@
                             "sub_fields": [
                                 {
                                     "key": "field_622760b6d1f1c",
-                                    "label": "Bild",
-                                    "name": "image",
-                                    "type": "image",
+                                    "label": "Om LinkedIn-delning",
+                                    "name": "",
+                                    "type": "message",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -293,54 +207,9 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "",
-                                    "preview_size": "medium",
-                                    "library": "",
-                                    "min_width": "",
-                                    "min_height": "",
-                                    "min_size": "",
-                                    "max_width": "",
-                                    "max_height": "",
-                                    "max_size": "",
-                                    "mime_types": ""
-                                },
-                                {
-                                    "key": "field_622760b6d1f1d",
-                                    "label": "Rubrik",
-                                    "name": "title",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_622760b6d1f1e",
-                                    "label": "Text",
-                                    "name": "text",
-                                    "type": "textarea",
-                                    "instructions": "Kan endast innehålla ett stycke.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "maxlength": "",
-                                    "rows": 3,
-                                    "new_lines": ""
+                                    "message": "LinkedIn har inte stöd för att skicka med unika texter i delningslänkar. Informationen som visas när man delar sidan på LinkedIn är samma för alla LinkedIn-delningsknappar på sidan, och kan redigeras under Sidor → Startsidan → SEO → Social.",
+                                    "new_lines": "wpautop",
+                                    "esc_html": 0
                                 }
                             ]
                         },
@@ -376,30 +245,6 @@
                             "layout": "block",
                             "sub_fields": [
                                 {
-                                    "key": "field_622760b9d1f20",
-                                    "label": "Bild",
-                                    "name": "image",
-                                    "type": "image",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "array",
-                                    "preview_size": "medium",
-                                    "library": "all",
-                                    "min_width": "",
-                                    "min_height": "",
-                                    "min_size": "",
-                                    "max_width": "",
-                                    "max_height": "",
-                                    "max_size": "",
-                                    "mime_types": ""
-                                },
-                                {
                                     "key": "field_622760b9d1f21",
                                     "label": "Rubrik",
                                     "name": "title",
@@ -417,25 +262,6 @@
                                     "prepend": "",
                                     "append": "",
                                     "maxlength": ""
-                                },
-                                {
-                                    "key": "field_622760b9d1f22",
-                                    "label": "Text",
-                                    "name": "text",
-                                    "type": "textarea",
-                                    "instructions": "Kan endast innehålla ett stycke.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "maxlength": "",
-                                    "rows": 3,
-                                    "new_lines": ""
                                 }
                             ]
                         }
@@ -462,5 +288,5 @@
     "active": true,
     "description": "Klon-förälder för delningsinställningarna.",
     "show_in_rest": 0,
-    "modified": 1646750338
+    "modified": 1647437855
 }

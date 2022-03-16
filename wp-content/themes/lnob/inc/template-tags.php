@@ -241,38 +241,24 @@ function lnob_the_share_links( $args = array() ) {
 		),
 		'parameters'	=> array(
 			'default'		=> array(
-				'image'			=> '',
 				'title'			=> '',
-				'text'			=> '',
 				'permalink'		=> '',
 			),
 			'facebook'	=> array(
-				'image'			=> '',
 				'title'			=> '',
-				'text'			=> '',
 			),
-			'linkedin'	=> array(
-				'image'			=> '',
-				'title'			=> '',
-				'text'			=> '',
-			),
+			'linkedin'	=> array(),
 			'twitter'	=> array(
-				'image'			=> '',
 				'title'			=> '',
-				'text'			=> '',
 			),
 		),
 	) );
 
-	$default_image 		= ! empty( $args['parameters']['default']['image'] ) ? $args['parameters']['default']['image'] : '';
 	$default_title 		= ! empty( $args['parameters']['default']['title'] ) ? $args['parameters']['default']['title'] : '';
-	$default_text 		= ! empty( $args['parameters']['default']['text'] ) ? $args['parameters']['default']['text'] : '';
 	$default_permalink 	= ! empty( $args['parameters']['default']['permalink'] ) ? $args['parameters']['default']['permalink'] : '';
 
 	$facebook_parameters = array();
-	$facebook_parameters['image'] 		= ! empty( $args['parameters']['facebook']['image'] ) ? $args['parameters']['facebook']['image'] : $default_image;
 	$facebook_parameters['title'] 		= ! empty( $args['parameters']['facebook']['title'] ) ? $args['parameters']['facebook']['title'] : $default_title;
-	$facebook_parameters['text'] 		= ! empty( $args['parameters']['facebook']['text'] ) ? $args['parameters']['facebook']['text'] : $default_text;
 	$facebook_parameters['permalink'] 	= $default_permalink;
 
 	$facebook_url = lnob_get_share_url( array(
@@ -281,9 +267,7 @@ function lnob_the_share_links( $args = array() ) {
 	) );
 
 	$twitter_parameters = array();
-	$twitter_parameters['image'] 		= ! empty( $args['parameters']['twitter']['image'] ) ? $args['parameters']['twitter']['image'] : $default_image;
 	$twitter_parameters['title'] 		= ! empty( $args['parameters']['twitter']['title'] ) ? $args['parameters']['twitter']['title'] : $default_title;
-	$twitter_parameters['text'] 		= ! empty( $args['parameters']['twitter']['text'] ) ? $args['parameters']['twitter']['text'] : $default_text;
 	$twitter_parameters['permalink'] 	= $default_permalink;
 
 	$twitter_url = lnob_get_share_url( array(
@@ -292,9 +276,6 @@ function lnob_the_share_links( $args = array() ) {
 	) );
 
 	$linkedin_parameters = array();
-	$linkedin_parameters['image'] 		= ! empty( $args['parameters']['linkedin']['image'] ) ? $args['parameters']['linkedin']['image'] : $default_image;
-	$linkedin_parameters['title'] 		= ! empty( $args['parameters']['linkedin']['title'] ) ? $args['parameters']['linkedin']['title'] : $default_title;
-	$linkedin_parameters['text'] 		= ! empty( $args['parameters']['linkedin']['text'] ) ? $args['parameters']['linkedin']['text'] : $default_text;
 	$linkedin_parameters['permalink'] 	= $default_permalink;
 
 	$linkedin_url = lnob_get_share_url( array(
@@ -381,9 +362,7 @@ function lnob_get_share_url( $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'service'		=> 'facebook',
 		'parameters'	=> array(
-			'image'			=> '',
 			'title'			=> '',
-			'text'			=> '',
 			'permalink'		=> '',
 		),
 	) );
@@ -391,25 +370,21 @@ function lnob_get_share_url( $args = array() ) {
 	global $post;
 
 	// Get the post variables for the sharing links
-	$title 				= ! empty( $args['parameters']['title'] ) ? $args['parameters']['title'] : get_bloginfo( 'name' );
-	$excerpt 			= ! empty( $args['parameters']['text'] ) ? $args['parameters']['text'] : '';
+	$twitter_title 		= ! empty( $args['parameters']['title'] ) ? $args['parameters']['title'] : get_bloginfo( 'name' );
+	$facebook_title 	= ! empty( $args['parameters']['title'] ) ? $args['parameters']['title'] : '';
 	$permalink 			= ! empty( $args['parameters']['permalink'] ) ? $args['parameters']['permalink'] : home_url();
-	$media 				= ! empty( $args['parameters']['image'] ) ? wp_get_attachment_image_url( $args['parameters']['image'], 'full' ) : '';
 	$facebook_app_id 	= lnob_get_facebook_app_id();
 	
 	switch ( $args['service'] ) {
 		case 'facebook' : 
-			$url = 'https://facebook.com/dialog/feed?app_id=' . $facebook_app_id . '&display=page&redirect_uri=' . esc_url( $permalink );
-			if ( $title ) $url .= '&caption=' . esc_attr( $title );
-			if ( $excerpt ) $url .= '&description=' . esc_attr( $excerpt );
-			if ( $permalink ) $url .= '&link=' . esc_url( $permalink );
-			if ( $media ) $url .= '&picture=' . esc_url( $media );
+			$url = 'https://facebook.com/dialog/share?app_id=' . $facebook_app_id . '&display=popup&href=' . esc_url( $permalink );
+			if ( $facebook_title ) $url .= '&quote=' . esc_attr( $facebook_title );
 			break;
 		case 'twitter' : 
-			$url = 'https://twitter.com/intent/tweet?text=' . esc_attr( $title ) . esc_attr( ' ' ) . esc_url( $permalink );
+			$url = 'https://twitter.com/intent/tweet?text=' . esc_attr( $twitter_title ) . esc_attr( ' ' ) . esc_url( $permalink );
 			break;
 		case 'linkedin' : 
-			$url = 'https://www.linkedin.com/sharing/share-offsite/?url=' . esc_url( $permalink );
+			$url = 'https://linkedin.com/sharing/share-offsite/?url=' . esc_url( $permalink );
 			break;
 	}
 
