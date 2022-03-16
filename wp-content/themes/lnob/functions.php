@@ -172,7 +172,7 @@ function lnob_redirects() {
 	$request_uri = $_SERVER['REQUEST_URI'];
 
 	// Redirect visits to GGs to the right section.
-	if ( strpos( $request_uri, '/globalt-mal/' ) !== false ) {
+	if ( is_singular( 'lnob_global_goal' ) ) {
 		$redirect_url = home_url() . '#gg-' . basename( $request_uri );
 
 	// Redirect all other visitors to the front page.
