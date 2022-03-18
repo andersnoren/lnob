@@ -40,6 +40,14 @@ function commaSeparateNumber( val ) {
 	return val;
 }
 
+/* Is number */
+
+function isNumber(n) {
+    'use strict';
+    n = n.replace(/\./g, '').replace(',', '.');
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 /* Is In Viewport ---------------------------- */
 
 function isInViewport(elm, threshold, mode) {
@@ -1129,44 +1137,45 @@ LNOB.countUp = {
 
 		$( '.count-up' ).each( function() {
 
-			// Remove thousand decimals, since we add those ourselves on count
-			var countValue = $( this ).text();
-
-			// Skip counters with dot decimals
-			if ( countValue.indexOf( '.' ) >= 0 ) return;
-
 			// Skip non numeric values
-			if ( ! $.isNumeric( countValue ) ) return;
+			if ( ! isNumber( $( this ).text() ) ) return;
 
-			$( this ).attr( 'data-count-value', countValue.replace( /[^0-9]/g, "" ) );
-			$( this ).css( 'width', $( this ).outerWidth() );
-			$( this ).text( '0' );
+			$( this ).css( 'width', $( this ).outerWidth() ).addClass( 'do-count' );
 		} );
 
 		$lnobWin.on( 'resize-end', function() {
-			$( '.count-up' ).css( 'width', 'auto' );
+			$( '.count-up.do-count' ).css( 'width', 'auto' );
 		} );
 
-		$( '.count-up' ).closest( '.do-spot' ).on( 'spotted', function() {
+		$( '.count-up.do-count' ).closest( '.do-spot' ).on( 'spotted', function( index ) {
 
-			var $countElem = $( this ).find( '.count-up' ),
-				countValue = $countElem.attr( 'data-count-value' ),
-				countDuration = $countElem.data( 'count-duration' ) ? $countElem.data( 'count-duration' ) : 1000;
-
-			// Skip counters that aren't setup
-			if ( ! countValue ) return;
+			var $countElem = $( this ).find( '.count-up' );
 
 			if ( $countElem.hasClass( 'started-count' ) ) return;
 			$countElem.addClass( 'started-count' );
 
-			$( { countNum: '0' } ).animate( { countNum: countValue }, {
-				duration: countDuration,
-				easing: 'linear',
-				step: function() {
-					$countElem.text( commaSeparateNumber( Math.floor( this.countNum ) ) );
+			var text = $countElem.text(),
+				hasCommas = text.indexOf( ',' ) !== -1;
+
+			// Replace commas with dots, if they are part of the number from the start, enabling counting up.
+			if ( hasCommas ) text = text.replace( ',', '.' );
+
+			// Get the number of decimals.
+			var size = text.split( '.' )[1] ? text.split( '.' )[1].length : 0;
+
+			$countElem.prop( 'Counter', 0 ).animate( { Counter: text }, {
+				duration: 2000,
+				easing: 'swing',
+				step: function ( now ) {
+
+					var text = parseFloat( now ).toFixed( size );
+
+					// Add the commas back in.
+					if ( hasCommas ) text = text.replace( '.', ',' );
+
+					$countElem.text( text );
 				},
 				complete: function() {
-					$countElem.text( commaSeparateNumber( countValue ) );
 					$countElem.addClass( 'counted' );
 				}
 			} );

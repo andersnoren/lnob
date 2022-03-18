@@ -33,8 +33,8 @@ $share_settings['default']['permalink'] = home_url() . '#' . $id;
 // Determine the text color for this global goal (ensures contrast).
 // The contrasting color is the opposite of the text color.
 global $post;
-$gg_number 			= get_field( 'general_global_goal', $post->ID ) ?: 1;
-$gg_text_c 			= lnob_get_gg_text_color( $gg_number );
+$gg_number 			= get_field( 'general_global_goal', $post->ID ) ?: false;
+$gg_text_c 			= $gg_number ? lnob_get_gg_text_color( $gg_number ) : 'black';
 $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 
 $block_inner_classes = '';
