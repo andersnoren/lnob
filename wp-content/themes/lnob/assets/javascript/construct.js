@@ -1019,19 +1019,17 @@ LNOB.frontPage = {
 				var $scrollTo 	= false;
 
 				// Note: offset().top doesn't work with elements set to a sticky position – hence the manual calculation of ggOffset + $gg.outerHeight().
-				var ggsOffset 	= $( '.global-goals' ).offset().top,
-					ggsBottom	= ggsOffset + $( '.global-goals' ).outerHeight(),
-					winOffset 	= $lnobWin.scrollTop(),
-					winMiddle	= winOffset + ( $lnobWin.outerHeight() / 2 );
+				var ggsOffset 		= $( '.global-goals' ).offset().top,
+					ggsBottom		= ggsOffset + $( '.global-goals' ).outerHeight(),
+					winOffset 		= $lnobWin.scrollTop(),
+					winMiddle		= winOffset + ( $lnobWin.outerHeight() * .5 );
+					winThreeFourths	= winOffset + ( $lnobWin.outerHeight() * .75 );
 
 				// If we've scrolled past the Global Goals, do nothing.
-				if ( winMiddle > ggsBottom ) {
-					return;
-				}
+				if ( winMiddle > ggsBottom ) return;
 
-				// Scroll to the first GG if it's within half of the screen height.
-				if ( winOffset < ggsOffset && winMiddle > ggsOffset ) {
-					console.log( 'scroll!' );
+				// Scroll to the first GG if it's within three fourths of the screen height.
+				if ( winOffset < ggsOffset && winThreeFourths > ggsOffset ) {
 					LNOB.smoothScroll.scrollToPosition( ggsOffset, scrollDuration );
 					$( '.global-goals .gg:first-child' ).addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
 				}
