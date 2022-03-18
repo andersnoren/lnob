@@ -62,18 +62,6 @@ function isInViewport(elm, threshold, mode) {
 	return mode === 'above' ? above : (mode === 'below' ? below : !above && !below);
 }
 
-/* Toggle Scrolling -------------------------- */
-
-function disableScrolling() {
-    var x=window.scrollX;
-    var y=window.scrollY;
-    window.onscroll=function(){window.scrollTo(x, y);};
-}
-
-function enableScrolling() {
-    window.onscroll=function(){};
-}
-
 
 /*	-----------------------------------------------------------------------------------------------
 	Interval Scroll
@@ -1015,13 +1003,18 @@ LNOB.frontPage = {
 
 		if ( reduceMotion ) return false;
 
-		$lnobWin.scroll( function() {
+		// Setup isScrolling variable.
+		var isScrolling,
+			scrollDuration = 250;
 
-			clearTimeout( $.data( this, 'ggLockScrollToHeroTimer' ) );
+		// Listen for scroll events.
+		window.addEventListener( 'scroll', function ( event ) {
 
-			disableScrolling();
+			// Clear our timeout throughout the scroll.
+			window.clearTimeout( isScrolling );
 
-			$.data( this, 'ggLockScrollToHeroTimer', setTimeout( function() {
+			// Set a timeout to run after scrolling ends.
+			isScrolling = setTimeout( function() {
 
 				var $scrollTo 	= false;
 
@@ -1033,33 +1026,33 @@ LNOB.frontPage = {
 
 				// If we've scrolled past the Global Goals, do nothing.
 				if ( winMiddle > ggsBottom ) {
-					return false;
+					return;
 				}
 
 				// Scroll to the first GG if it's within half of the screen height.
 				if ( winOffset < ggsOffset && winMiddle > ggsOffset ) {
-					LNOB.smoothScroll.scrollToPosition( ggsOffset );
+					console.log( 'scroll!' );
+					LNOB.smoothScroll.scrollToPosition( ggsOffset, scrollDuration );
 					$( '.global-goals .gg:first-child' ).addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
-					return false;
 				}
-
-				enableScrolling();
 
 				$( '.global-goals .gg' ).each( function() {
 					if ( winMiddle > $( this ).offset().top ) {
 						$scrollTo = $( this );
 					} else {
-						return false;
+						return;
 					}
 				} );
 
 				if ( $scrollTo && ! $scrollTo.hasClass( 'showing-content' ) ) {
 					$scrollTo.addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
-					LNOB.smoothScroll.scrollToTarget( $scrollTo );
+					LNOB.smoothScroll.scrollToTarget( $scrollTo, null, false, scrollDuration );
+					return;
 				}
 
-			}, 100 ) );
-		} );
+			}, 66 );
+
+		}, false );
 
 	},
 
