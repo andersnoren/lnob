@@ -79,8 +79,8 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 			<div class="scroll-button-wrapper">
 				<?php 
 
-				$expand_button_text 	= get_field( 'expand_button_text' ) ?: __( 'Läs mer', 'lnob' );
-				$collapse_button_text 	= get_field( 'collapse_button_text' ) ?: __( 'Stäng', 'lnob' );
+				$expand_button_text 	= get_field( 'content_expand_button_text' ) ?: __( 'Läs mer', 'lnob' );
+				$collapse_button_text 	= get_field( 'content_collapse_button_text' ) ?: __( 'Stäng', 'lnob' );
 
 				$button_text = '<span class="show-inactive">' . $expand_button_text . '</span><span class="show-active">' . $collapse_button_text . '</span>';
 
