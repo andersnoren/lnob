@@ -890,12 +890,6 @@ LNOB.frontPage = {
 		// Global Goals: Scroll to hidden elements on load.
 		LNOB.frontPage.ggLoadScrollToHiddenElement();
 
-		// Global Goals: Lock scroll to hero.
-		LNOB.frontPage.ggLockScrollToHero();
-
-		// Global Goals: Scroll to the right section depending on focus.
-		LNOB.frontPage.ggFocusScroll();
-
 		// Main Menu.
 		LNOB.frontPage.mainMenu();
 
@@ -992,79 +986,6 @@ LNOB.frontPage = {
 			LNOB.frontPage.ggShow( $ggParent );
 			LNOB.smoothScroll.scrollToTarget( $hashElem );
 		}
-
-	},
-
-	// Global Goals: Lock scroll to hero.
-	ggLockScrollToHero: function() {
-
-		if ( reduceMotion ) return false;
-
-		// Setup isScrolling variable.
-		var isScrolling,
-			scrollDuration = 250;
-
-		// Listen for scroll events.
-		window.addEventListener( 'scroll', function ( event ) {
-
-			// Clear our timeout throughout the scroll.
-			window.clearTimeout( isScrolling );
-
-			// Set a timeout to run after scrolling ends.
-			isScrolling = setTimeout( function() {
-
-				var $scrollTo 	= false;
-
-				// Note: offset().top doesn't work with elements set to a sticky position – hence the manual calculation of ggOffset + $gg.outerHeight().
-				var ggsOffset 		= $( '.global-goals' ).offset().top,
-					ggsBottom		= ggsOffset + $( '.global-goals' ).outerHeight(),
-					winOffset 		= $lnobWin.scrollTop(),
-					winMiddle		= winOffset + ( $lnobWin.outerHeight() * .5 );
-					winThreeFourths	= winOffset + ( $lnobWin.outerHeight() * .75 );
-
-				// If we've scrolled past the Global Goals, do nothing.
-				if ( winMiddle > ggsBottom ) return;
-
-				// Scroll to the first GG if it's within three fourths of the screen height.
-				if ( winOffset < ggsOffset && winThreeFourths > ggsOffset ) {
-					LNOB.smoothScroll.scrollToPosition( ggsOffset, scrollDuration );
-					$( '.global-goals .gg:first-child' ).addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
-				}
-
-				$( '.global-goals .gg' ).each( function() {
-					if ( winMiddle > $( this ).offset().top ) {
-						$scrollTo = $( this );
-					} else {
-						return;
-					}
-				} );
-
-				if ( $scrollTo && ! $scrollTo.hasClass( 'showing-content' ) ) {
-					$scrollTo.addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
-					LNOB.smoothScroll.scrollToTarget( $scrollTo, null, false, scrollDuration );
-					return;
-				}
-
-			}, 66 );
-
-		}, false );
-
-	},
-
-	// Global Goals: Scroll to the right section depending on focus.
-	ggFocusScroll: function() {
-
-		$( '.gg *' ).on( 'focus', function() {
-
-			var $focusElem 	= $( this ),
-				$gg 		= $focusElem.closest( '.gg' );
-
-			if ( $gg.hasClass( 'scrolled-to' ) && $gg.hasClass( 'showing-content' ) ) return false;
-
-			$gg.addClass( 'scrolled-to' ).siblings().removeClass( 'scrolled-to' );
-			LNOB.smoothScroll.scrollToTarget( $gg, null, false, 0 );
-
-		} );
 
 	},
 
