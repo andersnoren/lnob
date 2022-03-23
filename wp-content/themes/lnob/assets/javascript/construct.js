@@ -12,7 +12,7 @@ var LNOB = LNOB || {},
 
 var $lnobDoc 			= $( document ),
     $lnobWin 			= $( window ),
-	lnobIsIE11 			= !!window.MSInputMethodContext && !!document.documentMode;
+	lnobIsIE11 			= !!window.MSInputMethodContext && !!document.documentMode,
 	reduceMotionMedia	= window.matchMedia( "(prefers-reduced-motion: reduce)" ),
 	reduceMotion		= ( ! reduceMotionMedia || reduceMotionMedia.matches );
 
@@ -549,13 +549,10 @@ LNOB.elementInView = {
 	// Determine whether the element is in view.
 	isVisible: function( $elem, checkAbove = true ) {
 
-		var winHeight 				= $lnobWin.height();
-
-		var docViewTop 				= $lnobWin.scrollTop(),
-			docViewBottom			= docViewTop + winHeight,
-			docViewLimit 			= docViewBottom;
-
-		var elemTop 				= $elem.offset().top;
+		var winHeight 				= $lnobWin.height(),
+			docViewTop 				= $lnobWin.scrollTop(),
+			docViewBottom			= docViewTop + winHeight;
+			elemTop 				= $elem.offset().top;
 
 		// For elements with a transform: translateY value, subtract the translateY value for the elemTop comparison point.
 		// IE11 doesn't support WebKitCSSMatrix, so don't do it in IE11.

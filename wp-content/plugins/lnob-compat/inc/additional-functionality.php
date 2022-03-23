@@ -34,7 +34,6 @@ function lnob_compat_remove_admin_menu_pages() {
 
 	remove_menu_page( 'edit-comments.php' );
 	remove_menu_page( 'edit.php' );
-	remove_menu_page( 'upload.php' );
 
 }
 add_action( 'admin_menu', 'lnob_compat_remove_admin_menu_pages' );
