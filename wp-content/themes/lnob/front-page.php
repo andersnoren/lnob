@@ -20,7 +20,7 @@ while ( have_posts() ) : the_post();
 		$share_show			= ! empty( $hero['share']['show'] ) ? $hero['share']['show'] : false;
 		$share_settings 	= ! empty( $hero['share']['settings'] ) ? $hero['share']['settings'] : array();
 
-		$share_settings['default']['permalink'] = home_url();
+		$share_settings['default']['permalink'] = home_url( '/' );
 
 		?>
 
@@ -202,7 +202,7 @@ while ( have_posts() ) : the_post();
 		$share_show			= ! empty( $missing_in_stats['share']['show'] ) ? $missing_in_stats['share']['show'] : false;
 		$share_settings 	= ! empty( $missing_in_stats['share']['settings'] ) ? $missing_in_stats['share']['settings'] : array();
 
-		$share_settings['default']['permalink'] = home_url() . '#section-missing-in-stats';
+		$share_settings['default']['permalink'] = home_url( '/' ) . '#section-missing-in-stats';
 
 		?>
 
@@ -291,7 +291,7 @@ while ( have_posts() ) : the_post();
 		$share_show			= ! empty( $recommendations['share']['show'] ) ? $recommendations['share']['show'] : false;
 		$share_settings 	= ! empty( $recommendations['share']['settings'] ) ? $recommendations['share']['settings'] : array();
 
-		$share_settings['default']['permalink'] = home_url() . '#section-recommendations';
+		$share_settings['default']['permalink'] = home_url( '/' ) . '#section-recommendations';
 
 		?>
 

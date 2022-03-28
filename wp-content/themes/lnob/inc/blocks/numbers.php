@@ -28,7 +28,7 @@ if ( isset( $share['share'] ) ) $share = $share['share'];
 $share_show			= ( isset( $share['show'] ) && ( $share['show'] === '' || $share['show'] == '1' ) ) || ( ! isset( $share['show'] ) );
 $share_settings 	= ! empty( $share['settings'] ) ? $share['settings'] : array();
 
-$share_settings['default']['permalink'] = home_url() . '#' . $id;
+$share_settings['default']['permalink'] = home_url( '/' ) . '#' . $id;
 
 // Determine the text color for this global goal (ensures contrast).
 // The contrasting color is the opposite of the text color.
