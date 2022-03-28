@@ -938,13 +938,17 @@ LNOB.frontPage = {
 
 			// Hide all other GG Content.
 			$gg.siblings( '.showing-content' ).each( function() {
-				ggContentHeight += $( this ).find( '.gg-content' ).outerHeight();
+				if ( $( this ).index() < $gg.index() ) {
+					ggContentHeight += $( this ).find( '.gg-content' ).outerHeight();
+				}
 				LNOB.frontPage.ggHide( $( this ) );
 			} );
 
 			// Update the scroll position to subtract the height of the other GG content, without smooth scroll.
-			var newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
-			LNOB.smoothScroll.scrollToPosition( newScrollPos, 0 );
+			if ( ggContentHeight ) {
+				var newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
+				window.scrollTo( 0, newScrollPos );
+			}
 
 			// After a delay, smooth scroll to this GG content.
 			setTimeout( function() {
