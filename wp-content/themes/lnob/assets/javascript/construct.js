@@ -16,6 +16,7 @@ var $lnobDoc 			= $( document ),
 	reduceMotionMedia	= window.matchMedia( "(prefers-reduced-motion: reduce)" ),
 	reduceMotion		= ( ! reduceMotionMedia || reduceMotionMedia.matches );
 
+window.scrollLocked = false;
 
 /*	-----------------------------------------------------------------------------------------------
 	Helper functions
@@ -46,6 +47,25 @@ function isNumber(n) {
     'use strict';
     n = n.replace(/\./g, '').replace(',', '.');
     return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/* Enable Scroll ----------------------------- */
+
+$.fn.disableScroll = function() {
+    window.oldScrollPos = $(window).scrollTop();
+	window.scrollLocked = true;
+
+    $(window).on('scroll.scrolldisabler',function ( event ) {
+       $(window).scrollTop( window.oldScrollPos );
+       event.preventDefault();
+    });
+}
+
+/* Disable Scroll ---------------------------- */
+
+$.fn.enableScroll = function() {
+	window.scrollLocked = false;
+    $(window).off('scroll.scrolldisabler');
 }
 
 /* Is In Viewport ---------------------------- */
@@ -121,82 +141,6 @@ LNOB.resizeEnd = {
 	},
 
 } // LNOB.resizeEnd
-
-
-/*	-----------------------------------------------------------------------------------------------
-	Is Scrolling
---------------------------------------------------------------------------------------------------- */
-
-LNOB.isScrolling = {
-
-	init: function() {
-
-		scrollPos = 0;
-
-		// Sensitivity for the scroll direction check (higher = more scroll required to reverse).
-		directionBuffer = 50;
-
-		var $body = $( 'body' );
-
-		$lnobWin.on( 'did-interval-scroll', function() {
-
-			var currentScrollPos 	= $lnobWin.scrollTop(),
-				scrollLockPos 		= $( 'html' ).attr( 'scrollock-position' ),
-				docHeight 			= $body.outerHeight(),
-				winHeight 			= $lnobWin.outerHeight();
-
-			// If scroll lock has been set, use the position stored before locking.
-			if ( scrollLockPos ) currentScrollPos = scrollLockPos;
-
-			// Detect scrolling.
-			if ( currentScrollPos > 0 ) {
-				$body.addClass( 'is-scrolling' );
-			} else {
-				$body.removeClass( 'is-scrolling' );
-			}
-
-			if ( currentScrollPos > $lnobWin.outerHeight() ) {
-				$body.addClass( 'scrolled-screen-height' );
-			} else {
-				$body.removeClass( 'scrolled-screen-height' );
-			}
-
-			// Detect whether we're at the bottom.
-			if ( currentScrollPos + winHeight >= docHeight ) {
-				$body.addClass( 'scrolled-to-bottom' );
-			} else {
-				$body.removeClass( 'scrolled-to-bottom' );
-			}
-
-			// Detect the scroll direction.
-			if ( currentScrollPos > ( $lnobWin.outerHeight() / 3 ) ) {
-				
-				if ( Math.abs( scrollPos - currentScrollPos ) >= directionBuffer ) {
-				
-					// Scrolling down.
-					if ( currentScrollPos > scrollPos ){
-						$( 'body' ).addClass( 'scrolling-down' ).removeClass( 'scrolling-up' );
-
-					// Scrolling up.
-					} else {
-						$( 'body' ).addClass( 'scrolling-up' ).removeClass( 'scrolling-down' );
-					}
-
-				}
-
-			} else {
-
-				$( 'body' ).removeClass( 'scrolling-up scrolling-down' );
-
-			}
-
-			scrollPos = currentScrollPos;
-
-		} );
-
-	}
-
-} // LNOB.isScrolling
 
 
 /*	-----------------------------------------------------------------------------------------------
@@ -277,11 +221,15 @@ LNOB.toggles = {
 
 				// Check whether to lock the screen scroll.
 				if ( $toggle.data( 'lock-scroll' ) ) {
-					LNOB.scrollLock.setTo( true );
+					$lnobWin.disableScroll();
 				} else if ( $toggle.data( 'unlock-scroll' ) ) {
-					LNOB.scrollLock.setTo( false );
+					$lnobWin.enableScroll();
 				} else if ( $toggle.data( 'toggle-scroll-lock' ) ) {
-					LNOB.scrollLock.setTo();
+					if ( window.scrollLocked ) {
+						$lnobWin.enableScroll();
+					} else {
+						$lnobWin.disableScroll();
+					}
 				}
 
 				// Check whether to set focus.
@@ -670,128 +618,6 @@ LNOB.smoothScroll = {
 
 
 /*	-----------------------------------------------------------------------------------------------
-	Scroll Lock
---------------------------------------------------------------------------------------------------- */
-
-LNOB.scrollLock = {
-
-	init: function() {
-
-		// Init variables.
-		window.scrollLocked = false,
-		window.prevScroll = {
-			scrollLeft : $lnobWin.scrollLeft(),
-			scrollTop  : $lnobWin.scrollTop()
-		},
-		window.prevLockStyles = {},
-		window.lockStyles = {
-			'overflow-y' : 'scroll',
-			'position'   : 'fixed',
-			'width'      : '100%'
-		};
-
-		// Instantiate cache in case someone tries to unlock before locking.
-		LNOB.scrollLock.saveStyles();
-
-	},
-
-	// Save context's inline styles in cache.
-	saveStyles: function() {
-
-		var styleAttr = $( 'html' ).attr( 'style' ),
-			styleStrs = [],
-			styleHash = {};
-
-		if ( ! styleAttr ) {
-			return;
-		}
-
-		styleStrs = styleAttr.split( /;\s/ );
-
-		$.each( styleStrs, function serializeStyleProp( styleString ) {
-			if ( ! styleString ) {
-				return;
-			}
-
-			var keyValue = styleString.split( /\s:\s/ );
-
-			if ( keyValue.length < 2 ) {
-				return;
-			}
-
-			styleHash[ keyValue[ 0 ] ] = keyValue[ 1 ];
-		} );
-
-		$.extend( prevLockStyles, styleHash );
-	},
-
-	// Lock the scroll (do not call this directly).
-	lock: function() {
-
-		var appliedLock = {};
-
-		if ( scrollLocked ) return;
-
-		// Save scroll state and styles.
-		prevScroll = {
-			scrollLeft : $lnobWin.scrollLeft(),
-			scrollTop  : $lnobWin.scrollTop()
-		};
-
-		LNOB.scrollLock.saveStyles();
-
-		// Compose our applied CSS, with scroll state as styles.
-		$.extend( appliedLock, lockStyles, {
-			'left' : - prevScroll.scrollLeft + 'px',
-			'top'  : - prevScroll.scrollTop + 'px'
-		} );
-
-		// Then lock styles and state.
-		$( 'html' ).css( appliedLock ).addClass( 'scroll-locked' );
-		$( 'html' ).attr( 'scrollock-position', prevScroll.scrollTop );
-		$lnobWin.scrollLeft( 0 ).scrollTop( 0 );
-
-		scrollLocked = true;
-	},
-
-	// Unlock the scroll (do not call this directly).
-	unlock: function() {
-
-		if ( ! scrollLocked ) return;
-
-		// Revert styles and state.
-		$( 'html' ).attr( 'style', $( '<x>' ).css( prevLockStyles ).attr( 'style' ) || '' );
-		$( 'html' ).removeClass( 'scroll-locked' ).removeAttr( 'scrollock-position' );
-		$lnobWin.scrollLeft( prevScroll.scrollLeft ).scrollTop( prevScroll.scrollTop );
-
-		scrollLocked = false;
-	},
-
-	// Call this to lock or unlock the scroll.
-	setTo: function( on ) {
-
-		// If an argument is passed, lock or unlock accordingly.
-		if ( arguments.length ) {
-			if ( on ) {
-				LNOB.scrollLock.lock();
-			} else {
-				LNOB.scrollLock.unlock();
-			}
-			// If not, toggle to the inverse state.
-		} else {
-			if ( scrollLocked ) {
-				LNOB.scrollLock.unlock();
-			} else {
-				LNOB.scrollLock.lock();
-			}
-		}
-
-	},
-
-} // LNOB.scrollLock
-
-
-/*	-----------------------------------------------------------------------------------------------
 	Focus Management
 --------------------------------------------------------------------------------------------------- */
 
@@ -1108,8 +934,6 @@ $lnobDoc.ready( function() {
 
 	LNOB.intervalScroll.init();			// Check for scroll on an interval.
 	LNOB.resizeEnd.init();				// Trigger event at end of resize.
-	LNOB.isScrolling.init();			// Check for scroll direction.
-	LNOB.scrollLock.init();				// Scroll Lock.
 	LNOB.toggles.init();				// Handle toggles.
 	LNOB.coverModals.init();			// Handle cover modals.
 	LNOB.elementInView.init();			// Check if elements are in view.
