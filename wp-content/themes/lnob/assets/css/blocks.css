@@ -335,6 +335,10 @@ section.wp-block-cover-image > h2 {
 	border-radius: var( --br-squircle );
 }
 
+.wp-block[data-align="full"] > .wp-block-group.has-background {
+	border-radius: 0;
+}
+
 .wp-block-group.has-background.alignfull {
 	padding-bottom: 4.8rem;
 	padding-top: 4.8rem;
