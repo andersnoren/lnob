@@ -690,6 +690,14 @@ ul > [class*="superlist-item"]:before {
 .gg-16 .is-style-forumciv-bullet > li:before, .gg-16 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-16.svg ); }
 .gg-17 .is-style-forumciv-bullet > li:before, .gg-17 ul > [class*="superlist-item"]:before { background-image: url( ../images/svgs/squircles/squircle-gg-17.svg ); }
 
+*[class*="has-gg-"][class*="-background-color"].has-white-color .is-style-forumciv-bullet > li:before, *[class*="has-gg-"][class*="-background-color"].has-white-color ul > [class*="superlist-item"]:before {
+	background-image: url( ../images/svgs/squircles/squircle-white.svg );
+}
+
+*[class*="has-gg-"][class*="-background-color"].has-black-color .is-style-forumciv-bullet > li:before, *[class*="has-gg-"][class*="-background-color"].has-black-color ul > [class*="superlist-item"]:before {
+	background-image: url( ../images/svgs/squircles/squircle-black.svg );
+}
+
 [class*="superlist-item"] > *:first-child { margin-top: 0; }
 [class*="superlist-item"] > *:last-child { margin-bottom: 0; }
 
