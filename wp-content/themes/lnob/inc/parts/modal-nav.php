@@ -12,15 +12,15 @@ $front_page_id = get_option( 'page_on_front' );
 
 			<div class="logos pv-24 pv-t-32">
 
-				<a class="logo lnob-logo" href="https://www.globalamalen.se">
-						<?php lnob_the_svg( 'logos/lnob-logo' ); ?>
-						<span class="screen-reader-text"><?php _e( 'Globala målen', 'lnob' ); ?></span>
-					</a>
+				<a class="logo lnob-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<?php lnob_the_svg( 'logos/lnob-logo' ); ?>
+					<span class="screen-reader-text"><?php _e( 'Globala målen', 'lnob' ); ?></span>
+				</a>
 
-					<a class="logo forumciv-logo" href="https://www.forumciv.org/sv">
-						<?php lnob_the_svg( 'logos/forumciv-logo' ); ?>
-						<span class="screen-reader-text"><?php _e( 'ForumCiv', 'lnob' ); ?></span>
-					</a>
+				<a class="logo forumciv-logo" href="https://www.forumciv.org/sv">
+					<?php lnob_the_svg( 'logos/forumciv-logo' ); ?>
+					<span class="screen-reader-text"><?php _e( 'ForumCiv', 'lnob' ); ?></span>
+				</a>
 
 			</div><!-- .logos -->
 
