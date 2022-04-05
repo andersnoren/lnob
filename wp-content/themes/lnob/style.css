@@ -142,6 +142,15 @@ blockquote:after {
 	content: "";
 }
 
+body.showing-navigation {
+	-ms-overflow-style: none; /* IE and Edge */
+  	scrollbar-width: none; /* Firefox */
+}
+
+body.showing-navigation::-webkit-scrollbar {
+	display: none; /* Safari, Chrome */
+}
+
 
 /* --------------------------------------------------------------------------------------------- */
 /*	1. Document Setup
