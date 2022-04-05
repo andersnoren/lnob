@@ -374,6 +374,12 @@ section.wp-block-cover-image > h2 {
 	}
 }
 
+/* Block: Hello Charts ----------------------- */
+
+:root .wp-block-hello-charts {
+	color: inherit;
+}
+
 /* Block: HTML ------------------------------- */
 /* Block: Image ------------------------------ */
 

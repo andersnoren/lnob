@@ -61,6 +61,24 @@ $.fn.disableScroll = function() {
     });
 }
 
+/* RGB to Hex -------------------------------- */
+
+const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
+
+/* Hex to RGBA ------------------------------- */
+
+function hexToRGBA( hex, alpha ) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+    } else {
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+}
+
 /* Disable Scroll ---------------------------- */
 
 $.fn.enableScroll = function() {
@@ -927,6 +945,64 @@ LNOB.countUp = {
 
 
 /*	-----------------------------------------------------------------------------------------------
+	Charts
+--------------------------------------------------------------------------------------------------- */
+
+LNOB.charts = {
+
+	init: function() {
+
+		var $charts = $( '.wp-block-hello-charts canvas' );
+
+		$charts.each( function() {
+
+			var $chart 			= $( this ),
+				chartID 		= $chart.attr( 'id' ),
+				chart 			= Chart.getChart( chartID ),
+				textColor 		= $( this ).css( 'color' ),
+				textColorHex 	= rgba2hex( textColor ),
+				textColorA		= hexToRGBA( textColorHex, .1 );
+
+			chart.options = {
+				plugins: {
+					legend: {
+						labels: {
+							color: textColor
+						}
+					}	
+				},
+				scales: {
+					x: {
+						grid: {
+							borderColor: 'transparent',
+							color: textColorA,
+						},
+						ticks: {
+							color: textColor
+						}
+					},
+					y: {
+						grid: {
+							borderColor: 'transparent',
+							color: textColorA,
+						},
+						ticks: {
+							color: textColor
+						}
+					},
+				}
+			};
+
+			chart.update();
+
+		} );
+
+	},
+
+} // LNOB.charts
+
+
+/*	-----------------------------------------------------------------------------------------------
 	Function Calls
 --------------------------------------------------------------------------------------------------- */
 
@@ -942,5 +1018,6 @@ $lnobDoc.ready( function() {
 	LNOB.frontPage.init();				// Front Page.
 	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
 	LNOB.countUp.init();				// Count Up.
+	LNOB.charts.init();					// Tweak Hello Charts.
 
 } );
