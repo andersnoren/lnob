@@ -1395,6 +1395,70 @@ section {
 	gap: 1.2rem;
 }
 
+.share-buttons-list li {
+	display: flex;
+}
+
+.copy-link {
+	outline: none;
+}
+
+.copy-link:focus .squircle {
+    outline: auto;
+}
+
+.copy-link .copy-icon {
+	transition: all .15s ease-in-out;
+}
+
+.copy-link:not(.copied) .icon-checkmark,
+.copy-link.copied .icon-link {
+	opacity: 0;
+	transform: scale( 0 );
+}
+
+.copy-text {
+	background-color: var( --c-black );
+	border-radius: .4rem;
+	color: var( --c-white );
+	font-size: 1.3rem;
+	letter-spacing: -.02em;
+	line-height: 1;
+	opacity: 0;
+	padding: .8rem 1rem .7rem;
+	position: absolute;
+		left: 50%;
+		bottom: calc( 100% + .8rem );
+	text-align: center;
+	transform: translateX( -50% ) translateY( -.4rem );
+	transition: all .15s linear;
+	text-transform: none;
+	white-space: nowrap;
+}
+
+.copy-text:before {
+	background-color: var( --c-black );
+	content: "";
+	display: block;
+	height: .8rem;
+	position: absolute;
+		left: calc( 50% - .4rem );
+		bottom: -.4rem;
+	transform: rotate( 45deg );
+	width: .8rem;
+}
+
+.copy-link:hover .copy-text,
+.copy-link:focus .copy-text {
+	opacity: 1;
+	transform: translateX( -50% ) translateY( 0 );
+}
+
+.copy-link:not(.copied) .copy-text .copied,
+.copy-link.copied .copy-text .copy {
+	display: none;
+}
+
 /* Footnotes --------------------------------- */
 
 .footnote-back-link-wrapper {

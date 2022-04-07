@@ -572,6 +572,21 @@
                             "maxlength": ""
                         }
                     ]
+                },
+                {
+                    "key": "field_624ea86471fe2",
+                    "label": "Knapp under rekommendationer-rutan",
+                    "name": "recommendations_button",
+                    "type": "link",
+                    "instructions": "Visas som en knapp under rekommendationer-rutan i sektionen.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 }
             ]
         },
@@ -1100,5 +1115,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1646748235
+    "modified": 1649322124
 }

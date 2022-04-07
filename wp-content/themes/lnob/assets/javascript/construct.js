@@ -957,9 +957,11 @@ LNOB.charts = {
 			var $chart 			= $( this ),
 				chartID 		= $chart.attr( 'id' ),
 				chart 			= Chart.getChart( chartID ),
+				chartType		= chart.config.type,
 				textColor 		= $( this ).css( 'color' ),
 				textColorHex 	= rgba2hex( textColor ),
 				textColorA		= hexToRGBA( textColorHex, .1 );
+
 
 			chart.options = {
 				plugins: {
@@ -969,27 +971,35 @@ LNOB.charts = {
 						}
 					}	
 				},
-				scales: {
-					x: {
-						grid: {
-							borderColor: 'transparent',
-							color: textColorA,
+			}
+
+			// Set scale colors on line and bar charts, which have them already.
+			if ( chartType == 'line' || chartType == 'bar' ) {
+
+				chart.options = {
+					scales: {
+						x: {
+							grid: {
+								borderColor: 'transparent',
+								color: textColorA,
+							},
+							ticks: {
+								color: textColor
+							}
 						},
-						ticks: {
-							color: textColor
-						}
-					},
-					y: {
-						grid: {
-							borderColor: 'transparent',
-							color: textColorA,
+						y: {
+							grid: {
+								borderColor: 'transparent',
+								color: textColorA,
+							},
+							ticks: {
+								color: textColor
+							}
 						},
-						ticks: {
-							color: textColor
-						}
-					},
-				}
-			};
+					}
+				};
+
+			}
 
 			chart.update();
 
@@ -998,6 +1008,55 @@ LNOB.charts = {
 	},
 
 } // LNOB.charts
+
+
+/*	-----------------------------------------------------------------------------------------------
+	Copy Link
+--------------------------------------------------------------------------------------------------- */
+
+LNOB.copyLink = {
+
+	init: function() {
+
+		$lnobDoc.on( 'click', '.copy-link', function() {
+
+			var $link = $( this ),
+				$temp = $( '<input type="text" style="opacity: 0; pointer-events: none;" />' );
+
+			if ( $link.not( '.copied' ) ) {
+		
+				// convert to editable with readonly to stop iOS keyboard opening
+				$temp.contentEditable = true;
+				$temp.readOnly = true;
+
+				var $focusedElement = $( ':focus' );
+
+				$link.append( $temp );
+				$temp.val( $link.data( 'url' ) ).select();
+				document.execCommand( 'copy' );
+
+				// restore contentEditable/readOnly to original state
+				$temp.contentEditable = false;
+				$temp.readOnly = false;
+
+				$temp.remove();
+
+				if ( $focusedElement ) $focusedElement.focus();
+
+				$link.addClass( 'copied' );
+
+				setTimeout( function() {
+					$link.removeClass( 'copied' );
+				}, 1000 );
+
+			}
+
+			return false;
+		} );
+
+	},
+
+} // LNOB.copyLink
 
 
 /*	-----------------------------------------------------------------------------------------------
@@ -1017,5 +1076,6 @@ $lnobDoc.ready( function() {
 	LNOB.dynamicScreenHeight.init();	// Dynamic screen height.
 	LNOB.countUp.init();				// Count Up.
 	LNOB.charts.init();					// Tweak Hello Charts.
+	LNOB.copyLink.init();				// Copy link.
 
 } );

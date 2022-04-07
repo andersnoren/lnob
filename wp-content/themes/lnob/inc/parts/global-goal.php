@@ -67,6 +67,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 									'background'	=> $gg_text_c,
 									'icon'			=> $gg_text_contrast_c,
 								),
+								'copy_url'		=> get_permalink(),
 								'parameters'	=> $share_settings,
 							) ); ?>
 						</div><!-- .social-wrapper -->
@@ -120,6 +121,7 @@ $gg_text_contrast_c = $gg_text_c == 'white' ? 'black' : 'white';
 					<?php if ( $share_show ) : ?>
 						<div class="social-wrapper">
 							<?php lnob_the_share_links( array(
+								'copy_url'		=> get_permalink(),
 								'parameters'	=> $share_settings,
 							) ); ?>
 						</div><!-- .social-wrapper -->

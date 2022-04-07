@@ -93,6 +93,8 @@ while ( have_posts() ) : the_post();
 			$rec_shortcut_text 			= ! empty( $rec_shortcut['text'] ) ? $rec_shortcut['text'] : false;
 			$rec_shortcut_button_text 	= ! empty( $rec_shortcut['button_text'] ) ? $rec_shortcut['button_text'] : __( 'Läs mer', 'lnob' );
 
+			$rec_below_button 			= ! empty( $introduction['recommendations_button'] ) ? $introduction['recommendations_button'] : array();
+
 			?>
 
 			<section id="section-introduction" class="introduction">
@@ -140,6 +142,22 @@ while ( have_posts() ) : the_post();
 								</div><!-- .rec-shortcut-button -->
 
 							</div><!-- .rec-shortcut -->
+
+							<?php if ( $rec_below_button ) : 
+								$text 			= ! empty( $rec_below_button['title'] ) ? $rec_below_button['title'] : '';
+								$url			= ! empty( $rec_below_button['url'] ) ? $rec_below_button['url'] : '';
+								$target_attr	= ! empty( $rec_below_button['target'] ) ? ' target="' . $rec_below_button['target'] . '"' : '';
+								?>
+
+								<div class="rec-below-button pu-24 pu-t-48 do-spot spot-fade-up">
+									<div class="wp-block-button is-style-button-has-icon-arrow-down-black">
+										<a href="<?php echo esc_url( $url ); ?>" class="wp-block-button__link has-black-color has-yellow-background-color has-text-color has-background"<?php echo $target_attr; ?>>
+											<?php echo $text; ?>
+										</a>
+									</div>
+								</div>
+
+							<?php endif; ?>
 
 						</div><!-- .rec-shortcut-wrapper -->
 

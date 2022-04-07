@@ -239,6 +239,7 @@ function lnob_the_share_links( $args = array() ) {
 			'background'	=> 'service',
 			'icon'			=> 'white',
 		),
+		'copy_url'		=> false,
 		'parameters'	=> array(
 			'default'		=> array(
 				'title'			=> '',
@@ -341,6 +342,30 @@ function lnob_the_share_links( $args = array() ) {
 					) ); 
 					?>
 				</li>
+			<?php endif; ?>
+
+			<?php if ( $args['copy_url'] ) : 
+				$squircle_color = $args['colors']['background'] == 'service' ? 'black' : $args['colors']['background'];
+				?>
+
+				<li class="share-copy-url">
+					<a class="squircle-link copy-link" data-url="<?php echo esc_url( $args['copy_url'] ); ?>" href="#">
+						<div class="squircle-wrapper pos-relative">
+							<div class="squircle pos-cover fill-cc c-<?php echo $squircle_color; ?>">
+								<?php lnob_the_svg( 'squircles/squircle' ); ?>
+							</div>
+							<div class="icon-wrapper pos-cover c-<?php echo $args['colors']['icon']; ?>">
+								<div class="copy-icon d-flex align-center justify-center icon-link fill-cc pos-cover"><?php lnob_the_svg( 'link', 20, 20 ); ?></div>
+								<div class="copy-icon d-flex align-center justify-center icon-checkmark fill-cc pos-cover"><?php lnob_the_svg( 'checkmark', 20, 20 ); ?></div>
+							</div>
+							<div class="copy-text">
+								<div class="copy"><?php _e( 'Kopiera länk', 'lnob' ); ?></div>
+								<div class="copied"><?php _e( 'Länk kopierad!', 'lnob' ); ?></div>
+							</div>
+						</div>
+					</a>
+				</li>
+
 			<?php endif; ?>
 
 		</ul>
