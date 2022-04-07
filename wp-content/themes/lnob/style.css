@@ -179,6 +179,7 @@ body {
 		-webkit-box-sizing: inherit;
 		-moz-box-sizing: inherit;
 	box-sizing: inherit;
+	overflow-anchor: none;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	word-break: break-word;

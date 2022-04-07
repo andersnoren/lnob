@@ -777,22 +777,20 @@ LNOB.frontPage = {
 		$( '.gg-content' ).on( 'toggled-active', function() {
 
 			var $ggContent 		= $( this ),
-				$gg 			= $ggContent.closest( '.gg' ),
-				ggContentHeight = 0;
+				$gg 			= $ggContent.closest( '.gg' );
 
 			// Hide all other GG Content.
 			$gg.siblings( '.showing-content' ).each( function() {
+
+				// Update the scroll position to subtract the height of this GG content, without smooth scroll.
 				if ( $( this ).index() < $gg.index() ) {
-					ggContentHeight += $( this ).find( '.gg-content' ).outerHeight();
+					var ggContentHeight = $( this ).find( '.gg-content' ).outerHeight(),
+						newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
+					window.scrollTo( 0, newScrollPos );
 				}
+
 				LNOB.frontPage.ggHide( $( this ) );
 			} );
-
-			// Update the scroll position to subtract the height of the other GG content, without smooth scroll.
-			if ( ggContentHeight ) {
-				var newScrollPos = $lnobDoc.scrollTop() - ggContentHeight;
-				window.scrollTo( 0, newScrollPos );
-			}
 
 			// After a delay, smooth scroll to this GG content.
 			setTimeout( function() {
